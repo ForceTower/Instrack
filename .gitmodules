@@ -1,3 +1,4 @@
 [submodule "android-toolkit"]
 	path = android-toolkit
 	url = git@github.com:ForceTower/android-toolkit.git
+	branch = master
