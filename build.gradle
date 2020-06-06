@@ -73,10 +73,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-subprojects {
-    tasks.whenTaskAdded {
-        if (name == 'preBuild') {
-            mustRunAfter 'lintKotlin'
+subprojects { evaluateProject ->
+    if (!evaluateProject.toString().contains('instagram') && !evaluateProject.toString().contains('toolkit')) {
+        tasks.whenTaskAdded {
+            if (name == 'preBuild') {
+                mustRunAfter 'lintKotlin'
+            }
         }
     }
 }
