@@ -11,4 +11,6 @@
     <string name="instagram_password_hint">Digite a sua senha</string>
     <string name="instagram_password_label">Senha</string>
     <string name="do_login_action">Visualizar informações!</string>
+    <string name="login_username_too_short">Nome de usuário muito pequeno</string>
+    <string name="login_password_too_short">Senha muito curta</string>
 </resources>
