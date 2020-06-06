@@ -179,9 +179,9 @@ class SyncRepository @Inject constructor(
         // someone with X followers, watched your stories!
         val response = session.feeds.feedStory(userId)
         val data = response.data
-        response.error?.printStackTrace()
         if (response.isSuccessful && data != null) {
             val items = data.reel?.items?.map { Story.adapt(it) } ?: return
+            Timber.d("Stories fetched $items")
             database.story().insertAllIgnore(items)
             storiesAudience(session, items, userId)
         }
@@ -272,6 +272,7 @@ class SyncRepository @Inject constructor(
     private suspend fun fetchPostComments(session: Session, post: Post, userId: Long) {
         var restart = true
         var hasMore: Boolean
+        var leftCount = 4
 
         do {
             val response = session.medias.comments(post.id, restart = restart)
@@ -283,6 +284,7 @@ class SyncRepository @Inject constructor(
                 database.comment().insertOrUpdate(data.comments.map { PostComment.adapt(it, post.pk) })
                 database.action().insertAllIgnore(data.comments.map { Action.comment(it.user.pk, userId, it.pk) })
             }
-        } while (hasMore)
+            leftCount--
+        } while (hasMore && leftCount > 0)
     }
 }

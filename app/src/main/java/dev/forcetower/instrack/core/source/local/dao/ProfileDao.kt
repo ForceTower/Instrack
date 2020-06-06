@@ -34,6 +34,7 @@ abstract class ProfileDao : BaseDao<Profile>() {
         }
     }
 
+    // (SELECT L.userPK FROM LinkedProfile AS L WHERE L.selected = 1 LIMIT 1)
     @Query("SELECT P.* FROM Profile AS P WHERE P.pk = (SELECT L.userPK FROM LinkedProfile AS L WHERE L.selected = 1 LIMIT 1)")
     abstract fun getSelectedProfile(): Flow<Profile?>
 

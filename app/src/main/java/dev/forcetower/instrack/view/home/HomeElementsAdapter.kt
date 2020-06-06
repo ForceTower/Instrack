@@ -63,7 +63,7 @@ class HomeElementsAdapter(
             is HomeHolder.Header -> {
                 val element = differ.currentList[position] as HeadElement
                 holder.binding.overview = element.data
-                holder.adapterStories.submitList(element.data?.stories?.sortedByDescending { it.story.takenAt })
+                holder.adapterStories.submitList(element.data?.stories)
                 holder.adapterCarousel.submitList(element.data?.carousel)
             }
             is HomeHolder.Information -> {

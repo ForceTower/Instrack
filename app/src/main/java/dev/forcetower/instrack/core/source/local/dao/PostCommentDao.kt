@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import dev.forcetower.instrack.core.model.database.PostComment
 import dev.forcetower.toolkit.database.dao.BaseDao
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class PostCommentDao : BaseDao<PostComment>() {
@@ -13,4 +14,7 @@ abstract class PostCommentDao : BaseDao<PostComment>() {
     override suspend fun getValueByIDDirect(value: PostComment): PostComment? {
         return getCommentByIDDirect(value.pk)
     }
+
+    @Query("SELECT COUNT(PC.pk) FROM PostComment AS PC INNER JOIN Post AS P ON PC.postPk = P.pk WHERE P.userPk = (SELECT userPK FROM LinkedProfile WHERE selected = 1 LIMIT 1)")
+    abstract fun getCommentCount(): Flow<Int>
 }

@@ -25,7 +25,7 @@ class HomeStoriesAdapter(
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<StoryViewCount>() {
-        override fun areItemsTheSame(oldItem: StoryViewCount, newItem: StoryViewCount) = oldItem.story.pk == newItem.story.pk
+        override fun areItemsTheSame(oldItem: StoryViewCount, newItem: StoryViewCount) = oldItem.pk == newItem.pk
         override fun areContentsTheSame(oldItem: StoryViewCount, newItem: StoryViewCount) = oldItem == newItem
     }
 }

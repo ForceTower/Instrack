@@ -26,7 +26,7 @@
             android:layout_height="0dp"
             android:scaleType="centerCrop"
             android:importantForAccessibility="no"
-            app:imageUrl="@{element.story.previewPicture}"
+            app:imageUrl="@{element.previewPicture}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
