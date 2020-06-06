@@ -14,7 +14,6 @@ import dev.forcetower.instrack.databinding.FragmentLoginBinding
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
-import timber.log.Timber
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment() {

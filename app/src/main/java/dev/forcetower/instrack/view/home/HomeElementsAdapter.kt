@@ -14,7 +14,7 @@ import dev.forcetower.instrack.databinding.ItemHomeInfoBinding
 import dev.forcetower.instrack.databinding.ItemHomeProfileBinding
 import dev.forcetower.toolkit.extensions.inflate
 
-class HomeElementsAdapter (
+class HomeElementsAdapter(
     private val context: Context,
     private val actions: HomeActions
 ) : RecyclerView.Adapter<HomeElementsAdapter.HomeHolder>() {

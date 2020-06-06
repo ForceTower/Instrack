@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.forcetower.instagram.model.response.AccountResponse
 import com.forcetower.instagram.model.user.Account
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.source.Operation

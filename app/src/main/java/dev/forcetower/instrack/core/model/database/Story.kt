@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.forcetower.instagram.model.timeline.Item
 
 @Entity
-data class Story (
+data class Story(
     @PrimaryKey(autoGenerate = false)
     val pk: Long,
     val id: String,

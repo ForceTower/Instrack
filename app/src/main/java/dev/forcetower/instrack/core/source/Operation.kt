@@ -1,7 +1,7 @@
 package dev.forcetower.instrack.core.source
 
 sealed class Operation<T> {
-    data class Success<T>(val data: T, val code: Int): Operation<T>()
+    data class Success<T>(val data: T, val code: Int) : Operation<T>()
     data class Loading<T>(val data: T?) : Operation<T>()
     data class Error<T>(val error: Throwable, val code: Int, val data: T?) : Operation<T>()
 

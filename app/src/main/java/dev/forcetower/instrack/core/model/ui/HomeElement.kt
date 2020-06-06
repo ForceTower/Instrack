@@ -4,7 +4,7 @@ import android.content.Context
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.database.Profile
 
-data class HomeElement (
+data class HomeElement(
     val stableId: Int,
     val total: Int,
     val new: Int,

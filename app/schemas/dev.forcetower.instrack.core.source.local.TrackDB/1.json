@@ -2,8 +2,94 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "671689601c55cbfd8546fd686c62f32a",
+    "identityHash": "571852bfe56a24b02ea8547479b29e55",
     "entities": [
+      {
+        "tableName": "SyncRegistry",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `account` INTEGER NOT NULL, `followers` INTEGER NOT NULL, `following` INTEGER NOT NULL, `stories` INTEGER NOT NULL, `feed` INTEGER NOT NULL, `accountError` TEXT, `followersError` TEXT, `followingError` TEXT, `storiesError` TEXT, `feedError` TEXT, `createdTime` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "account",
+            "columnName": "account",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "followers",
+            "columnName": "followers",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "following",
+            "columnName": "following",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stories",
+            "columnName": "stories",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "feed",
+            "columnName": "feed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accountError",
+            "columnName": "accountError",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "followersError",
+            "columnName": "followersError",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "followingError",
+            "columnName": "followingError",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "storiesError",
+            "columnName": "storiesError",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "feedError",
+            "columnName": "feedError",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdTime",
+            "columnName": "createdTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
       {
         "tableName": "LinkedProfile",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userPk` INTEGER NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `selected` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, PRIMARY KEY(`userPk`))",
@@ -121,12 +207,583 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "ProfileHistory",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `userPk` INTEGER NOT NULL, `followerCount` INTEGER NOT NULL, `followingCount` INTEGER NOT NULL, `mediaCount` INTEGER NOT NULL, `createdTime` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "followerCount",
+            "columnName": "followerCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "followingCount",
+            "columnName": "followingCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaCount",
+            "columnName": "mediaCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdTime",
+            "columnName": "createdTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ProfileBond",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userPk` INTEGER NOT NULL, `referencePk` INTEGER NOT NULL, `followsMe` INTEGER, `followsMeAt` INTEGER, `unfollowMeAt` INTEGER, `iFollow` INTEGER, `iFollowAt` INTEGER, `iUnfollowAt` INTEGER, PRIMARY KEY(`userPk`, `referencePk`))",
+        "fields": [
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "referencePk",
+            "columnName": "referencePk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "followsMe",
+            "columnName": "followsMe",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "followsMeAt",
+            "columnName": "followsMeAt",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "unfollowMeAt",
+            "columnName": "unfollowMeAt",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "iFollow",
+            "columnName": "iFollow",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "iFollowAt",
+            "columnName": "iFollowAt",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "iUnfollowAt",
+            "columnName": "iUnfollowAt",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userPk",
+            "referencePk"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ProfileFriendship",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userPk` INTEGER NOT NULL, `followsPk` INTEGER NOT NULL, `create` INTEGER NOT NULL, `date` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, PRIMARY KEY(`userPk`, `followsPk`, `date`, `create`))",
+        "fields": [
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "followsPk",
+            "columnName": "followsPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "create",
+            "columnName": "create",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userPk",
+            "followsPk",
+            "date",
+            "create"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Action",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `userPk` INTEGER NOT NULL, `actionId` INTEGER NOT NULL, `profilePk` INTEGER NOT NULL, `referenceId` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actionId",
+            "columnName": "actionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profilePk",
+            "columnName": "profilePk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "referenceId",
+            "columnName": "referenceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Story",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pk` INTEGER NOT NULL, `id` TEXT NOT NULL, `code` TEXT NOT NULL, `takenAt` INTEGER NOT NULL, `mediaType` INTEGER NOT NULL, `previewPicture` TEXT, `userPk` INTEGER NOT NULL, `pictureUrl` TEXT, `videoUrl` TEXT, `videoDuration` REAL, `expiringAt` INTEGER, PRIMARY KEY(`pk`))",
+        "fields": [
+          {
+            "fieldPath": "pk",
+            "columnName": "pk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "takenAt",
+            "columnName": "takenAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaType",
+            "columnName": "mediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previewPicture",
+            "columnName": "previewPicture",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pictureUrl",
+            "columnName": "pictureUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "videoUrl",
+            "columnName": "videoUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "videoDuration",
+            "columnName": "videoDuration",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "expiringAt",
+            "columnName": "expiringAt",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "pk"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "StoryWatch",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`storyPk` INTEGER NOT NULL, `userPk` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, PRIMARY KEY(`storyPk`, `userPk`))",
+        "fields": [
+          {
+            "fieldPath": "storyPk",
+            "columnName": "storyPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "storyPk",
+            "userPk"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_StoryWatch_userPk",
+            "unique": false,
+            "columnNames": [
+              "userPk"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_StoryWatch_userPk` ON `${TABLE_NAME}` (`userPk`)"
+          },
+          {
+            "name": "index_StoryWatch_storyPk",
+            "unique": false,
+            "columnNames": [
+              "storyPk"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_StoryWatch_storyPk` ON `${TABLE_NAME}` (`storyPk`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Post",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pk` INTEGER NOT NULL, `id` TEXT NOT NULL, `code` TEXT NOT NULL, `mediaType` INTEGER NOT NULL, `userPk` INTEGER NOT NULL, `takenAt` INTEGER NOT NULL, `caption` TEXT, `likeCount` INTEGER NOT NULL, `commentCount` INTEGER NOT NULL, `viewCount` INTEGER NOT NULL, `previewPicture` TEXT, PRIMARY KEY(`pk`))",
+        "fields": [
+          {
+            "fieldPath": "pk",
+            "columnName": "pk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaType",
+            "columnName": "mediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "takenAt",
+            "columnName": "takenAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "caption",
+            "columnName": "caption",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "likeCount",
+            "columnName": "likeCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commentCount",
+            "columnName": "commentCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "viewCount",
+            "columnName": "viewCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previewPicture",
+            "columnName": "previewPicture",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "pk"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PostMedia",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pk` INTEGER NOT NULL, `id` TEXT NOT NULL, `postPk` INTEGER NOT NULL, `mediaType` INTEGER NOT NULL, `previewPicture` TEXT, `pictureUrl` TEXT, `videoUrl` TEXT, `videoDuration` REAL, PRIMARY KEY(`pk`))",
+        "fields": [
+          {
+            "fieldPath": "pk",
+            "columnName": "pk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "postPk",
+            "columnName": "postPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaType",
+            "columnName": "mediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previewPicture",
+            "columnName": "previewPicture",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pictureUrl",
+            "columnName": "pictureUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "videoUrl",
+            "columnName": "videoUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "videoDuration",
+            "columnName": "videoDuration",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "pk"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PostLike",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userPk` INTEGER NOT NULL, `postPk` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, PRIMARY KEY(`userPk`, `postPk`))",
+        "fields": [
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "postPk",
+            "columnName": "postPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userPk",
+            "postPk"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PostComment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pk` INTEGER NOT NULL, `userPk` INTEGER NOT NULL, `postPk` INTEGER NOT NULL, `text` TEXT NOT NULL, `likeCount` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, PRIMARY KEY(`pk`))",
+        "fields": [
+          {
+            "fieldPath": "pk",
+            "columnName": "pk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userPk",
+            "columnName": "userPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "postPk",
+            "columnName": "postPk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "likeCount",
+            "columnName": "likeCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "pk"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '671689601c55cbfd8546fd686c62f32a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '571852bfe56a24b02ea8547479b29e55')"
     ]
   }
 }

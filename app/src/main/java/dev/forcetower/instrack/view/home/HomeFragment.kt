@@ -54,5 +54,7 @@ class HomeFragment : BaseFragment() {
             Timber.d("testing... ${it.user?.name} ${it.user?.followingCount}")
             adapter.headerData = it
         })
+
+        viewModel.syncProfile()
     }
 }

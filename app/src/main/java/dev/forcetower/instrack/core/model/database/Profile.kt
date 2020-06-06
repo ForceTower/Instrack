@@ -7,7 +7,7 @@ import com.forcetower.instagram.model.user.AccountPreview
 import timber.log.Timber
 
 @Entity
-data class Profile (
+data class Profile(
     @PrimaryKey(autoGenerate = false)
     val pk: Long,
     val username: String,
@@ -51,10 +51,25 @@ data class Profile (
                 null
             )
         }
+
+        fun adapt(preview: AccountPreview): Profile {
+            return Profile(
+                preview.pk,
+                preview.username,
+                preview.fullName,
+                preview.profilePicUrl,
+                preview.private,
+                preview.verified,
+                0,
+                0,
+                0,
+                null
+            )
+        }
     }
 }
 
-data class ProfilePreview (
+data class ProfilePreview(
     val pk: Long,
     val username: String,
     val name: String?,

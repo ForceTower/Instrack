@@ -2,7 +2,6 @@ package dev.forcetower.instrack.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.NavDestination
 import androidx.navigation.NavInflater

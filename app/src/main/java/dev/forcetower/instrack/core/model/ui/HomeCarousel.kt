@@ -4,7 +4,7 @@ import android.content.Context
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.database.Profile
 
-data class HomeCarousel (
+data class HomeCarousel(
     val stableId: Int,
     val number: Int,
     val text: String
