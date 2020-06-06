@@ -79,6 +79,7 @@
                     android:text="@={actions.username}"
                     android:hint="@string/instagram_username_hint"
                     android:textColorHint="#B1FFFFFF"
+                    android:enabled="@{!actions.loading}"
                     app:textInputError="@{actions.usernameError}"
                     tools:ignore="UnusedAttribute"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -112,6 +113,7 @@
                     android:maxLines="1"
                     android:hint="@string/instagram_password_hint"
                     android:textColorHint="#B1FFFFFF"
+                    android:enabled="@{!actions.loading}"
                     app:textInputError="@{actions.passwordError}"
                     tools:ignore="UnusedAttribute"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -123,8 +125,20 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/do_login_action"
+                android:enabled="@{!actions.loading}"
                 android:onClick="@{() -> actions.onLogin(actions.username, actions.password)}"
+                app:goneIf="@{actions.loading}"
                 style="@style/Widget.Instrack.MaterialButton.Login"/>
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:visibility="gone"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:indeterminateTint="?attr/colorPrimary"
+                app:goneUnless="@{actions.loading}" />
 
             <Space
                 android:id="@+id/space_bottom"

@@ -7,6 +7,8 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import dev.forcetower.instrack.TrackApp
 import dev.forcetower.instrack.dagger.module.ActivityModule
+import dev.forcetower.instrack.dagger.module.AppModule
+import dev.forcetower.instrack.dagger.module.DatabaseModule
 import dev.forcetower.instrack.dagger.module.ViewModelModule
 import javax.inject.Singleton
 
@@ -14,6 +16,8 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class,
+    AppModule::class,
+    DatabaseModule::class,
     ActivityModule::class,
     ViewModelModule::class
 ])

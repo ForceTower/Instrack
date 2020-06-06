@@ -17,6 +17,20 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 29
+        renderscriptSupportModeEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"   : "true"
+                ]
+            }
+        }
+
+        ndkVersion "21.1.6352462"
     }
 
     buildTypes {
@@ -50,6 +64,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':toolkit')
+    implementation project(':instagram')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 

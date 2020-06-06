@@ -9,5 +9,7 @@ interface LoginActions {
     val usernameError: MutableLiveData<Int>
     val passwordError: MutableLiveData<Int>
 
+    val loading: MutableLiveData<Boolean>
+
     fun onLogin(username: String, password: String)
 }

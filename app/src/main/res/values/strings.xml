@@ -13,4 +13,9 @@
     <string name="do_login_action">Visualizar informações!</string>
     <string name="login_username_too_short">Nome de usuário muito pequeno</string>
     <string name="login_password_too_short">Senha muito curta</string>
+    <string name="invalid_user">O nome de usuário inserido não parece pertencer a uma conta</string>
+    <string name="bad_password">A senha que você inseriu está incorreta</string>
+    <string name="challenge_required">Confirmação do Login</string>
+    <string name="network_error">Erro de conexão</string>
+    <string name="instagram_connected_as">Conectado como %1$s</string>
 </resources>

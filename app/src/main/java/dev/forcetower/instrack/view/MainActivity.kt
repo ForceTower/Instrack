@@ -15,6 +15,7 @@ class MainActivity : BaseActivity() {
         get() = findNavController(R.id.fragment_container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 

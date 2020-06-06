@@ -22,7 +22,7 @@ buildscript {
         navigation = '2.2.2'
 
         // Dependency Injection
-        dagger = '2.27'
+        dagger = '2.28'
 
         // Logs
         timber = "4.7.1"
@@ -32,8 +32,8 @@ buildscript {
         lottie = '3.3.1'
 
         // Networking
-        okhttp = '4.7.1'
-        retrofit = '2.8.2'
+        okhttp = '4.7.2'
+        retrofit = '2.9.0'
 
         // Others
         gson = '2.8.6'
@@ -49,7 +49,7 @@ buildscript {
         maven { url "http://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$android_gradle_plugin"
+        classpath "com.android.tools.build:gradle:${android_gradle_plugin}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jmailen.gradle:kotlinter-gradle:$kotlinter"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation"
