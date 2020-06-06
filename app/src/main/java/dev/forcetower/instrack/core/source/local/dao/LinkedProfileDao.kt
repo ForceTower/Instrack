@@ -3,7 +3,7 @@ package dev.forcetower.instrack.core.source.local.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import dev.forcetower.instrack.core.model.LinkedProfile
+import dev.forcetower.instrack.core.model.database.LinkedProfile
 import dev.forcetower.toolkit.database.dao.BaseDao
 import kotlinx.coroutines.flow.Flow
 

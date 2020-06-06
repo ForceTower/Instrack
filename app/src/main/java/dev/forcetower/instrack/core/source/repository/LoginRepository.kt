@@ -4,7 +4,8 @@ import android.content.Context
 import com.forcetower.instagram.Session
 import com.forcetower.instagram.model.login.ChallengeOption
 import com.forcetower.instagram.model.response.AccountResponse
-import dev.forcetower.instrack.core.model.LinkedProfile
+import dev.forcetower.instrack.core.model.database.LinkedProfile
+import dev.forcetower.instrack.core.model.database.Profile
 import dev.forcetower.instrack.core.source.Operation
 import dev.forcetower.instrack.core.source.local.TrackDB
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +27,15 @@ class LoginRepository @Inject constructor(
             val data = response.data
             val user = response.data?.loggedInUser
             if (response.isSuccessful && data != null && user != null) {
-                database.linked().insertAndSelect(LinkedProfile(user.pk, username, password, true))
+                database.linked().insertAndSelect(
+                    LinkedProfile(
+                        user.pk,
+                        username,
+                        password,
+                        true
+                    )
+                )
+                database.profile().insertOrUpdate(Profile.adapt(user))
                 Operation.success(data, response.code)
             } else {
                 Operation.error(Exception("login_failed"), response.code, data)

@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#293FBC</color>
     <color name="colorAccent">#EE2A8C</color>
+
+    <color name="green_arrow_up">#52C04D</color>
+    <color name="reflect">#FFFFFF</color>
 </resources>

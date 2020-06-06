@@ -1,4 +1,4 @@
-package dev.forcetower.instrack.core.model
+package dev.forcetower.instrack.core.model.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

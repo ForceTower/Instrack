@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:locale="pt_BR">
     <string name="app_name">Instrack</string>
+    <string name="integer_format" translatable="false">%1$d</string>
     <string name="onboarding_welcome">Boas vindas ao Instracker</string>
     <string name="onboarding_welcome_desc">Fique por dentro de todas as informações relevantes sobre o seu Instagram!</string>
     <string name="onboarding_login">Começar</string>
@@ -18,4 +19,22 @@
     <string name="challenge_required">Confirmação do Login</string>
     <string name="network_error">Erro de conexão</string>
     <string name="instagram_connected_as">Conectado como %1$s</string>
+    <string name="home_label_followers">Seguidores</string>
+    <string name="home_label_following">Seguindo</string>
+    <string name="home_element_new_followers">Novos seguidores</string>
+    <string name="home_element_unfollow">Deixaram de seguir</string>
+    <string name="home_element_story_watch">Visualizações de stories</string>
+    <string name="home_element_profile_interaction">Interações com seu perfil</string>
+    <string name="home_element_not_follow_you_back">Não te seguem de volta</string>
+    <string name="home_element_you_dont_follow_back">Você não segue de volta</string>
+    <string name="home_carousel_videos_posted">vídeos postados</string>
+    <string name="home_carousel_images_posted">imagens enviadas</string>
+    <string name="home_carousel_comments_count">comentários recebidos</string>
+    <string name="home_carousel_likes_count">curtir recebidos</string>
+    <string name="home_carousel_follower_count">seguidores</string>
+    <string name="home_carousel_following_count">seguindo</string>
+    <string name="home_carousel_post_count">postagens</string>
+    <string name="home_carousel_likes_mean">média de curtidas</string>
+    <string name="home_carousel_comments_mean">média de comentarios</string>
+    <string name="stories_seen_by">Visto por %1$d</string>
 </resources>
