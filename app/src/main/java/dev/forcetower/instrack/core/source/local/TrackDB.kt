@@ -27,6 +27,7 @@ import dev.forcetower.instrack.core.source.local.dao.PostMediaDao
 import dev.forcetower.instrack.core.source.local.dao.ProfileDao
 import dev.forcetower.instrack.core.source.local.dao.StoryDao
 import dev.forcetower.instrack.core.source.local.dao.StoryWatchDao
+import dev.forcetower.instrack.core.source.local.dao.SyncRegistryDao
 
 @Database(entities = [
     SyncRegistry::class,
@@ -56,4 +57,5 @@ abstract class TrackDB : RoomDatabase() {
     abstract fun postMedia(): PostMediaDao
     abstract fun like(): PostLikeDao
     abstract fun comment(): PostCommentDao
+    abstract fun sync(): SyncRegistryDao
 }

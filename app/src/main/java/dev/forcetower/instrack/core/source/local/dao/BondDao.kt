@@ -9,7 +9,9 @@ import dev.forcetower.instrack.core.model.database.ProfileBond
 import dev.forcetower.instrack.core.model.database.ProfileBondFollower
 import dev.forcetower.instrack.core.model.database.ProfileBondFollowing
 import dev.forcetower.instrack.core.model.database.ProfileFriendship
+import dev.forcetower.instrack.core.model.ui.ProfileBondedSimple
 import dev.forcetower.toolkit.database.dao.BaseDao
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class BondDao : BaseDao<ProfileBond>() {
@@ -51,4 +53,16 @@ abstract class BondDao : BaseDao<ProfileBond>() {
 
     @Update(entity = ProfileBond::class, onConflict = OnConflictStrategy.REPLACE)
     protected abstract suspend fun update(bond: ProfileBondFollowing)
+
+    @Query("SELECT PB.*, P.picture FROM ProfileBond AS PB INNER JOIN Profile P ON P.pk = PB.userPk WHERE PB.followsMe = 1 AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1)")
+    abstract fun getFollowers(): Flow<List<ProfileBondedSimple>>
+
+    @Query("SELECT PB.*, P.picture FROM ProfileBond AS PB INNER JOIN Profile P ON P.pk = PB.userPk WHERE PB.followsMe = 0 AND PB.unfollowMeAt IS NOT NULL AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1)")
+    abstract fun getUnfollowers(): Flow<List<ProfileBondedSimple>>
+
+    @Query("SELECT PB.*, P.picture FROM ProfileBond PB INNER JOIN Profile P ON PB.userPk = p.pk WHERE PB.iFollow = 1 AND PB.followsMe IS NOT 1 AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile LP WHERE LP.selected = 1 LIMIT 1)")
+    abstract fun getNotFollowBack(): Flow<List<ProfileBondedSimple>>
+
+    @Query("SELECT PB.*, P.picture FROM ProfileBond PB INNER JOIN Profile P ON PB.userPk = p.pk WHERE PB.followsMe = 1 AND PB.iFollow IS NOT 1 AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile LP WHERE LP.selected = 1 LIMIT 1)")
+    abstract fun getINotFollowBack(): Flow<List<ProfileBondedSimple>>
 }

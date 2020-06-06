@@ -7,7 +7,7 @@ import java.util.Calendar
 @Entity
 data class SyncRegistry(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Long = 0,
     val account: Boolean = false,
     val followers: Boolean = false,
     val following: Boolean = false,
@@ -21,4 +21,8 @@ data class SyncRegistry(
     val feedError: String? = null,
 
     val createdTime: Long = Calendar.getInstance().timeInMillis
-)
+) {
+    fun isCompleted(): Boolean {
+        return account && followers && following && stories && feed
+    }
+}

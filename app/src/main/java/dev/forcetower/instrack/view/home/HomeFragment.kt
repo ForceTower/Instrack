@@ -30,6 +30,8 @@ class HomeFragment : BaseFragment() {
         adapter = HomeElementsAdapter(requireContext(), viewModel)
         return FragmentHomeBinding.inflate(inflater, container, false).also {
             binding = it
+            it.actions = viewModel
+            it.lifecycleOwner = viewLifecycleOwner
         }.root
     }
 
@@ -51,8 +53,11 @@ class HomeFragment : BaseFragment() {
         }
 
         viewModel.profileOverview.observe(viewLifecycleOwner, Observer {
-            Timber.d("testing... ${it.user?.name} ${it.user?.followingCount}")
             adapter.headerData = it
+        })
+
+        viewModel.homeElements.observe(viewLifecycleOwner, Observer {
+            adapter.elements = it
         })
 
         viewModel.syncProfile()

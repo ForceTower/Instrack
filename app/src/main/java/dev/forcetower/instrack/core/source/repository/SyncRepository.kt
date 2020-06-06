@@ -16,8 +16,10 @@ import dev.forcetower.instrack.core.model.database.ProfileHistory
 import dev.forcetower.instrack.core.model.database.ProfilePreview
 import dev.forcetower.instrack.core.model.database.Story
 import dev.forcetower.instrack.core.model.database.StoryWatch
+import dev.forcetower.instrack.core.model.database.SyncRegistry
 import dev.forcetower.instrack.core.source.local.TrackDB
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -31,16 +33,17 @@ class SyncRepository @Inject constructor(
     private val database: TrackDB
 ) {
 
-    suspend fun executeSelected() {
+    suspend fun executeSelected(): Long {
         val profile = database.profile().getSelectedProfileDirect()
-        if (profile != null) {
+        return if (profile != null) {
             execute(profile.username)
         } else {
             Timber.d("No selected profile... skipping")
+            0
         }
     }
 
-    suspend fun execute(username: String) {
+    suspend fun execute(username: String): Long {
         Timber.d("Execute for profile $username")
         val session = Session(username, context)
         val userId = session.account.userId
@@ -48,10 +51,11 @@ class SyncRepository @Inject constructor(
 
         if (userId == null) {
             Timber.e("No user id detected... aborting")
-            return
+            return 0
         }
 
-        withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
+            val syncId = database.sync().insertGettingId(SyncRegistry())
             val account = launch { account(session, userId) }
             val followers = launch { followers(session, userId) } // parallel
             val following = launch { following(session, userId) } // parallel
@@ -59,20 +63,27 @@ class SyncRepository @Inject constructor(
             val feed = launch { feed(session, userId) } // parallel
 
             account.invokeOnCompletion {
+                database.sync().updateAccount(syncId, true, it != null)
                 Timber.d("Account completed...")
             }
             followers.invokeOnCompletion {
+                database.sync().updateFollowers(syncId, true, it != null)
                 Timber.d("Followers completed")
             }
             following.invokeOnCompletion {
+                database.sync().updateFollowing(syncId, true, it != null)
                 Timber.d("Following completed")
             }
             stories.invokeOnCompletion {
+                database.sync().updateStories(syncId, true, it != null)
                 Timber.d("Stories completed")
             }
             feed.invokeOnCompletion {
+                database.sync().updateFeed(syncId, true, it != null)
                 Timber.d("Feed completed")
             }
+
+            syncId
         }
     }
 
@@ -103,7 +114,9 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
+                delay((100..1000).random().toLong())
             }
+            Timber.d("Server... $data")
         } while (hasMore)
 
         // differ
@@ -112,16 +125,21 @@ class SyncRepository @Inject constructor(
         // [a, c, d, f]
         val serverPks = server.map { it.pk }
 
+        Timber.d("Server PK $serverPks")
+        Timber.d("Local PK $localPks")
+
         val instant = Calendar.getInstance().timeInMillis
 
         // [b]
         val unfollow = localPks.filter { !serverPks.contains(it) } // new unfollow list
+        Timber.d("New unfollow list: $unfollow")
         val uUnfollow = unfollow.map { ProfileFriendship(it, userId, false) }
         val uBond = unfollow.map { ProfileBondFollower(it, userId, followsMe = false, unfollowMeAt = instant) }
         val uAction = unfollow.map { Action.unfollow(it, userId) }
 
         // [f]
         val follow = serverPks.filter { !localPks.contains(it) } // new follow list
+        Timber.d("New follow list: $follow")
         val fFollow = follow.map { ProfileFriendship(it, userId, true) }
         val fBond = follow.map { ProfileBondFollower(it, userId, followsMe = true, followsMeAt = instant) }
         val fAction = follow.map { Action.follow(it, userId) }
@@ -129,7 +147,7 @@ class SyncRepository @Inject constructor(
         database.withTransaction {
             database.friendship().insertAll(uUnfollow + fFollow)
             database.bond().insertOrUpdateFollower(uBond + fBond)
-            database.action().insertAll(uAction + fAction)
+            database.action().insertAllIgnore(uAction + fAction)
         }
     }
 
@@ -149,6 +167,7 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
+                delay((100..1000).random().toLong())
             }
         } while (hasMore)
 
@@ -208,6 +227,7 @@ class SyncRepository @Inject constructor(
                 database.storyWatch().insertAllIgnore(data.users.map { StoryWatch(story.pk, it.pk) })
                 database.action().insertAllIgnore(data.users.map { Action.watch(it.pk, userId, story.pk) })
             }
+            delay((100..1000).random().toLong())
         } while (hasMore)
     }
 
@@ -228,6 +248,7 @@ class SyncRepository @Inject constructor(
                 database.postMedia().insertAll(medias)
                 allPosts += posts
             }
+            delay((100..1000).random().toLong())
         } while (hasMore)
         postsAudience(session, allPosts.sortedByDescending { it.takenAt }.take(30), userId)
     }
@@ -285,6 +306,7 @@ class SyncRepository @Inject constructor(
                 database.action().insertAllIgnore(data.comments.map { Action.comment(it.user.pk, userId, it.pk) })
             }
             leftCount--
+            delay((100..1000).random().toLong())
         } while (hasMore && leftCount > 0)
     }
 }

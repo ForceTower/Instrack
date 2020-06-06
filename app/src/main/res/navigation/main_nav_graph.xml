@@ -24,16 +24,16 @@
             android:id="@+id/action_login_to_home"
             app:destination="@id/home"
             app:launchSingleTop="true"
-            app:popUpTo="@id/home"
+            app:popUpTo="@id/onboarding"
             app:popUpToInclusive="true" />
     </fragment>
 
     <action
         android:id="@+id/action_global_home"
         app:destination="@id/home"
-        app:popUpTo="@id/home"
-        app:popUpToInclusive="true"
-        app:launchSingleTop="true" />
+        app:launchSingleTop="true"
+        app:popUpTo="@id/login"
+        app:popUpToInclusive="true" />
 
     <fragment
         android:id="@+id/home"

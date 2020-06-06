@@ -8,10 +8,10 @@ data class HomeElement(
     val stableId: Int,
     val total: Int,
     val new: Int,
-    var newElements: List<Profile?>,
+    var newElements: List<String?>,
     val name: String,
     val loading: Boolean = false,
-    val all: List<Profile> = emptyList()
+    val all: List<String?> = emptyList()
 ) {
     init {
         if (newElements.size < 3) {
