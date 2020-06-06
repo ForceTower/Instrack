@@ -114,7 +114,6 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
-                delay((100..1000).random().toLong())
             }
             Timber.d("Server... $data")
         } while (hasMore)
@@ -167,7 +166,6 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
-                delay((100..1000).random().toLong())
             }
         } while (hasMore)
 
@@ -227,7 +225,6 @@ class SyncRepository @Inject constructor(
                 database.storyWatch().insertAllIgnore(data.users.map { StoryWatch(story.pk, it.pk) })
                 database.action().insertAllIgnore(data.users.map { Action.watch(it.pk, userId, story.pk) })
             }
-            delay((100..1000).random().toLong())
         } while (hasMore)
     }
 
@@ -248,7 +245,6 @@ class SyncRepository @Inject constructor(
                 database.postMedia().insertAll(medias)
                 allPosts += posts
             }
-            delay((100..1000).random().toLong())
         } while (hasMore)
         postsAudience(session, allPosts.sortedByDescending { it.takenAt }.take(30), userId)
     }
@@ -306,7 +302,6 @@ class SyncRepository @Inject constructor(
                 database.action().insertAllIgnore(data.comments.map { Action.comment(it.user.pk, userId, it.pk) })
             }
             leftCount--
-            delay((100..1000).random().toLong())
         } while (hasMore && leftCount > 0)
     }
 }
