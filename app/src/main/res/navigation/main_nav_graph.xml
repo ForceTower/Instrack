@@ -3,11 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/login">
+    app:startDestination="@id/onboarding">
+
+    <fragment
+        android:id="@+id/onboarding"
+        android:name="dev.forcetower.instrack.view.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboarding_to_login"
+            app:destination="@id/login" />
+    </fragment>
 
     <fragment
         android:id="@+id/login"
         android:name="dev.forcetower.instrack.view.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login"/>
+        tools:layout="@layout/fragment_login" />
 </navigation>

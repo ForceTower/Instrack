@@ -22,10 +22,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:importantForAccessibility="no"
-                android:src="@mipmap/onboarding_image"/>
+                android:src="@mipmap/onboarding_image"
+                android:transitionName="@string/image_start_transition"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
