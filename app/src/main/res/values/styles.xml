@@ -17,6 +17,16 @@
         <item name="windowActionBarOverlay">true</item>
     </style>
 
+    <style name="Instrack.Launcher">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar">@bool/not_on_night_mode</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@drawable/launcher_screen</item>
+    </style>
+
     <style name="Widget.Instrack.TextInputLayout.Login" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/login_input_stroke_color</item>
         <item name="boxStrokeWidth">1dp</item>

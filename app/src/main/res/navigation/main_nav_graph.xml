@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/onboarding"
         android:name="dev.forcetower.instrack.view.onboarding.OnboardingFragment"
-        android:label="OnboardingFragment"
+        android:label="Onboard"
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboarding_to_login"
@@ -18,6 +18,23 @@
     <fragment
         android:id="@+id/login"
         android:name="dev.forcetower.instrack.view.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/home" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_home"
+        app:destination="@id/home"
+        app:popUpTo="@id/home"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
+
+    <fragment
+        android:id="@+id/home"
+        android:name="dev.forcetower.instrack.view.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

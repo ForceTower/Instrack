@@ -14,12 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Instrack">
         <activity
+            android:name=".view.LauncherActivity"
+            android:theme="@style/Instrack.Launcher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".view.MainActivity"
             android:theme="@style/Instrack.Home">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
     </application>
