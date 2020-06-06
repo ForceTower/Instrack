@@ -60,6 +60,8 @@ class HomeFragment : BaseFragment() {
             adapter.elements = it
         })
 
-        viewModel.syncProfile()
+        if (savedInstanceState == null) {
+            viewModel.syncProfile()
+        }
     }
 }
