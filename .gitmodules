@@ -2,3 +2,7 @@
 	path = android-toolkit
 	url = git@github.com:ForceTower/android-toolkit.git
 	branch = master
+[submodule "android-instagram-wrapper"]
+	path = android-instagram-wrapper
+	url = git@github.com:ForceTower/android-instagram-wrapper.git
+	branch = master
