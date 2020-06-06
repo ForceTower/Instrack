@@ -11,7 +11,9 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:navGraph="@navigation/main_nav_graph"/>
+            android:name="dev.forcetower.toolkit.widget.ui.DispatchInsetsNavHostFragment"
+            app:navGraph="@navigation/main_nav_graph"
+            app:defaultNavHost="true"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

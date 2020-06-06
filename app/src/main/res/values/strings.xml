@@ -1,3 +1,14 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:locale="pt_BR">
     <string name="app_name">Instrack</string>
+    <string name="onboarding_welcome">Boas vindas ao Instracker</string>
+    <string name="onboarding_welcome_desc">Fique por dentro de todas as informações relevantes sobre o seu Instagram!</string>
+    <string name="onboarding_login">Começar</string>
+    <string name="login_lets_start">Entre utilizando sua conta do Instagram</string>
+    <string name="login_hot_text">Sua senha não será compartilhada, os dados de login ficam salvos apenas no seu aparelho</string>
+    <string name="instagram_username_hint">Digite o nome de usuário</string>
+    <string name="instagram_username_label">Usuário do Instagram</string>
+    <string name="instagram_password_hint">Digite a sua senha</string>
+    <string name="instagram_password_label">Senha</string>
+    <string name="do_login_action">Visualizar informações!</string>
 </resources>
