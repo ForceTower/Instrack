@@ -1,3 +1,4 @@
-include ':app', ':toolkit'
+include ':app', ':toolkit', ':instagram'
 project(':toolkit').projectDir = new File(rootDir, 'android-toolkit/toolkit')
+project(':instagram').projectDir = new File(rootDir, 'android-instagram-wrapper/instagram')
 rootProject.name = "Instrack"
