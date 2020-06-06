@@ -71,6 +71,7 @@
                     android:id="@+id/user_image"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
+                    android:importantForAccessibility="no"
                     app:clipToCircle="@{true}"
                     app:imageUrl="@{overview.user.picture}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -131,6 +132,30 @@
                     app:layout_constraintStart_toEndOf="@+id/user_image"
                     app:layout_constraintTop_toBottomOf="@+id/count_following" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="@{overview.user.username}"
+                android:textColor="?android:textColorPrimary"
+                android:textAlignment="gravity"
+                android:textSize="16sp"
+                android:gravity="center"
+                tools:text="username"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="@{overview.user.name}"
+                android:textColor="?android:textColorSecondary"
+                android:textAlignment="gravity"
+                android:textSize="14sp"
+                android:gravity="center"
+                tools:text="John Cena"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_scrolling_information"

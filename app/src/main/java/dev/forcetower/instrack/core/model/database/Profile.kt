@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.forcetower.instagram.model.user.Account
 import com.forcetower.instagram.model.user.AccountPreview
+import timber.log.Timber
 
 @Entity
 data class Profile (
@@ -16,10 +17,12 @@ data class Profile (
     val isVerified: Boolean,
     val followerCount: Int,
     val followingCount: Int,
-    val mediaCount: Int
+    val mediaCount: Int,
+    val biography: String?
 ) {
     companion object {
         fun adapt(account: Account): Profile {
+            Timber.d("The account $account")
             return Profile(
                 account.pk,
                 account.username,
@@ -29,7 +32,8 @@ data class Profile (
                 account.verified,
                 account.followerCount,
                 account.followingCount,
-                account.mediaCount
+                account.mediaCount,
+                account.biography
             )
         }
 
@@ -43,7 +47,8 @@ data class Profile (
                 preview.isVerified,
                 0,
                 0,
-                0
+                0,
+                null
             )
         }
     }

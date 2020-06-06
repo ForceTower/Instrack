@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.databinding.FragmentHomeBinding
 import dev.forcetower.instrack.widget.ItemOffsetDecoration
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.components.BaseViewModelFactory
+import timber.log.Timber
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
@@ -47,5 +49,10 @@ class HomeFragment : BaseFragment() {
             addItemDecoration(decoration)
             itemAnimator = null
         }
+
+        viewModel.profileOverview.observe(viewLifecycleOwner, Observer {
+            Timber.d("testing... ${it.user?.name} ${it.user?.followingCount}")
+            adapter.headerData = it
+        })
     }
 }

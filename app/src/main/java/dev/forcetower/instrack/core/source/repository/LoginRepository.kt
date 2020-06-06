@@ -36,6 +36,13 @@ class LoginRepository @Inject constructor(
                     )
                 )
                 database.profile().insertOrUpdate(Profile.adapt(user))
+
+                val me = withContext(Dispatchers.IO) { session.users.getInfoByUserId(user.pk) }
+                    .data?.user
+                if (me != null) {
+                    database.profile().insertOrUpdate(Profile.adapt(me))
+                }
+
                 Operation.success(data, response.code)
             } else {
                 Operation.error(Exception("login_failed"), response.code, data)
