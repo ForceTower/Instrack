@@ -3,6 +3,7 @@ package dev.forcetower.instrack
 import dagger.android.support.DaggerApplication
 import dev.forcetower.instrack.dagger.AppComponent
 import dev.forcetower.instrack.dagger.DaggerAppComponent
+import dev.forcetower.instrack.utils.crashlytics.CrashlyticsTree
 import timber.log.Timber
 
 class TrackApp : DaggerApplication() {
@@ -13,6 +14,8 @@ class TrackApp : DaggerApplication() {
         // "Every time you log in production, a puppy dies"
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+        } else {
+            Timber.plant(CrashlyticsTree())
         }
     }
 

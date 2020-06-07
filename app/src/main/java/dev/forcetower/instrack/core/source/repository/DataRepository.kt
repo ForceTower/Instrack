@@ -13,7 +13,6 @@ import dev.forcetower.instrack.core.model.ui.StoryWatcherSimple
 import dev.forcetower.instrack.core.source.local.TrackDB
 import dev.forcetower.toolkit.extensions.combine
 import kotlinx.coroutines.flow.Flow
-import timber.log.Timber
 import java.util.Calendar
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -198,7 +197,6 @@ class DataRepository @Inject constructor(
     }
 
     private fun getProcessedINotFollowBack(collection: List<ProfileBondedSimple>): Pair<List<ProfileBondedSimple>, List<ProfileBondedSimple>> {
-        Timber.d("I not follow back processing $collection")
         return collection.partitionByYesterday { it.followsMeAt!! }
     }
 }

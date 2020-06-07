@@ -120,7 +120,7 @@
                 android:textColor="?android:textColorSecondary"
                 android:textFontWeight="600"
                 android:textSize="11sp"
-                app:goneUnless="@{element.insight != null &amp;&amp; element.insight != 0}"
+                app:goneUnless="@{element.insight != 0}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/barrier_end"
                 app:layout_constraintHorizontal_bias="0.5"

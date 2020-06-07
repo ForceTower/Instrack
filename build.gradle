@@ -41,6 +41,8 @@ buildscript {
         // Build Versions
         android_gradle_plugin = "4.0.0"
         kotlinter = "1.26.0"
+        google_services = "4.3.3"
+        crashlytics = "2.1.1"
     }
     repositories {
         google()
@@ -53,6 +55,8 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jmailen.gradle:kotlinter-gradle:$kotlinter"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation"
+        classpath "com.google.gms:google-services:$google_services"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlytics"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

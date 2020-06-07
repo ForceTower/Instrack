@@ -8,5 +8,6 @@ data class UserFriendship(
     val profile: Profile,
     val followsMe: Boolean,
     val iFollow: Boolean,
-    val insight: Int? = 0
+    val insight: Int,
+    val timestamp: Long
 )
