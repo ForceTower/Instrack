@@ -36,4 +36,18 @@
     <string name="home_carousel_likes_mean">likes mean</string>
     <string name="home_carousel_comments_mean">comments mean</string>
     <string name="stories_seen_by">Seen by %1$d</string>
+    <string name="challenge_title">Allow login on this device</string>
+    <string name="challenge_description">A code will be sent to confirm your identification. How would you receive it?</string>
+    <string name="challenge_send">Send security code</string>
+    <string name="challenge_code_desc">Type the 6-digit code sent to %1$s</string>
+    <string name="challenge_code_title">Enter using secure code</string>
+    <string name="user_follows_you">Follower</string>
+    <string name="user_you_follow">Following</string>
+    <string name="listing_generic_title">Users</string>
+    <string name="listing_recent_followers">Recent followers</string>
+    <string name="listing_recent_unfollowers">Recent unfollowers</string>
+    <string name="listing_interact_profile">Interacted with you</string>
+    <string name="listing_unrequited_followers">Unrequited followers</string>
+    <string name="listing_stories_view">Story watchers</string>
+    <string name="listing_fans">Fans</string>
 </resources>
