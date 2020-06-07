@@ -42,7 +42,11 @@
         android:id="@+id/home"
         android:name="dev.forcetower.instrack.view.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_user_listing"
+            app:destination="@id/user_listing" />
+    </fragment>
 
     <fragment
         android:id="@+id/challenge"
@@ -75,6 +79,15 @@
             app:argType="string" />
         <argument
             android:name="option"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/user_listing"
+        android:name="dev.forcetower.instrack.view.users.UserListingFragment"
+        android:label="UserListing"
+        tools:layout="@layout/fragment_user_listing">
+        <argument
+            android:name="filterType"
             app:argType="integer" />
     </fragment>
 </navigation>

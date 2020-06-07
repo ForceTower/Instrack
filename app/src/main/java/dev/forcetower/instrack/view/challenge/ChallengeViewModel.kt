@@ -37,9 +37,8 @@ class ChallengeViewModel @Inject constructor(
     private var username: String = ""
     private var password: String = ""
 
-
     fun initChallenge(username: String, password: String) {
-        if (!::challengeSource.isInitialized){
+        if (!::challengeSource.isInitialized) {
             this.username = username
             this.password = password
             challengeSource = repository.challenge(username).asLiveData(Dispatchers.IO)
@@ -82,5 +81,4 @@ class ChallengeViewModel @Inject constructor(
             }
         }
     }
-
 }

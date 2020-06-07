@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="element"
+            type="dev.forcetower.instrack.core.model.ui.UserFriendship" />
+    </data>
+    
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="4dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:importantForAccessibility="no"
+                app:clipCircle="@{true}"
+                app:imageUrl="@{element.profile.picture}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/you_follow_text"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/item_user_follow_background"
+                android:gravity="center"
+                android:text="@string/user_you_follow"
+                android:textAlignment="gravity"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="11sp"
+                app:goneUnless="@{element.IFollow}"
+                app:layout_constraintBottom_toTopOf="@+id/follow_you_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:ignore="SmallSp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/follow_you_text"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/item_user_following_background"
+                android:gravity="center"
+                android:text="@string/user_follows_you"
+                android:textAlignment="gravity"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="11sp"
+                app:goneUnless="@{element.followsMe}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/you_follow_text"
+                tools:ignore="SmallSp" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="follow_you_text,you_follow_text" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:text="@{element.profile.name}"
+                android:textColor="?android:textColorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/username"
+                app:layout_constraintEnd_toStartOf="@id/barrier_end"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/avatar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="@tools:sample/full_names" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:text="@{element.profile.username}"
+                android:textColor="?android:textColorSecondary"
+                android:textFontWeight="600"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/insight"
+                app:layout_constraintEnd_toStartOf="@id/barrier_end"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/avatar"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:text="@tools:sample/first_names"
+                tools:ignore="UnusedAttribute" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/insight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="8dp"
+                android:text="@{element.profile.username}"
+                android:textColor="?android:textColorSecondary"
+                android:textFontWeight="600"
+                android:textSize="11sp"
+                app:goneUnless="@{element.insight != null &amp;&amp; element.insight != 0}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/barrier_end"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/avatar"
+                app:layout_constraintTop_toBottomOf="@+id/username"
+                tools:text="jinx_official"
+                tools:visibility="gone"
+                tools:ignore="SmallSp,UnusedAttribute" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

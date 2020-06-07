@@ -19,7 +19,6 @@ import dev.forcetower.instrack.core.model.database.StoryWatch
 import dev.forcetower.instrack.core.model.database.SyncRegistry
 import dev.forcetower.instrack.core.source.local.TrackDB
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber

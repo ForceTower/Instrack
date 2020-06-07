@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class PostMediaDao : BaseDao<PostMedia>() {
-    //(SELECT userPk FROM LinkedProfile WHERE selected = 1 LIMIT 1)
+    // (SELECT userPk FROM LinkedProfile WHERE selected = 1 LIMIT 1)
     @Query("SELECT * FROM PostMedia WHERE postPk = (SELECT pk FROM Post WHERE userPk = (SELECT L.userPK FROM LinkedProfile AS L WHERE L.selected = 1 LIMIT 1) ORDER BY takenAt DESC LIMIT 1) AND previewPicture IS NOT NULL LIMIT 1")
     abstract fun getLatestMedia(): Flow<PostMedia?>
 

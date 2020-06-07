@@ -42,4 +42,13 @@
     <string name="challenge_send">Enviar código de segurança</string>
     <string name="challenge_code_desc">Digite o código de 6 dígitos que foi enviado para o %1$s</string>
     <string name="challenge_code_title">Entre com seu código de segurança</string>
+    <string name="user_follows_you">Segue você</string>
+    <string name="user_you_follow">Você segue</string>
+    <string name="listing_generic_title">Usuários</string>
+    <string name="listing_recent_followers">Seguidores recentes</string>
+    <string name="listing_recent_unfollowers">Desseguiram recentemente</string>
+    <string name="listing_interact_profile">Interagiram com você</string>
+    <string name="listing_unrequited_followers">Não te seguem de volta</string>
+    <string name="listing_stories_view">Visualizaram stories</string>
+    <string name="listing_fans">Admiradores</string>
 </resources>

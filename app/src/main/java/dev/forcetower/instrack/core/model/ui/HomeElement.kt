@@ -2,7 +2,6 @@ package dev.forcetower.instrack.core.model.ui
 
 import android.content.Context
 import dev.forcetower.instrack.R
-import dev.forcetower.instrack.core.model.database.Profile
 
 data class HomeElement(
     val stableId: Int,

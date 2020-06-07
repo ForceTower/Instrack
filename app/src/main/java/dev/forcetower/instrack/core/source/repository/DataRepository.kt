@@ -2,7 +2,6 @@ package dev.forcetower.instrack.core.source.repository
 
 import android.content.Context
 import dev.forcetower.instrack.R
-import dev.forcetower.instrack.core.model.database.Profile
 import dev.forcetower.instrack.core.model.database.SyncRegistry
 import dev.forcetower.instrack.core.model.ui.HomeCarousel
 import dev.forcetower.instrack.core.model.ui.HomeElement
@@ -107,11 +106,16 @@ class DataRepository @Inject constructor(
     }
 
     private fun createNewProfileInteraction(
-        of: List<ProfileBondedSimple>, nf: List<ProfileBondedSimple>,
-        ou: List<ProfileBondedSimple>, nu: List<ProfileBondedSimple>,
-        ow: List<StoryWatcherSimple>, nw: List<StoryWatcherSimple>,
-        oc: List<PostCommenterSimple>, nc: List<PostCommenterSimple>,
-        ol: List<PostLikerSimple>, nl: List<PostLikerSimple>
+        of: List<ProfileBondedSimple>,
+        nf: List<ProfileBondedSimple>,
+        ou: List<ProfileBondedSimple>,
+        nu: List<ProfileBondedSimple>,
+        ow: List<StoryWatcherSimple>,
+        nw: List<StoryWatcherSimple>,
+        oc: List<PostCommenterSimple>,
+        nc: List<PostCommenterSimple>,
+        ol: List<PostLikerSimple>,
+        nl: List<PostLikerSimple>
     ): HomeElement {
         val f = nf.map { InternalTimedUser(it.userPk, it.picture, it.followsMeAt!!) }
         val u = nu.map { InternalTimedUser(it.userPk, it.picture, it.unfollowMeAt!!) }
@@ -209,7 +213,7 @@ private fun <T> List<T>.partitionByYesterday(selector: (T) -> Long): Pair<List<T
     return partition { selector(it) < edgeOfToday.timeInMillis }
 }
 
-private data class InternalTimedUser (
+private data class InternalTimedUser(
     val userPk: Long,
     val picture: String?,
     val timestamp: Long

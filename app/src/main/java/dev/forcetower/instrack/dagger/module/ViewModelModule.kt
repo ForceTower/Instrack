@@ -9,6 +9,7 @@ import dev.forcetower.instrack.view.challenge.ChallengeViewModel
 import dev.forcetower.instrack.view.home.HomeViewModel
 import dev.forcetower.instrack.view.launcher.LauncherViewModel
 import dev.forcetower.instrack.view.login.LoginViewModel
+import dev.forcetower.instrack.view.users.UserListingViewModel
 import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.dagger.annotation.ViewModelKey
 
@@ -33,6 +34,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
     abstract fun bindHomeViewModel(vm: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserListingViewModel::class)
+    abstract fun bindUserListingViewModel(vm: UserListingViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: BaseViewModelFactory): ViewModelProvider.Factory

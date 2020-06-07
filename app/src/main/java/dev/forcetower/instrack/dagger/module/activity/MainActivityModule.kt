@@ -7,6 +7,7 @@ import dev.forcetower.instrack.view.challenge.ChallengeFragment
 import dev.forcetower.instrack.view.home.HomeFragment
 import dev.forcetower.instrack.view.login.LoginFragment
 import dev.forcetower.instrack.view.onboarding.OnboardingFragment
+import dev.forcetower.instrack.view.users.UserListingFragment
 
 @Module
 abstract class MainActivityModule {
@@ -20,4 +21,6 @@ abstract class MainActivityModule {
     abstract fun challengeCode(): ChallengeCodeFragment
     @ContributesAndroidInjector
     abstract fun home(): HomeFragment
+    @ContributesAndroidInjector
+    abstract fun userListing(): UserListingFragment
 }

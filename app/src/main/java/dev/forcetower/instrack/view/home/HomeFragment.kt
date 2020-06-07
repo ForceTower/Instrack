@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.databinding.FragmentHomeBinding
 import dev.forcetower.instrack.widget.ItemOffsetDecoration
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.components.BaseViewModelFactory
-import timber.log.Timber
+import dev.forcetower.toolkit.lifecycle.EventObserver
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
@@ -37,6 +38,10 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) {
+            viewModel.maybeSyncProfile()
+        }
+
         binding.recyclerProfile.apply {
             val decoration = ItemOffsetDecoration(requireContext(), R.dimen.item_home_offset)
             adapter = this@HomeFragment.adapter
@@ -60,8 +65,9 @@ class HomeFragment : BaseFragment() {
             adapter.elements = it
         })
 
-        if (savedInstanceState == null) {
-            viewModel.maybeSyncProfile()
-        }
+        viewModel.onHomeElementClick.observe(viewLifecycleOwner, EventObserver {
+            val directions = HomeFragmentDirections.actionHomeToUserListing(it.stableId)
+            findNavController().navigate(directions)
+        })
     }
 }

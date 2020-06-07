@@ -1,6 +1,6 @@
 package dev.forcetower.instrack.core.model.ui
 
-data class PostCommenterSimple (
+data class PostCommenterSimple(
     val pk: Long,
     val userPk: Long,
     val postPk: Long,

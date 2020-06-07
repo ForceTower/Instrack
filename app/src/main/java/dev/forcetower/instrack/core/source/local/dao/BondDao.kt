@@ -1,5 +1,6 @@
 package dev.forcetower.instrack.core.source.local.dao
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -10,6 +11,7 @@ import dev.forcetower.instrack.core.model.database.ProfileBondFollower
 import dev.forcetower.instrack.core.model.database.ProfileBondFollowing
 import dev.forcetower.instrack.core.model.database.ProfileFriendship
 import dev.forcetower.instrack.core.model.ui.ProfileBondedSimple
+import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.toolkit.database.dao.BaseDao
 import kotlinx.coroutines.flow.Flow
 
@@ -65,4 +67,16 @@ abstract class BondDao : BaseDao<ProfileBond>() {
 
     @Query("SELECT PB.*, P.picture FROM ProfileBond PB INNER JOIN Profile P ON PB.userPk = p.pk WHERE PB.followsMe = 1 AND PB.iFollow IS NOT 1 AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile LP WHERE LP.selected = 1 LIMIT 1)")
     abstract fun getINotFollowBack(): Flow<List<ProfileBondedSimple>>
+
+    @Query("SELECT PB.followsMe, PB.iFollow, P.*, (SELECT 0) as insight FROM ProfileBond AS PB INNER JOIN Profile P ON P.pk = PB.userPk WHERE PB.followsMe = 1 AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.followsMeAt > :reference ORDER BY PB.followsMeAt DESC")
+    abstract fun getRecentFollowers(reference: Long): DataSource.Factory<Int, UserFriendship>
+
+    @Query("SELECT PB.followsMe, PB.iFollow, P.*, (SELECT 0) as insight FROM ProfileBond AS PB INNER JOIN Profile P ON P.pk = PB.userPk WHERE PB.followsMe = 0 AND PB.unfollowMeAt IS NOT NULL AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.unfollowMeAt > :reference ORDER BY PB.unfollowMeAt DESC")
+    abstract fun getRecentUnfollowers(reference: Long): DataSource.Factory<Int, UserFriendship>
+
+    @Query("SELECT PB.followsMe, PB.iFollow, P.*, (SELECT 0) as insight FROM ProfileBond AS PB INNER JOIN Profile P ON PB.userPk = p.pk WHERE PB.iFollow = 1 AND PB.followsMe IS NOT 1 AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile LP WHERE LP.selected = 1 LIMIT 1) ORDER BY MAX(COALESCE(PB.unfollowMeAt, 0), COALESCE(PB.iFollowAt, 0)) DESC")
+    abstract fun getUnrequited(): DataSource.Factory<Int, UserFriendship>
+
+    @Query("SELECT PB.followsMe, PB.iFollow, P.*, (SELECT 0) as insight FROM ProfileBond AS PB INNER JOIN Profile P ON PB.userPk = p.pk WHERE PB.followsMe = 1 AND PB.iFollow IS NOT 1 AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile LP WHERE LP.selected = 1 LIMIT 1) ORDER BY MAX(COALESCE(PB.unfollowMeAt, 0), COALESCE(PB.iFollowAt, 0)) DESC")
+    abstract fun getFans(): DataSource.Factory<Int, UserFriendship>
 }
