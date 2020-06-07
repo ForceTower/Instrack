@@ -32,7 +32,7 @@ class SyncRepository @Inject constructor(
     private val context: Context,
     private val database: TrackDB
 ) {
-    suspend fun maybeExecuteSelected() {
+    suspend fun maybeExecuteSelected() = withContext(Dispatchers.IO) {
         val last = database.sync().getLatestSyncDirect()?.createdTime ?: 0
         val now = System.currentTimeMillis()
         if (now - last > 3600000) {
@@ -40,13 +40,12 @@ class SyncRepository @Inject constructor(
         }
     }
 
-    suspend fun executeSelected(): Long {
+    suspend fun executeSelected() = withContext(Dispatchers.IO) {
         val profile = database.profile().getSelectedProfileDirect()
-        return if (profile != null) {
+        if (profile != null) {
             execute(profile.username)
         } else {
             Timber.d("No selected profile... skipping")
-            0
         }
     }
 
