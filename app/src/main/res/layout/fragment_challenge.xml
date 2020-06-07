@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="actions"
+            type="dev.forcetower.instrack.view.challenge.ChallengeActions" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@drawable/instagram_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipToPadding="false"
+            android:padding="24dp"
+            app:paddingTopSystemWindowInsets="@{true}"
+            app:paddingStartSystemWindowInsets="@{true}"
+            app:paddingEndSystemWindowInsets="@{true}"
+            app:paddingBottomSystemWindowInsets="@{true}">
+
+            <Space
+                android:id="@+id/space_top"
+                android:layout_weight="0.7"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/challenge_title"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:textAlignment="gravity"
+                android:gravity="center"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/challenge_description"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:textAlignment="gravity"
+                android:gravity="center"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_challenge_option"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="36dp"
+                android:onClick="@{() -> actions.onMoveToNext()}"
+                style="@style/Widget.Instrack.MaterialButton.Login"
+                android:text="@string/challenge_send"/>
+
+            <Space
+                android:id="@+id/space_bottom"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

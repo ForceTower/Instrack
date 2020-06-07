@@ -59,12 +59,16 @@ class LoginFragment : BaseFragment() {
             showSnack(it, Snackbar.LENGTH_LONG)
         })
         viewModel.onLoginError.observe(viewLifecycleOwner, EventObserver {
-            if (it == R.string.challenge_required) {
-                // TODO move to challenge
-            } else {
-                showSnack(getString(it))
-            }
+            showSnack(getString(it))
         })
+        viewModel.onChallenge.observe(viewLifecycleOwner, EventObserver {
+            moveToChallenge(it.first, it.second)
+        })
+    }
+
+    private fun moveToChallenge(username: String, password: String) {
+        val directions = LoginFragmentDirections.actionLoginToChallenge(username, password)
+        findNavController().navigate(directions)
     }
 
     private fun moveToHome() {

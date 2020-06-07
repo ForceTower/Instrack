@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="actions"
+            type="dev.forcetower.instrack.view.challenge.ChallengeActions" />
+
+        <variable
+            name="label"
+            type="String" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@drawable/instagram_background">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:paddingTopSystemWindowInsets="@{true}"
+            app:paddingStartSystemWindowInsets="@{true}"
+            app:paddingEndSystemWindowInsets="@{true}"
+            app:paddingBottomSystemWindowInsets="@{true}">
+
+            <Space
+                android:layout_weight="0.7"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/challenge_code_title"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:textAlignment="gravity"
+                android:gravity="center"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{@string/challenge_code_desc(label)}"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                tools:text="Digite o código de 6 dígitos que foi enviado para o ju******@gmail****."/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                style="@style/Widget.Instrack.TextInputLayout.Login">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={actions.code}"
+                    android:textColor="@android:color/white"
+                    android:textCursorDrawable="@null"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"
+                    android:maxLines="1"
+                    android:hint="@string/instagram_password_hint"
+                    android:textColorHint="#B1FFFFFF"
+                    tools:ignore="UnusedAttribute" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="36dp"
+                android:onClick="@{() -> actions.onSendCode(actions.code)}"
+                style="@style/Widget.Instrack.MaterialButton.Login"
+                android:text="@string/challenge_send"/>
+
+            <Space
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

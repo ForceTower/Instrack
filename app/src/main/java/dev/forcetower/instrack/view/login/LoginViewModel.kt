@@ -10,6 +10,7 @@ import dev.forcetower.instrack.core.source.Operation
 import dev.forcetower.instrack.core.source.repository.LoginRepository
 import dev.forcetower.toolkit.lifecycle.Event
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
@@ -29,6 +30,9 @@ class LoginViewModel @Inject constructor(
 
     private val _onLoginErrorMessage = MutableLiveData<Event<String>>()
     val onLoginErrorMessage: LiveData<Event<String>> = _onLoginErrorMessage
+
+    private val _onChallenge = MutableLiveData<Event<Pair<String, String>>>()
+    val onChallenge: LiveData<Event<Pair<String, String>>> = _onChallenge
 
     override fun onLogin(username: String, password: String) {
         if (loading.value == true) return
@@ -53,11 +57,12 @@ class LoginViewModel @Inject constructor(
                 val data = result.data
                 val errorType = result.data?.errorType
                 val message = data?.message
+                Timber.d("Error type $errorType")
                 if (errorType != null && data != null) {
                     when {
                         errorType == "invalid_user" -> usernameError.value = R.string.invalid_user
                         errorType == "bad_password" -> passwordError.value = R.string.bad_password
-                        errorType == "challenge_required" -> _onLoginError.value = Event(R.string.challenge_required)
+                        errorType == "checkpoint_challenge_required" -> _onChallenge.value = Event(username to password)
                         message != null -> _onLoginErrorMessage.value = Event(message)
                         else -> _onLoginErrorMessage.value = Event(errorType)
                     }

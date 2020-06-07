@@ -37,4 +37,9 @@
     <string name="home_carousel_likes_mean">média de curtidas</string>
     <string name="home_carousel_comments_mean">média de comentarios</string>
     <string name="stories_seen_by">Visto por %1$d</string>
+    <string name="challenge_title">Aprove o login neste dispositivo</string>
+    <string name="challenge_description">Enviaremos um código de segurança para confirmar sua identificação. Como você deseja receber seu código?</string>
+    <string name="challenge_send">Enviar código de segurança</string>
+    <string name="challenge_code_desc">Digite o código de 6 dígitos que foi enviado para o %1$s</string>
+    <string name="challenge_code_title">Entre com seu código de segurança</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import dev.forcetower.instrack.view.challenge.ChallengeViewModel
 import dev.forcetower.instrack.view.home.HomeViewModel
 import dev.forcetower.instrack.view.launcher.LauncherViewModel
 import dev.forcetower.instrack.view.login.LoginViewModel
@@ -15,13 +16,18 @@ import dev.forcetower.toolkit.dagger.annotation.ViewModelKey
 abstract class ViewModelModule {
     @Binds
     @IntoMap
+    @ViewModelKey(LauncherViewModel::class)
+    abstract fun bindLauncherViewModel(vm: LauncherViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindLoginViewModel(vm: LoginViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(LauncherViewModel::class)
-    abstract fun bindLauncherViewModel(vm: LauncherViewModel): ViewModel
+    @ViewModelKey(ChallengeViewModel::class)
+    abstract fun bindChallengeViewModel(vm: ChallengeViewModel): ViewModel
 
     @Binds
     @IntoMap

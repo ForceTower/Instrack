@@ -26,6 +26,9 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/onboarding"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_login_to_challenge"
+            app:destination="@id/challenge" />
     </fragment>
 
     <action
@@ -40,4 +43,38 @@
         android:name="dev.forcetower.instrack.view.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/challenge"
+        android:name="dev.forcetower.instrack.view.challenge.ChallengeFragment"
+        android:label="Challenge"
+        tools:layout="@layout/fragment_challenge">
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_challenge_to_challenge_code"
+            app:destination="@id/challenge_code" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/challenge_code"
+        android:name="dev.forcetower.instrack.view.challenge.ChallengeCodeFragment"
+        android:label="ChallengeCode"
+        tools:layout="@layout/fragment_challenge_code">
+        <action
+            android:id="@+id/action_challenge_code_to_home"
+            app:destination="@id/home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/onboarding"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="label"
+            app:argType="string" />
+        <argument
+            android:name="option"
+            app:argType="integer" />
+    </fragment>
 </navigation>
