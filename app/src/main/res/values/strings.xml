@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:locale="pt_BR">
-    <string name="app_name">Instrack</string>
+    <string name="app_name" translatable="false">Instracker</string>
     <string name="integer_format" translatable="false">%1$d</string>
     <string name="onboarding_welcome">Boas vindas ao Instracker</string>
     <string name="onboarding_welcome_desc">Fique por dentro de todas as informações relevantes sobre o seu Instagram!</string>

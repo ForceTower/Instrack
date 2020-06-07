@@ -32,6 +32,13 @@ class SyncRepository @Inject constructor(
     private val context: Context,
     private val database: TrackDB
 ) {
+    suspend fun maybeExecuteSelected() {
+        val last = database.sync().getLatestSyncDirect()?.createdTime ?: 0
+        val now = System.currentTimeMillis()
+        if (now - last > 3600000) {
+            executeSelected()
+        }
+    }
 
     suspend fun executeSelected(): Long {
         val profile = database.profile().getSelectedProfileDirect()

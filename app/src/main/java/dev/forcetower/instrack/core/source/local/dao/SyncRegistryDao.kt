@@ -30,4 +30,7 @@ abstract class SyncRegistryDao : BaseDao<SyncRegistry>() {
 
     @Query("SELECT * FROM SyncRegistry ORDER BY createdTime DESC LIMIT 1")
     abstract fun getLatestSync(): Flow<SyncRegistry?>
+
+    @Query("SELECT * FROM SyncRegistry ORDER BY createdTime DESC LIMIT 1")
+    abstract fun getLatestSyncDirect(): SyncRegistry?
 }

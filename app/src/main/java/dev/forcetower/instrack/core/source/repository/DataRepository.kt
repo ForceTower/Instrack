@@ -121,7 +121,7 @@ class DataRepository @Inject constructor(
 
         val t = f + u + w + c + l
 
-        val sequence = t.asSequence().distinctBy { it.userPk }.sortedByDescending { it.timestamp }
+        val sequence = t.asSequence().sortedByDescending { it.timestamp }.distinctBy { it.userPk }
         return HomeElement(
             3,
             (of.size + nf.size) + (ou.size + nu.size) + (ow.size + nw.size) + (oc.size + nc.size) + (ol.size + nl.size),

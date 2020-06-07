@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Instracker</string>
+    <string name="onboarding_welcome">Welcome to Instracker</string>
+    <string name="onboarding_welcome_desc">Get insights about whats is relevant about your Instagram!</string>
+    <string name="onboarding_login">Start</string>
+    <string name="login_lets_start">Login using your Instagram account</string>
+    <string name="login_hot_text">Your password is secure, the login data is saved only on your device</string>
+    <string name="instagram_username_hint">Enter your username</string>
+    <string name="instagram_username_label">Username</string>
+    <string name="instagram_password_hint">Enter your password</string>
+    <string name="instagram_password_label">Password</string>
+    <string name="do_login_action">Show me the info!</string>
+    <string name="login_username_too_short">Username too short</string>
+    <string name="login_password_too_short">Password too short</string>
+    <string name="invalid_user">The username does not belong to an account</string>
+    <string name="bad_password">The password is incorrect</string>
+    <string name="challenge_required">Login confirmation</string>
+    <string name="network_error">Connection error</string>
+    <string name="instagram_connected_as">Connected as %1$s</string>
+    <string name="home_label_followers">Followers</string>
+    <string name="home_label_following">Following</string>
+    <string name="home_element_new_followers">New followers</string>
+    <string name="home_element_unfollow">Unfollowers</string>
+    <string name="home_element_story_watch">Story watchers</string>
+    <string name="home_element_profile_interaction">Profile interactions</string>
+    <string name="home_element_not_follow_you_back">Unrequited followers</string>
+    <string name="home_element_you_dont_follow_back">Fans</string>
+    <string name="home_carousel_videos_posted">videos posted</string>
+    <string name="home_carousel_images_posted">images posted</string>
+    <string name="home_carousel_comments_count">comments received</string>
+    <string name="home_carousel_likes_count">likes received</string>
+    <string name="home_carousel_follower_count">followers</string>
+    <string name="home_carousel_following_count">following</string>
+    <string name="home_carousel_post_count">posts</string>
+    <string name="home_carousel_likes_mean">likes mean</string>
+    <string name="home_carousel_comments_mean">comments mean</string>
+    <string name="stories_seen_by">Seen by %1$d</string>
+</resources>

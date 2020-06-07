@@ -15,6 +15,6 @@ abstract class PostLikeDao : BaseDao<PostLike>() {
     @Query("SELECT COUNT(*) FROM PostLike AS PL INNER JOIN Post AS P ON PL.postPk = P.pk WHERE P.userPk = (SELECT userPk FROM LinkedProfile WHERE selected = 1 LIMIT 1)")
     abstract fun getLikesCount(): Flow<Int>
 
-    @Query("SELECT PL.*, PR.picture FROM PostLike AS PL INNER JOIN Post AS P ON PL.postPk = P.pk INNER JOIN Profile PR on PL.userPk = PR.pk WHERE P.userPk = (SELECT userPk FROM LinkedProfile WHERE selected = 1 LIMIT 1)")
+    @Query("SELECT PL.*, PR.picture FROM PostLike AS PL INNER JOIN Post AS P ON PL.postPk = P.pk INNER JOIN Profile PR on PL.userPk = PR.pk WHERE P.userPk = (SELECT userPk FROM LinkedProfile WHERE selected = 1 LIMIT 1) AND PL.userPk <> (SELECT userPK FROM LinkedProfile WHERE selected = 1 LIMIT 1)")
     abstract fun getLikesSimple(): Flow<List<PostLikerSimple>>
 }

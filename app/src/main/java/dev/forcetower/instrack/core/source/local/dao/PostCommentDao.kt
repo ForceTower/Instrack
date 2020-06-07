@@ -20,6 +20,6 @@ abstract class PostCommentDao : BaseDao<PostComment>() {
     @Query("SELECT COUNT(PC.pk) FROM PostComment AS PC INNER JOIN Post AS P ON PC.postPk = P.pk WHERE P.userPk = (SELECT userPK FROM LinkedProfile WHERE selected = 1 LIMIT 1)")
     abstract fun getCommentCount(): Flow<Int>
 
-    @Query("SELECT PC.*, PR.picture FROM PostComment AS PC INNER JOIN Post AS P ON PC.postPk = P.pk INNER JOIN Profile PR on PC.userPk = PR.pk WHERE P.userPk = (SELECT userPK FROM LinkedProfile WHERE selected = 1 LIMIT 1)")
+    @Query("SELECT PC.*, PR.picture FROM PostComment AS PC INNER JOIN Post AS P ON PC.postPk = P.pk INNER JOIN Profile PR on PC.userPk = PR.pk WHERE P.userPk = (SELECT userPK FROM LinkedProfile WHERE selected = 1 LIMIT 1) AND PC.userPk <> (SELECT userPK FROM LinkedProfile WHERE selected = 1 LIMIT 1)")
     abstract fun getCommenters(): Flow<List<PostCommenterSimple>>
 }

@@ -30,14 +30,16 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun syncProfile() {
+    fun maybeSyncProfile() {
         viewModelScope.launch {
-            syncRepository.executeSelected()
+            syncRepository.maybeExecuteSelected()
         }
     }
 
     override fun onRefresh() {
-        syncProfile()
+        viewModelScope.launch {
+            syncRepository.executeSelected()
+        }
     }
 
     override fun onHomeElementClick(element: HomeElement) {

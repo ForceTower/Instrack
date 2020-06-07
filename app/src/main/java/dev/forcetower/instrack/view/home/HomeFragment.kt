@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment() {
         })
 
         if (savedInstanceState == null) {
-            viewModel.syncProfile()
+            viewModel.maybeSyncProfile()
         }
     }
 }
