@@ -1,5 +1,6 @@
 package dev.forcetower.instrack.view.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+class HomeViewModel @ViewModelInject constructor(
     private val repository: DataRepository,
     private val syncRepository: SyncRepository
 ) : ViewModel(), HomeActions {

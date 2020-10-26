@@ -51,4 +51,11 @@
     <string name="listing_unrequited_followers">Não te seguem de volta</string>
     <string name="listing_stories_view">Visualizaram stories</string>
     <string name="listing_fans">Admiradores</string>
+    <string name="drawer_profile_interaction">Viram seu perfil</string>
+    <string name="open_drawer">Abrir opções</string>
+    <string name="close_drawer">Fechar opções</string>
+    <string name="account_logout">Sair</string>
+    <string name="drawer_stories_insight">Análise dos stories</string>
+    <string name="drawer_media_insight">Engajamento</string>
+    <string name="drawer_app_settings">Configurações</string>
 </resources>

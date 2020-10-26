@@ -5,6 +5,7 @@ import com.forcetower.instagram.Session
 import com.forcetower.instagram.model.login.ChallengeOption
 import com.forcetower.instagram.model.response.AccountResponse
 import com.forcetower.instagram.model.response.InstagramResponse
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.forcetower.instrack.core.model.database.LinkedProfile
 import dev.forcetower.instrack.core.model.database.Profile
 import dev.forcetower.instrack.core.source.Operation
@@ -18,7 +19,7 @@ import javax.inject.Singleton
 
 @Singleton
 class LoginRepository @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val database: TrackDB
 ) {
     private val sessions = mutableMapOf<String, Session>()

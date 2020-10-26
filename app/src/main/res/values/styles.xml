@@ -4,7 +4,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorOnPrimary">@android:color/white</item>
         <item name="fontFamily">@font/product_sans_regular</item>
     </style>
@@ -51,8 +52,18 @@
         <item name="backgroundTint">@android:color/white</item>
     </style>
 
+    <style name="Widget.Instrack.NavigationView" parent="Widget.Design.NavigationView">
+        <item name="listPreferredItemHeightSmall">60dp</item>
+    </style>
+
     <style name="TextAppearance.Instrack.Toolbar" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name="TextAppearance.Instrack.NavigationView.Home" parent="">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/product_sans_regular</item>
     </style>
 

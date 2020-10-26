@@ -1,5 +1,6 @@
 package dev.forcetower.instrack.view.login
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(
+class LoginViewModel @ViewModelInject constructor(
     private val repository: LoginRepository
 ) : ViewModel(), LoginActions {
     override val username = MutableLiveData("")

@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.databinding.FragmentOnboardingBinding
 import dev.forcetower.toolkit.components.BaseFragment
 
+@AndroidEntryPoint
 class OnboardingFragment : BaseFragment(), OnboardingActions {
     private lateinit var binding: FragmentOnboardingBinding
 

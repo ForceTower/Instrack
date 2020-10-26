@@ -1,5 +1,6 @@
 package dev.forcetower.instrack.view.challenge
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ChallengeViewModel @Inject constructor(
+class ChallengeViewModel @ViewModelInject constructor(
     private val repository: LoginRepository
 ) : ViewModel(), ChallengeActions {
     override val code = MutableLiveData("")

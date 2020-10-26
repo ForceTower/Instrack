@@ -134,27 +134,28 @@
                     app:layout_constraintTop_toBottomOf="@+id/count_following" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:text="@{overview.user.username}"-->
+<!--                android:textColor="?android:textColorPrimary"-->
+<!--                android:textAlignment="gravity"-->
+<!--                android:textSize="16sp"-->
+<!--                android:gravity="center"-->
+<!--                tools:text="username"/>-->
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="16dp"
-                android:text="@{overview.user.username}"
+                android:text="@{overview.user.name}"
                 android:textColor="?android:textColorPrimary"
                 android:textAlignment="gravity"
-                android:textSize="16sp"
-                android:gravity="center"
-                tools:text="username"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginHorizontal="16dp"
-                android:text="@{overview.user.name}"
-                android:textColor="?android:textColorSecondary"
-                android:textAlignment="gravity"
                 android:textSize="14sp"
+                android:textFontWeight="600"
                 android:gravity="center"
                 tools:text="John Cena"/>
 

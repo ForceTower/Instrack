@@ -1,14 +1,12 @@
 package dev.forcetower.instrack
 
-import dagger.android.support.DaggerApplication
-import dev.forcetower.instrack.dagger.AppComponent
-import dev.forcetower.instrack.dagger.DaggerAppComponent
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 import dev.forcetower.instrack.utils.crashlytics.CrashlyticsTree
 import timber.log.Timber
 
-class TrackApp : DaggerApplication() {
-    private val component: AppComponent by lazy { createComponent() }
-
+@HiltAndroidApp
+class TrackApp : Application() {
     override fun onCreate() {
         super.onCreate()
         // "Every time you log in production, a puppy dies"
@@ -18,10 +16,4 @@ class TrackApp : DaggerApplication() {
             Timber.plant(CrashlyticsTree())
         }
     }
-
-    private fun createComponent(): AppComponent {
-        return DaggerAppComponent.builder().application(this).build()
-    }
-
-    override fun applicationInjector() = component
 }

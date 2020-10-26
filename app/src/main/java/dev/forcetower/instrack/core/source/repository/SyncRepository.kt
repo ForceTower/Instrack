@@ -3,6 +3,7 @@ package dev.forcetower.instrack.core.source.repository
 import android.content.Context
 import androidx.room.withTransaction
 import com.forcetower.instagram.Session
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.forcetower.instrack.core.model.database.Action
 import dev.forcetower.instrack.core.model.database.Post
 import dev.forcetower.instrack.core.model.database.PostComment
@@ -28,7 +29,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SyncRepository @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val database: TrackDB
 ) {
     suspend fun maybeExecuteSelected() = withContext(Dispatchers.IO) {

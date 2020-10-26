@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/profile_interaction"
+        android:title="@string/drawer_profile_interaction"
+        android:icon="@drawable/ic_remove_red_eye_black_24dp" />
+
+    <item
+        android:id="@+id/media_insights"
+        android:title="@string/drawer_media_insight"
+        android:icon="@drawable/ic_engagement" />
+
+    <item
+        android:id="@+id/story_insights"
+        android:title="@string/drawer_stories_insight"
+        android:icon="@drawable/ic_story_insights" />
+
+    <item
+        android:id="@+id/app_settings"
+        android:title="@string/drawer_app_settings"
+        android:icon="@drawable/ic_baseline_settings_24" />
+</menu>

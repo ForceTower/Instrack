@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.navigation.NavDestination
 import androidx.navigation.NavInflater
+import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.view.launcher.LaunchDestination
 import dev.forcetower.instrack.view.launcher.LauncherViewModel
@@ -15,10 +16,9 @@ import dev.forcetower.toolkit.navigation.navigator.PermissiveNavigatorProvider
 import java.util.ArrayDeque
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LauncherActivity : BaseActivity() {
-    @Inject
-    lateinit var factory: BaseViewModelFactory
-    private val viewModel by viewModels<LauncherViewModel> { factory }
+    private val viewModel by viewModels<LauncherViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

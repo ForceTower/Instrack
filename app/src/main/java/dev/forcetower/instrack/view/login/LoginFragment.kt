@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.databinding.FragmentLoginBinding
 import dev.forcetower.toolkit.components.BaseFragment
@@ -16,11 +17,10 @@ import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment() {
-    @Inject
-    lateinit var factory: BaseViewModelFactory
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel by viewModels<LoginViewModel> { factory }
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

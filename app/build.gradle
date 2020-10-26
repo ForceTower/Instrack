@@ -3,29 +3,30 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'org.jmailen.kotlinter'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "dev.forcetower.instrack"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 9
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        renderscriptTargetApi 29
+        renderscriptTargetApi 30
         renderscriptSupportModeEnabled true
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [
+                arguments += [
                     "room.schemaLocation": "$projectDir/schemas".toString(),
                     "room.incremental"   : "true"
                 ]
@@ -54,6 +55,8 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
+
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
@@ -65,6 +68,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
     implementation project(':toolkit')
     implementation project(':instagram')
 
@@ -77,8 +81,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation "com.google.android.material:material:$google_material"
-    implementation "androidx.palette:palette:$pallete"
-    implementation "androidx.fragment:fragment:$fragment"
+    implementation "androidx.palette:palette-ktx:$pallete"
     implementation "androidx.fragment:fragment-ktx:$fragment"
 
     // Architecture
@@ -97,11 +100,10 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$paging"
 
     // Dependency injection
-    implementation "com.google.dagger:dagger:$dagger"
-    kapt "com.google.dagger:dagger-compiler:$dagger"
-    implementation "com.google.dagger:dagger-android:$dagger"
-    implementation "com.google.dagger:dagger-android-support:$dagger"
-    kapt "com.google.dagger:dagger-android-processor:$dagger"
+    implementation "com.google.dagger:hilt-android:$hilt_dagger"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_dagger"
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
 
 
     // Room
@@ -125,13 +127,13 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.3'
-    implementation 'com.google.firebase:firebase-messaging:20.2.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.6.0'
+    implementation 'com.google.firebase:firebase-messaging:20.3.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
 
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }

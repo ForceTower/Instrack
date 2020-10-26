@@ -1,5 +1,6 @@
 package dev.forcetower.instrack.view.launcher
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import dev.forcetower.toolkit.lifecycle.Event
 import timber.log.Timber
 import javax.inject.Inject
 
-class LauncherViewModel @Inject constructor(
+class LauncherViewModel @ViewModelInject constructor(
     repository: ProfileRepository
 ) : ViewModel() {
     private val _launchDestination = MediatorLiveData<Event<LaunchDestination>>()

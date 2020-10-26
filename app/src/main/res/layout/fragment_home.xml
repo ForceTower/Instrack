@@ -1,26 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="actions"
             type="dev.forcetower.instrack.view.home.HomeActions" />
+
+        <variable
+            name="username"
+            type="java.lang.String" />
+
+
     </data>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:refreshing="@{actions.refreshing}"
-        app:onSwipeRefresh="@{() -> actions.onRefresh()}">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_profile"
+        tools:openDrawer="start">
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+                app:elevation="0dp"
+                app:liftOnScroll="false">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:navigationIcon="@drawable/ic_baseline_menu_24"
+                    app:paddingTopSystemWindowInsets="@{true}"
+                    app:paddingStartSystemWindowInsets="@{true}"
+                    app:paddingEndSystemWindowInsets="@{true}">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_marginEnd="64dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{username}"
+                        android:textAppearance="@style/TextAppearance.Instrack.Toolbar"
+                        android:textColor="?attr/colorPrimary"
+                        android:textFontWeight="600"
+                        android:textAlignment="gravity"
+                        android:gravity="center"
+                        tools:text="netflix"/>
+                </com.google.android.material.appbar.MaterialToolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                app:refreshing="@{actions.refreshing}"
+                app:onSwipeRefresh="@{() -> actions.onRefresh()}">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    app:paddingStartSystemWindowInsets="@{true}"
+                    app:paddingEndSystemWindowInsets="@{true}"
+                    app:paddingBottomSystemWindowInsets="@{true}"/>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            app:paddingTopSystemWindowInsets="@{true}"
-            app:paddingStartSystemWindowInsets="@{true}"
-            app:paddingEndSystemWindowInsets="@{true}"
-            app:paddingBottomSystemWindowInsets="@{true}"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_gravity="start"
+            android:theme="@style/Widget.Instrack.NavigationView"
+            app:headerLayout="@layout/home_drawer_header"
+            app:menu="@menu/home_drawer_items"
+            app:itemIconSize="28dp"
+            app:itemTextAppearance="@style/TextAppearance.Instrack.NavigationView.Home"
+            app:itemBackground="@drawable/navigation_item_background"
+            app:itemIconTint="@color/navigation_icon_color"
+            app:itemTextColor="@color/navigation_text_color"
+            app:paddingBottomSystemWindowInsets="@{true}"
+            app:consumeSystemWindowInsets="@{true}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="24dp"
+                    android:src="@drawable/ic_baseline_login_24"
+                    app:tint="?attr/colorControlNormal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/materialTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/account_logout"
+                    android:textColor="?attr/colorControlNormal"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

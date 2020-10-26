@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.PagedList
+import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.databinding.FragmentUserListingBinding
@@ -17,11 +18,10 @@ import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.components.BaseViewModelFactory
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class UserListingFragment : BaseFragment() {
-    @Inject
-    lateinit var factory: BaseViewModelFactory
     private lateinit var binding: FragmentUserListingBinding
-    private val viewModel by viewModels<UserListingViewModel> { factory }
+    private val viewModel by viewModels<UserListingViewModel>()
     private val args by navArgs<UserListingFragmentArgs>()
 
     override fun onCreateView(

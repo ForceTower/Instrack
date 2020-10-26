@@ -1,6 +1,7 @@
 package dev.forcetower.instrack.core.source.repository
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.database.SyncRegistry
 import dev.forcetower.instrack.core.model.ui.HomeCarousel
@@ -12,6 +13,7 @@ import dev.forcetower.instrack.core.model.ui.ProfileOverview
 import dev.forcetower.instrack.core.model.ui.StoryWatcherSimple
 import dev.forcetower.instrack.core.source.local.TrackDB
 import dev.forcetower.toolkit.extensions.combine
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import java.util.Calendar
 import javax.inject.Inject
@@ -19,13 +21,14 @@ import javax.inject.Singleton
 
 @Singleton
 class DataRepository @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val database: TrackDB
 ) {
     fun getSyncRegistry(): Flow<SyncRegistry?> {
         return database.sync().getLatestSync()
     }
 
+    @ExperimentalCoroutinesApi
     fun profileOverview(): Flow<ProfileOverview> {
         val one = database.profile().getSelectedProfile()
         val two = database.postMedia().getLatestMedia()
@@ -48,6 +51,7 @@ class DataRepository @Inject constructor(
     private fun getNotFollowBack() = database.bond().getNotFollowBack()
     private fun getINotFollowBack() = database.bond().getINotFollowBack()
 
+    @ExperimentalCoroutinesApi
     fun homeElements(): Flow<List<HomeElement>> {
         val collection1 = getFollowers()
         val collection2 = getUnfollowers()

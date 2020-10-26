@@ -8,17 +8,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.databinding.FragmentChallengeBinding
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ChallengeFragment : BaseFragment() {
-    @Inject
-    lateinit var factory: BaseViewModelFactory
     private lateinit var binding: FragmentChallengeBinding
-    private val viewModel by activityViewModels<ChallengeViewModel> { factory }
+    private val viewModel by activityViewModels<ChallengeViewModel>()
     private val args by navArgs<ChallengeFragmentArgs>()
 
     override fun onCreateView(

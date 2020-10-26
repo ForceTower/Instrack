@@ -5,6 +5,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import dev.forcetower.instrack.BuildConfig
 import dev.forcetower.instrack.TrackApp
 import okhttp3.OkHttpClient
@@ -13,13 +15,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
+@InstallIn(ApplicationComponent::class)
 object AppModule {
-    @Provides
-    @Singleton
-    fun provideContext(application: TrackApp): Context {
-        return application.applicationContext
-    }
-
     @Provides
     @Singleton
     fun provideClient(): OkHttpClient {

@@ -1,10 +1,11 @@
 package dev.forcetower.instrack.view.users
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import dev.forcetower.instrack.core.source.repository.ListingRepository
 import javax.inject.Inject
 
-class UserListingViewModel @Inject constructor(
+class UserListingViewModel @ViewModelInject constructor(
     repository: ListingRepository
 ) : ViewModel() {
     val recentFollowers = repository.recentFollowers()
