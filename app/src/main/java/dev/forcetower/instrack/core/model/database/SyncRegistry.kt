@@ -23,6 +23,8 @@ data class SyncRegistry(
     val createdTime: Long = Calendar.getInstance().timeInMillis
 ) {
     fun isCompleted(): Boolean {
-        return account && followers && following && stories && feed
+        val now = System.currentTimeMillis()
+
+        return (account && followers && following && stories && feed) || (now - createdTime) > 600000
     }
 }

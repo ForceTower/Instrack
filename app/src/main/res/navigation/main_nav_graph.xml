@@ -118,6 +118,10 @@
         <argument
             android:name="type"
             app:argType="integer" />
+        <argument
+            android:name="initialPosition"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 
     <fragment

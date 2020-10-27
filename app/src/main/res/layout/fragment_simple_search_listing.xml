@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
-                    android:hint="@{@string/search_insight_profiles_format(count)}"
+                    android:hint="@{@plurals/search_insight_profiles_format(count, count)}"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:paddingHorizontal="16dp"

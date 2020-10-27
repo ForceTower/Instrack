@@ -74,6 +74,9 @@
     <string name="story_insight_recent">Recentes</string>
     <string name="story_insight_not_follower">Não me seguem</string>
     <string name="story_insight_not_following">Eu não sigo</string>
-    <string name="search_insight_profiles_format">Buscar entre os %1$d perfis</string>
     <string name="story_insight_following">Me seguindo</string>
+    <plurals name="search_insight_profiles_format">
+        <item quantity="one">%1$d perfil</item>
+        <item quantity="other">%1$d perfis</item>
+    </plurals>
 </resources>

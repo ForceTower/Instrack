@@ -26,6 +26,7 @@ class SimpleSearchListingFragment : BaseFragment() {
         adapter = UserSimpleAdapter()
         val view = FragmentSimpleSearchListingBinding.inflate(inflater, container, false).also {
             binding = it
+            binding.count = 0
         }.root
 
         binding.recyclerUsers.adapter = adapter

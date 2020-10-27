@@ -97,9 +97,16 @@ class StoryDetailsFragment : BaseFragment() {
         source.observe(viewLifecycleOwner, {
             if (firstInteraction) {
                 firstInteraction = false
-                view.postDelayed({
-                    binding.recyclerStories.layoutManager?.scrollToPosition(1)
-                }, 1000)
+                val initial = args.initialPosition
+                if (initial >= 0) {
+                    view.postDelayed({
+                        binding.recyclerStories.layoutManager?.scrollToPosition(initial)
+                        val list = adapter.currentList
+                        if (initial < list.size) {
+                            viewModel.setCurrentStory(list[initial].pk)
+                        }
+                    }, 500)
+                }
             }
             adapter.submitList(it)
             view.postDelayed({
