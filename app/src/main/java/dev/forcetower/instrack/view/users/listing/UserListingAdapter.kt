@@ -1,4 +1,4 @@
-package dev.forcetower.instrack.view.users
+package dev.forcetower.instrack.view.users.listing
 
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -9,7 +9,9 @@ import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.databinding.ItemUserListingBinding
 import dev.forcetower.toolkit.extensions.inflate
 
-class UserListingAdapter() : PagedListAdapter<UserFriendship, UserListingAdapter.UserHolder>(DiffCallBack) {
+class UserListingAdapter() : PagedListAdapter<UserFriendship, UserListingAdapter.UserHolder>(
+    DiffCallBack
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         return UserHolder(parent.inflate(R.layout.item_user_listing))

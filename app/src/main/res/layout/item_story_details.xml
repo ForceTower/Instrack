@@ -14,10 +14,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="64dp"
-        android:layout_height="94dp"
+        android:layout_width="100dp"
+        android:layout_height="147dp"
         android:layout_margin="4dp"
         app:roundedViewRadius="@{6}"
+        android:elevation="4dp"
         android:onClick="@{() -> actions.onStoryClick(element)}">
 
         <ImageView
@@ -41,10 +42,11 @@
             app:layout_constraintEnd_toEndOf="@id/image"
             app:layout_constraintStart_toStartOf="@id/image"
             app:layout_constraintTop_toTopOf="@id/image" />
+
         <ImageView
             android:id="@+id/eye"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
             android:src="@drawable/ic_remove_red_eye_black_24dp"
@@ -63,7 +65,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:textColor="?attr/colorSurface"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:textNumberWithK="@{element.count}"
             app:layout_constraintBottom_toBottomOf="@id/eye"

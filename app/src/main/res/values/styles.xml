@@ -8,6 +8,9 @@
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorOnPrimary">@android:color/white</item>
         <item name="fontFamily">@font/product_sans_regular</item>
+        <item name="secondaryBackground">@color/secondaryBackground</item>
+        <item name="searchInsightBackground">@color/searchInsightBackground</item>
+        <item name="searchInsightTextColor">@color/searchInsightTextColor</item>
     </style>
 
     <style name="Instrack.Home">
@@ -65,6 +68,10 @@
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name="TextAppearance.Instrack.TabLayout.Insights" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
     </style>
 
 </resources>

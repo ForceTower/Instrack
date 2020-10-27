@@ -1,4 +1,4 @@
-package dev.forcetower.instrack.view.users
+package dev.forcetower.instrack.view.users.listing
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,8 +15,6 @@ import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.databinding.FragmentUserListingBinding
 import dev.forcetower.toolkit.components.BaseFragment
-import dev.forcetower.toolkit.components.BaseViewModelFactory
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserListingFragment : BaseFragment() {

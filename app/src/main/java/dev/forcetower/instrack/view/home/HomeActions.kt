@@ -9,4 +9,5 @@ interface HomeActions {
     fun onRefresh()
     fun onHomeElementClick(element: HomeElement)
     fun onStoryClick(element: StoryViewCount)
+    fun onLogout()
 }

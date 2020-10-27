@@ -1,4 +1,4 @@
-package dev.forcetower.instrack.view.users
+package dev.forcetower.instrack.view.users.listing
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel

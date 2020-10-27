@@ -58,4 +58,21 @@
     <string name="drawer_stories_insight">Análise dos stories</string>
     <string name="drawer_media_insight">Engajamento</string>
     <string name="drawer_app_settings">Configurações</string>
+    <string name="app_name_start">Ins</string>
+    <string name="app_name_end">Tracker</string>
+    <string name="active_stories">Stories Ativos</string>
+    <string name="tracked_stories">Stories Monitorados</string>
+    <string name="story_insights">Análise dos stories</string>
+    <string name="story_audience">Audiência dos stories</string>
+    <string name="story_most_spectators">Maiores espectadores</string>
+    <string name="story_least_spectators">Menores espectadores</string>
+    <string name="story_not_follow_spectators">Espectadores que não me seguem</string>
+    <string name="story_analysis_insight">Story Insights</string>
+    <string name="story_most_watched">Stories mais visualizados</string>
+    <string name="story_least_watched">Stories menos visualizados</string>
+    <string name="story_insight_most_watched">Mais visualizados</string>
+    <string name="story_insight_recent">Recentes</string>
+    <string name="story_insight_not_follower">Não me seguem</string>
+    <string name="story_insight_not_following">Eu não sigo</string>
+    <string name="search_insight_profiles_format">Buscar entre os %1$d perfis</string>
 </resources>

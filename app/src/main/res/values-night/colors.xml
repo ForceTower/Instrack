@@ -2,4 +2,8 @@
 <resources>
     <color name="reflect">#141414</color>
     <color name="contrary">#FFFFFF</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+    <color name="secondaryBackground">#262626</color>
+    <color name="searchInsightBackground">#393939</color>
+    <color name="searchInsightTextColor">#BABABA</color>
 </resources>

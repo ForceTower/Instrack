@@ -14,6 +14,7 @@ import dev.forcetower.instrack.core.source.repository.SyncRepository
 import dev.forcetower.toolkit.lifecycle.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class HomeViewModel @ViewModelInject constructor(
@@ -53,5 +54,9 @@ class HomeViewModel @ViewModelInject constructor(
     }
 
     override fun onStoryClick(element: StoryViewCount) {
+    }
+
+    override fun onLogout() {
+        Timber.d("Logout requested")
     }
 }

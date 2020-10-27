@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="count"
+            type="Integer" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/search_container"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="?attr/searchInsightBackground">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_baseline_search_24"
+                    app:tint="?attr/searchInsightTextColor" />
+
+                <EditText
+                    android:id="@+id/search_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="@{@string/search_insight_profiles_format(count)}"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingHorizontal="16dp"
+                    android:textColorHint="?attr/searchInsightTextColor"
+                    tools:hint="Buscar entre os 18 perfis"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="16dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:paddingBottomSystemWindowInsets="@{true}"
+            app:paddingStartSystemWindowInsets="@{true}"
+            app:paddingEndSystemWindowInsets="@{true}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_container"
+            tools:listitem="@layout/item_simple_user_listing"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

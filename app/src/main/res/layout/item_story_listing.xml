@@ -7,31 +7,26 @@
         <variable
             name="element"
             type="dev.forcetower.instrack.core.model.ui.StoryViewCount" />
-
-        <variable
-            name="actions"
-            type="dev.forcetower.instrack.view.home.HomeActions" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="64dp"
-        android:layout_height="94dp"
-        android:layout_margin="4dp"
-        app:roundedViewRadius="@{6}"
-        android:onClick="@{() -> actions.onStoryClick(element)}">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
             android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
             app:imageUrl="@{element.previewPicture}"
+            app:layout_constraintDimensionRatio="H,9:16"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic"/>
 
         <View
             android:layout_width="0dp"
@@ -39,12 +34,14 @@
             android:background="@drawable/item_story_mini_overlay"
             app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintEnd_toEndOf="@id/image"
-            app:layout_constraintStart_toStartOf="@id/image"
-            app:layout_constraintTop_toTopOf="@id/image" />
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent=".4"
+            app:layout_constraintStart_toStartOf="@id/image" />
+
         <ImageView
             android:id="@+id/eye"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="4dp"
             android:src="@drawable/ic_remove_red_eye_black_24dp"
@@ -63,7 +60,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:textColor="?attr/colorSurface"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:textNumberWithK="@{element.count}"
             app:layout_constraintBottom_toBottomOf="@id/eye"

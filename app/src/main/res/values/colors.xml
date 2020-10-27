@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#293FBC</color>
     <color name="colorAccent">#EE2A8C</color>
     <color name="colorOnSurface">#262626</color>
+    <color name="secondaryBackground">#F3F2F8</color>
+    <color name="searchInsightBackground">#F3F2F8</color>
+    <color name="searchInsightTextColor">#BABABA</color>
 
     <color name="green_arrow_up">#52C04D</color>
     <color name="reflect">#FFFFFF</color>

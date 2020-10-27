@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
@@ -16,9 +16,7 @@ import dev.forcetower.instrack.databinding.FragmentHomeBinding
 import dev.forcetower.instrack.databinding.HomeDrawerHeaderBinding
 import dev.forcetower.instrack.widget.ItemOffsetDecoration
 import dev.forcetower.toolkit.components.BaseFragment
-import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment() {
@@ -55,6 +53,7 @@ class HomeFragment : BaseFragment() {
         val head = binding.navigation.getHeaderView(0)
         header = HomeDrawerHeaderBinding.bind(head)
 
+        NavigationUI.setupWithNavController(binding.navigation, findNavController())
 
         return view
     }

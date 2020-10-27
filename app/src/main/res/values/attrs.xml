@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="secondaryBackground" format="color" />
+    <attr name="searchInsightBackground" format="color" />
+    <attr name="searchInsightTextColor" format="color" />
+</resources>

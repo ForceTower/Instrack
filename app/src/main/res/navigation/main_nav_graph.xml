@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_home_to_user_listing"
             app:destination="@id/user_listing" />
+        <action
+            android:id="@+id/action_home_to_story_insights"
+            app:destination="@id/story_insights" />
     </fragment>
 
     <fragment
@@ -83,11 +86,39 @@
     </fragment>
     <fragment
         android:id="@+id/user_listing"
-        android:name="dev.forcetower.instrack.view.users.UserListingFragment"
+        android:name="dev.forcetower.instrack.view.users.listing.UserListingFragment"
         android:label="UserListing"
         tools:layout="@layout/fragment_user_listing">
         <argument
             android:name="filterType"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/story_insights"
+        android:name="dev.forcetower.instrack.view.story.insight.StoryInsightsFragment"
+        android:label="Story Insight"
+        tools:layout="@layout/fragment_story_insights">
+        <action
+            android:id="@+id/action_story_insights_to_story_details"
+            app:destination="@id/story_details" />
+        <action
+            android:id="@+id/action_story_insights_to_user_listing"
+            app:destination="@id/user_listing" />
+        <action
+            android:id="@+id/action_story_insights_to_story_listing"
+            app:destination="@id/story_listing" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/story_details"
+        android:name="dev.forcetower.instrack.view.story.details.StoryDetailsFragment"
+        android:label="Story Insight Details"
+        tools:layout="@layout/fragment_story_details"/>
+
+    <fragment
+        android:id="@+id/story_listing"
+        android:name="dev.forcetower.instrack.view.story.listing.StoryListingFragment"
+        android:label="Story Insight List"
+        tools:layout="@layout/fragment_story_listing" />
 </navigation>
