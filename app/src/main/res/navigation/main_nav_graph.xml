@@ -103,11 +103,11 @@
             android:id="@+id/action_story_insights_to_story_details"
             app:destination="@id/story_details" />
         <action
-            android:id="@+id/action_story_insights_to_user_listing"
-            app:destination="@id/user_listing" />
-        <action
             android:id="@+id/action_story_insights_to_story_listing"
             app:destination="@id/story_listing" />
+        <action
+            android:id="@+id/action_story_insights_to_story_user_listing"
+            app:destination="@id/story_user_listing" />
     </fragment>
 
     <fragment
@@ -128,5 +128,19 @@
         android:id="@+id/story_listing"
         android:name="dev.forcetower.instrack.view.story.listing.StoryListingFragment"
         android:label="Story Insight List"
-        tools:layout="@layout/fragment_story_listing" />
+        tools:layout="@layout/fragment_story_listing" >
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/story_user_listing"
+        android:name="dev.forcetower.instrack.view.story.users.StoryUserListingFragment"
+        android:label="Story Insight List"
+        tools:layout="@layout/fragment_user_listing">
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -67,6 +67,7 @@
     <string name="story_most_spectators">Maiores espectadores</string>
     <string name="story_least_spectators">Menores espectadores</string>
     <string name="story_not_follow_spectators">Espectadores que não me seguem</string>
+    <string name="story_not_follow_spectators_title">Não me seguem</string>
     <string name="story_analysis_insight">Story Insights</string>
     <string name="story_most_watched">Stories mais visualizados</string>
     <string name="story_least_watched">Stories menos visualizados</string>
@@ -78,5 +79,9 @@
     <plurals name="search_insight_profiles_format">
         <item quantity="one">%1$d perfil</item>
         <item quantity="other">%1$d perfis</item>
+    </plurals>
+    <plurals name="insight_stories_watched">
+        <item quantity="one">Visualizou %1$d story</item>
+        <item quantity="other">Visualizou %1$d stories</item>
     </plurals>
 </resources>

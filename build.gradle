@@ -16,9 +16,9 @@ buildscript {
         arch = "2.1.0"
 
         // Architecture
-        room = '2.2.5'
+        room = '2.3.0-alpha02'
         lifecycle = '2.2.0'
-        paging = '2.1.2'
+        paging = '3.0.0-alpha07'
         navigation = '2.3.1'
 
         // Dependency Injection
@@ -40,9 +40,9 @@ buildscript {
 
         // Build Versions
         android_gradle_plugin = '4.1.0'
-        kotlinter = "1.26.0"
-        google_services = "4.3.3"
-        crashlytics = "2.1.1"
+        kotlinter = "3.0.2"
+        google_services = "4.3.4"
+        crashlytics = "2.3.0"
     }
     repositories {
         google()

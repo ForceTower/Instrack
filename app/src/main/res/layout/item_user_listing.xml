@@ -116,7 +116,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginHorizontal="8dp"
-                android:text="@{element.profile.username}"
                 android:textColor="?android:textColorSecondary"
                 android:textFontWeight="600"
                 android:textSize="11sp"

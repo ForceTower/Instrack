@@ -62,6 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
+                    android:paddingBottom="24dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="2"
                     app:paddingStartSystemWindowInsets="@{true}"
@@ -76,47 +77,13 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:theme="@style/Widget.Instrack.NavigationView"
+            app:insetForeground="?attr/colorSurface"
             app:headerLayout="@layout/home_drawer_header"
             app:menu="@menu/home_drawer_items"
             app:itemIconSize="28dp"
             app:itemTextAppearance="@style/TextAppearance.Instrack.NavigationView.Home"
             app:itemBackground="@drawable/navigation_item_background"
             app:itemIconTint="@color/navigation_icon_color"
-            app:itemTextColor="@color/navigation_text_color"
-            app:paddingBottomSystemWindowInsets="@{true}"
-            app:consumeSystemWindowInsets="@{true}">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_gravity="bottom"
-                android:focusable="true"
-                android:background="?android:attr/selectableItemBackground"
-                android:onClick="@{() -> actions.onLogout()}">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/icon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="24dp"
-                    android:src="@drawable/ic_baseline_login_24"
-                    app:tint="?attr/colorControlNormal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/logout_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/account_logout"
-                    android:textColor="?attr/colorControlNormal"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/icon"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.navigation.NavigationView>
+            app:itemTextColor="@color/navigation_text_color"/>
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

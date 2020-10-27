@@ -1,10 +1,12 @@
 package dev.forcetower.instrack.core.source.local.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
 import dev.forcetower.instrack.core.model.database.StoryWatch
 import dev.forcetower.instrack.core.model.ui.StoryWatchProfileSimple
 import dev.forcetower.instrack.core.model.ui.StoryWatcherSimple
+import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.toolkit.database.dao.BaseDao
 import kotlinx.coroutines.flow.Flow
 
@@ -24,4 +26,14 @@ abstract class StoryWatchDao : BaseDao<StoryWatch>() {
 
     @Query("SELECT SW.userPk AS pk, SW.timestamp AS timestamp, P.username AS username, P.picture AS picture, P.name AS name FROM StoryWatch AS SW INNER JOIN Story AS S ON SW.storyPk = S.pk INNER JOIN Profile P on SW.userPk = P.pk INNER JOIN ProfileBond PB ON P.pk = PB.userPk WHERE SW.storyPk = :pk AND (PB.iFollow = 0 OR PB.iFollow IS NULL) AND S.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) ORDER BY SW.timestamp DESC")
     abstract fun getNotFollowWatcherOf(pk: Long): Flow<List<StoryWatchProfileSimple>>
+
+    @Query("SELECT PB.iFollow AS iFollow, PB.followsMe as followsMe, count(SW.userPk) AS insight, SW.timestamp AS timestamp, P.* FROM StoryWatch SW INNER JOIN ProfileBond PB ON SW.userPk = PB.userPk INNER JOIN Profile P ON SW.userPk = P.pk INNER JOIN Story S ON SW.storyPk = S.pk WHERE S.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) GROUP BY SW.userPk ORDER BY COUNT(SW.userPk) DESC")
+    abstract fun getGreaterWatchersAndCount(): PagingSource<Int, UserFriendship>
+
+    @Query("SELECT PB.iFollow AS iFollow, PB.followsMe as followsMe, count(SW.userPk) AS insight, SW.timestamp AS timestamp, P.* FROM StoryWatch SW INNER JOIN ProfileBond PB ON SW.userPk = PB.userPk INNER JOIN Profile P ON SW.userPk = P.pk INNER JOIN Story S ON SW.storyPk = S.pk WHERE S.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) GROUP BY SW.userPk ORDER BY COUNT(SW.userPk) ASC")
+    abstract fun getLeastWatchersAndCount(): PagingSource<Int, UserFriendship>
+
+    // @Query("SELECT PB.iFollow AS iFollow, PB.followsMe as followsMe, count(SW.userPk) AS insight, SW.timestamp AS timestamp, P.* FROM StoryWatch SW INNER JOIN ProfileBond PB ON SW.userPk = PB.userPk INNER JOIN Profile P ON SW.userPk = P.pk INNER JOIN Story S ON SW.storyPk = S.pk WHERE S.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND (PB.followsMe = 0 OR PB.followsMe IS NULL) GROUP BY SW.userPk ORDER BY COUNT(SW.userPk) ASC")
+    @Query("SELECT PB.iFollow AS iFollow, PB.followsMe as followsMe, count(SW.userPk) AS insight, SW.timestamp AS timestamp, P.* FROM StoryWatch AS SW INNER JOIN Story AS S ON SW.storyPk = S.pk INNER JOIN Profile P on SW.userPk = P.pk INNER JOIN ProfileBond PB ON P.pk = PB.userPk WHERE (PB.followsMe = 0 OR PB.followsMe IS NULL) AND S.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) GROUP BY SW.userPk ORDER BY COUNT(SW.userPk) ASC")
+    abstract fun getNotFollowerWatchersAndCount(): PagingSource<Int, UserFriendship>
 }

@@ -42,6 +42,17 @@ class StoryInsightsFragment : BaseFragment() {
         binding.trackedLayout.setOnClickListener { onNavigateToStoryInsights(2) }
         binding.recyclerTrackedStories.setOnClickListener { onNavigateToStoryInsights(2) }
 
+        binding.cardMostSpectators.setOnClickListener { onNavigateToStoryUsers(1) }
+        binding.cardLeastSpectators.setOnClickListener { onNavigateToStoryUsers(2) }
+        binding.cardNotFollowSpectators.setOnClickListener { onNavigateToStoryUsers(3) }
+
+        binding.cardMostViewed.setOnClickListener { onNavigateToStoryListing(1) }
+        binding.cardLeastViewed.setOnClickListener { onNavigateToStoryListing(2) }
+
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         return view
     }
 
@@ -59,6 +70,16 @@ class StoryInsightsFragment : BaseFragment() {
 
     private fun onNavigateToStoryInsights(type: Int) {
         val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryDetails(type)
+        findNavController().navigate(directions)
+    }
+
+    private fun onNavigateToStoryUsers(type: Int) {
+        val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryUserListing(type)
+        findNavController().navigate(directions)
+    }
+
+    private fun onNavigateToStoryListing(type: Int) {
+        val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryListing(type)
         findNavController().navigate(directions)
     }
 }

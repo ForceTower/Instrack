@@ -49,7 +49,7 @@ class UserListingFragment : BaseFragment() {
         }
 
         val source = createSource()
-        source.observe(viewLifecycleOwner, Observer {
+        source.observe(viewLifecycleOwner, {
             listingAdapter.submitList(it)
         })
     }
