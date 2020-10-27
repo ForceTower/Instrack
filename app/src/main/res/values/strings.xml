@@ -75,4 +75,5 @@
     <string name="story_insight_not_follower">Não me seguem</string>
     <string name="story_insight_not_following">Eu não sigo</string>
     <string name="search_insight_profiles_format">Buscar entre os %1$d perfis</string>
+    <string name="story_insight_following">Me seguindo</string>
 </resources>

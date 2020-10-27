@@ -39,23 +39,34 @@ class ScaleLinearLayoutManager @JvmOverloads constructor(
         val orientation = orientation
         return if (orientation == HORIZONTAL) {
             val scrolled = super.scrollHorizontallyBy(dx, recycler, state)
-            val midpoint = width / 2f
-            val d0 = 0f
-            val d1: Float = mShrinkDistance * midpoint
-            val s0 = 1f
-            val s1: Float = 1f - mShrinkAmount
-            for (i in 0 until childCount) {
-                val child: View = getChildAt(i)!!
-                val childMidpoint = (getDecoratedRight(child) + getDecoratedLeft(child)) / 2f
-                
-                val d = d1.coerceAtMost(abs(midpoint - childMidpoint))
-                val scale = s0 + (s1 - s0) * (d - d0) / (d1 - d0)
-                child.scaleX = scale
-                child.scaleY = scale
-            }
+            middle()
             scrolled
         } else {
             0
+        }
+    }
+
+    override fun scrollToPosition(position: Int) {
+        super.scrollToPosition(position)
+        getChildAt(0)?.postDelayed({
+            middle()
+        }, 50)
+    }
+
+    fun middle() {
+        val midpoint = width / 2f
+        val d0 = 0f
+        val d1: Float = mShrinkDistance * midpoint
+        val s0 = 1f
+        val s1: Float = 1f - mShrinkAmount
+        for (i in 0 until childCount) {
+            val child: View = getChildAt(i)!!
+            val childMidpoint = (getDecoratedRight(child) + getDecoratedLeft(child)) / 2f
+
+            val d = d1.coerceAtMost(abs(midpoint - childMidpoint))
+            val scale = s0 + (s1 - s0) * (d - d0) / (d1 - d0)
+            child.scaleX = scale
+            child.scaleY = scale
         }
     }
 }

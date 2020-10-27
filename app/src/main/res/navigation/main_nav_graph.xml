@@ -114,7 +114,11 @@
         android:id="@+id/story_details"
         android:name="dev.forcetower.instrack.view.story.details.StoryDetailsFragment"
         android:label="Story Insight Details"
-        tools:layout="@layout/fragment_story_details"/>
+        tools:layout="@layout/fragment_story_details">
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/story_listing"

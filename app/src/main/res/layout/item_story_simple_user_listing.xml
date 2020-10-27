@@ -6,7 +6,7 @@
     <data>
         <variable
             name="profile"
-            type="dev.forcetower.instrack.core.model.database.Profile" />
+            type="dev.forcetower.instrack.core.model.ui.StoryWatchProfileSimple" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

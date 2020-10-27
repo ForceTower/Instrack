@@ -12,7 +12,7 @@ import dev.forcetower.toolkit.extensions.inflate
 class StoryAdapter : ListAdapter<StoryViewCount, StoryAdapter.StoryHolder>(DiffCallback) {
     inner class StoryHolder(val binding: ItemStoryDetailsBinding) : RecyclerView.ViewHolder(binding.root)
 
-    object DiffCallback : DiffUtil.ItemCallback<StoryViewCount>() {
+    private object DiffCallback : DiffUtil.ItemCallback<StoryViewCount>() {
         override fun areItemsTheSame(oldItem: StoryViewCount, newItem: StoryViewCount): Boolean {
             return oldItem.pk == newItem.pk
         }

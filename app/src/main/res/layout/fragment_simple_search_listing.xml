@@ -53,6 +53,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_users"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
@@ -66,6 +67,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_container"
-            tools:listitem="@layout/item_simple_user_listing"/>
+            tools:listitem="@layout/item_story_simple_user_listing"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

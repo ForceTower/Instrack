@@ -37,10 +37,11 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/item_story_mini_overlay"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent=".3"
             app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintEnd_toEndOf="@id/image"
-            app:layout_constraintStart_toStartOf="@id/image"
-            app:layout_constraintTop_toTopOf="@id/image" />
+            app:layout_constraintStart_toStartOf="@id/image" />
         <ImageView
             android:id="@+id/eye"
             android:layout_width="16dp"
