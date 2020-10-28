@@ -17,4 +17,11 @@ abstract class PostMediaDao : BaseDao<PostMedia>() {
 
     @Query("SELECT COUNT(M.pk) FROM PostMedia M INNER JOIN Post P on M.postPk = P.pk WHERE P.userPk = (SELECT L.userPK FROM LinkedProfile AS L WHERE L.selected = 1 LIMIT 1) AND P.mediaType = 1")
     abstract fun getImageCount(): Flow<Int>
+
+    @Query("SELECT * FROM PostMedia WHERE pk = :pk")
+    abstract suspend fun getPostMediaByPk(pk: Long): PostMedia?
+
+    override suspend fun getValueByIDDirect(value: PostMedia): PostMedia? {
+        return getPostMediaByPk(value.pk)
+    }
 }

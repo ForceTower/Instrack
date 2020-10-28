@@ -13,12 +13,14 @@ import dev.forcetower.instrack.core.source.repository.DataRepository
 import dev.forcetower.instrack.core.source.repository.SyncRepository
 import dev.forcetower.toolkit.lifecycle.Event
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class HomeViewModel @ViewModelInject constructor(
-    private val repository: DataRepository,
+    repository: DataRepository,
     private val syncRepository: SyncRepository
 ) : ViewModel(), HomeActions {
     val profileOverview = repository.profileOverview().asLiveData()

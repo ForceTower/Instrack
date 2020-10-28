@@ -220,7 +220,6 @@ class SyncRepository @Inject constructor(
         var restart = true
         var hasMore: Boolean
 
-        // TODO show screenshot'ers
         do {
             val response = session.stories.getStoryItemViewers(story.pk, restart)
             val data = response.data
@@ -246,9 +245,9 @@ class SyncRepository @Inject constructor(
             hasMore = response.isSuccessful && data?.nextMaxId != null
             if (data != null && response.isSuccessful) {
                 val posts = data.items.map { Post.adapt(it) }
-                database.post().insertAll(posts)
+                database.post().insertOrUpdate(posts)
                 val medias = data.items.flatMap { PostMedia.extract(it) }
-                database.postMedia().insertAll(medias)
+                database.postMedia().insertOrUpdate(medias)
                 allPosts += posts
             }
         } while (hasMore)
@@ -285,7 +284,7 @@ class SyncRepository @Inject constructor(
 
             database.withTransaction {
                 database.profile().insertOrUpdatePreview(data.users.map { ProfilePreview.adapt(it) })
-                database.like().insertAll(like)
+                database.like().insertAllIgnore(like)
                 database.like().delete(dislike)
                 database.action().insertAllIgnore(likeActs + dislikeActs)
             }

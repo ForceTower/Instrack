@@ -79,6 +79,17 @@
     <string name="story_most_watched_title">Mais visualizados</string>
     <string name="story_least_watched_title">Menos visualizados</string>
     <string name="drawer_statistics">Estatísticas</string>
+    <string name="feed_insights">Engagamento</string>
+    <string name="best_followers">Meus melhores seguidores</string>
+    <string name="most_like_me">Os que mais curtem</string>
+    <string name="most_comment_me">Os que mais comentam</string>
+    <string name="ghost_followers">Seguidores Fantasmas</string>
+    <string name="least_like_me">Os que menos curtem</string>
+    <string name="least_comment_me">Os que menos comentam</string>
+    <string name="never_like_never_comment_me">Nunca curtiram nem comentaram</string>
+    <string name="titled_feed_insights">Feed Insights</string>
+    <string name="most_liked_medias">Postagens mais curtidas</string>
+    <string name="most_commented_medias">Postagens mais comentadas</string>
     <plurals name="search_insight_profiles_format">
         <item quantity="one">%1$d perfil</item>
         <item quantity="other">%1$d perfis</item>
@@ -86,5 +97,13 @@
     <plurals name="insight_stories_watched">
         <item quantity="one">Visualizou %1$d story</item>
         <item quantity="other">Visualizou %1$d stories</item>
+    </plurals>
+    <plurals name="likes_count">
+        <item quantity="one">%1$d curtida</item>
+        <item quantity="other">%1$d curtida</item>
+    </plurals>
+    <plurals name="comment_count">
+        <item quantity="one">%1$d comentário</item>
+        <item quantity="other">%1$d comentários</item>
     </plurals>
 </resources>

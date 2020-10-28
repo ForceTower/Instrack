@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+            app:elevation="0dp"
+            app:liftOnScroll="false">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/ic_arrow_back_ios_24"
+                app:paddingTopSystemWindowInsets="@{true}"
+                app:paddingStartSystemWindowInsets="@{true}"
+                app:paddingEndSystemWindowInsets="@{true}">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/feed_insights"
+                    android:textAppearance="@style/TextAppearance.Instrack.Toolbar"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textAlignment="gravity"
+                    android:gravity="center"/>
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginHorizontal="16dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        app:tint="?attr/colorOnBackground"
+                        android:src="@drawable/ic_best_followers" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/best_followers"
+                        android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_most_likes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/most_like_me"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_most_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/most_comment_me"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginHorizontal="16dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        app:tint="?attr/colorOnBackground"
+                        android:src="@drawable/ic_ghost_followers" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/ghost_followers"
+                        android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_least_like"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/least_like_me"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_least_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/least_comment_me"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_never_like_or_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/never_like_never_comment_me"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginHorizontal="16dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        app:tint="?attr/colorOnBackground"
+                        android:src="@drawable/ic_search_secondary" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/titled_feed_insights"
+                        android:textSize="16sp"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_most_liked"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/most_liked_medias"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_most_commented"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/most_commented_medias"
+                        android:textColor="?android:attr/textColorPrimary"/>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

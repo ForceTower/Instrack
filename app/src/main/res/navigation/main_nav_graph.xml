@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_home_to_story_insights"
             app:destination="@id/story_insights" />
+        <action
+            android:id="@+id/action_home_to_media_insights"
+            app:destination="@id/media_insights" />
     </fragment>
 
     <fragment
@@ -137,7 +140,27 @@
     <fragment
         android:id="@+id/story_user_listing"
         android:name="dev.forcetower.instrack.view.story.users.StoryUserListingFragment"
-        android:label="Story Insight List"
+        android:label="Story Insight Users"
+        tools:layout="@layout/fragment_user_listing">
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/media_insights"
+        android:name="dev.forcetower.instrack.view.engagement.insight.FeedInsightsFragment"
+        android:label="Feed Insights"
+        tools:layout="@layout/fragment_feed_insights">
+        <action
+            android:id="@+id/action_media_insights_to_feed_user_listing"
+            app:destination="@id/feed_user_listing" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/feed_user_listing"
+        android:name="dev.forcetower.instrack.view.engagement.user.FeedUserListingFragment"
+        android:label="Feed Insight Users"
         tools:layout="@layout/fragment_user_listing">
         <argument
             android:name="type"
