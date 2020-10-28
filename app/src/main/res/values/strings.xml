@@ -76,6 +76,9 @@
     <string name="story_insight_not_follower">Não me seguem</string>
     <string name="story_insight_not_following">Eu não sigo</string>
     <string name="story_insight_following">Me seguindo</string>
+    <string name="story_most_watched_title">Mais visualizados</string>
+    <string name="story_least_watched_title">Menos visualizados</string>
+    <string name="drawer_statistics">Estatísticas</string>
     <plurals name="search_insight_profiles_format">
         <item quantity="one">%1$d perfil</item>
         <item quantity="other">%1$d perfis</item>

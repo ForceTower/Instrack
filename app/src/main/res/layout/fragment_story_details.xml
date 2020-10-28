@@ -31,7 +31,7 @@
             android:orientation="horizontal"
             android:clipToPadding="false"
             android:clipChildren="false"
-            app:layoutManager=".widget.ScaleLinearLayoutManager"
+            app:layoutManager="dev.forcetower.instrack.widget.ScaleLinearLayoutManager"
             tools:listitem="@layout/item_story_details"/>
 
         <dev.forcetower.instrack.widget.ArrowedView

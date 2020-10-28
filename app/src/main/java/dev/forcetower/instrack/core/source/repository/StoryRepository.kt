@@ -73,4 +73,24 @@ class StoryRepository @Inject constructor(
             pagingSourceFactory = { database.storyWatch().getNotFollowerWatchersAndCount() }
         ).flow
     }
+
+    fun mostWatched(): Flow<PagingData<StoryViewCount>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.storyWatch().getMostWatched() }
+        ).flow
+    }
+
+    fun leastWatched(): Flow<PagingData<StoryViewCount>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.storyWatch().getLeastWatched() }
+        ).flow
+    }
 }

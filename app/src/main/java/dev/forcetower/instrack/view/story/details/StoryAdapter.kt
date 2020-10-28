@@ -10,6 +10,17 @@ import dev.forcetower.instrack.databinding.ItemStoryDetailsBinding
 import dev.forcetower.toolkit.extensions.inflate
 
 class StoryAdapter : ListAdapter<StoryViewCount, StoryAdapter.StoryHolder>(DiffCallback) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryHolder {
+        return StoryHolder(parent.inflate(R.layout.item_story_details))
+    }
+
+    override fun onBindViewHolder(holder: StoryHolder, position: Int) {
+        val item = getItem(position)
+        holder.binding.apply {
+             element = item
+        }
+    }
+
     inner class StoryHolder(val binding: ItemStoryDetailsBinding) : RecyclerView.ViewHolder(binding.root)
 
     private object DiffCallback : DiffUtil.ItemCallback<StoryViewCount>() {
@@ -21,16 +32,5 @@ class StoryAdapter : ListAdapter<StoryViewCount, StoryAdapter.StoryHolder>(DiffC
             return oldItem == newItem
         }
 
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryHolder {
-        return StoryHolder(parent.inflate(R.layout.item_story_details))
-    }
-
-    override fun onBindViewHolder(holder: StoryHolder, position: Int) {
-        val item = getItem(position)
-        holder.binding.apply {
-             element = item
-        }
     }
 }
