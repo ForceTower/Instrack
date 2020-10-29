@@ -87,9 +87,11 @@
     <string name="least_like_me">Os que menos curtem</string>
     <string name="least_comment_me">Os que menos comentam</string>
     <string name="never_like_never_comment_me">Nunca curtiram nem comentaram</string>
+    <string name="never_like_never_comment_me_title">Não curtem nem comentam</string>
     <string name="titled_feed_insights">Feed Insights</string>
     <string name="most_liked_medias">Postagens mais curtidas</string>
     <string name="most_commented_medias">Postagens mais comentadas</string>
+    <string name="never_interacted">Nunca interagiram</string>
     <plurals name="search_insight_profiles_format">
         <item quantity="one">%1$d perfil</item>
         <item quantity="other">%1$d perfis</item>
@@ -100,7 +102,7 @@
     </plurals>
     <plurals name="likes_count">
         <item quantity="one">%1$d curtida</item>
-        <item quantity="other">%1$d curtida</item>
+        <item quantity="other">%1$d curtidas</item>
     </plurals>
     <plurals name="comment_count">
         <item quantity="one">%1$d comentário</item>

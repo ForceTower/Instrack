@@ -39,6 +39,7 @@ class FeedUserListingFragment : BaseFragment() {
             3 -> R.plurals.likes_count
             4 -> R.plurals.comment_count
             5 -> null
+            6 -> null
             else -> throw IllegalStateException("Type ${args.type} is not accepted")
         }
         adapter = FeedUserAdapter(resource)
@@ -65,6 +66,7 @@ class FeedUserListingFragment : BaseFragment() {
             3 -> viewModel.usersLeastLikes()
             4 -> viewModel.usersLeastComment()
             5 -> viewModel.usersNeverLikedOrComment()
+            6 -> viewModel.usersNeverInteracted()
             else -> throw IllegalStateException("Type ${args.type} is not accepted")
         }
 
@@ -81,7 +83,8 @@ class FeedUserListingFragment : BaseFragment() {
             2 -> getString(R.string.most_comment_me)
             3 -> getString(R.string.least_like_me)
             4 -> getString(R.string.least_comment_me)
-            5 -> getString(R.string.never_like_never_comment_me)
+            5 -> getString(R.string.never_like_never_comment_me_title)
+            6 -> getString(R.string.never_interacted)
             else -> throw IllegalStateException("Type $type is not accepted")
         }
     }

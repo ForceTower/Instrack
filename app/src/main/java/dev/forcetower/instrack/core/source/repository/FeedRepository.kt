@@ -59,7 +59,17 @@ class FeedRepository @Inject constructor(
                 pageSize = 20,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { database.action().getNeverLikedOrComment() }
+            pagingSourceFactory = { database.action().getFollowerNeverPerformAction(listOf(3, 4, 6)) }
+        ).flow
+    }
+
+    fun usersNeverInteracted(): Flow<PagingData<UserFriendship>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.action().getFollowerNeverPerformAction(listOf(3, 4, 5, 6)) }
         ).flow
     }
 }
