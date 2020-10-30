@@ -7,14 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.PagedList
+import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.databinding.FragmentUserListingBinding
 import dev.forcetower.toolkit.components.BaseFragment
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserListingFragment : BaseFragment() {
@@ -49,12 +54,14 @@ class UserListingFragment : BaseFragment() {
         }
 
         val source = createSource()
-        source.observe(viewLifecycleOwner, {
-            listingAdapter.submitList(it)
-        })
+        lifecycleScope.launch {
+            source.collectLatest {
+                listingAdapter.submitData(it)
+            }
+        }
     }
 
-    private fun createSource(): LiveData<PagedList<UserFriendship>> {
+    private fun createSource(): Flow<PagingData<UserFriendship>> {
         return when (args.filterType) {
             1 -> viewModel.recentFollowers
             2 -> viewModel.recentUnfollowers

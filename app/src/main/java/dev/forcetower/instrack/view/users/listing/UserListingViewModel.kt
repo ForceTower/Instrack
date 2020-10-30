@@ -2,16 +2,18 @@ package dev.forcetower.instrack.view.users.listing
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import dev.forcetower.instrack.core.source.repository.ListingRepository
 import javax.inject.Inject
 
 class UserListingViewModel @ViewModelInject constructor(
     repository: ListingRepository
 ) : ViewModel() {
-    val recentFollowers = repository.recentFollowers()
-    val recentUnfollowers = repository.recentUnfollowers()
-    val profileInteractions = repository.profileInteractions()
-    val unrequitedFollowers = repository.unrequitedFollowers()
-    val storyWatchers = repository.storyWatchers()
-    val fans = repository.fans()
+    val recentFollowers = repository.recentFollowers().cachedIn(viewModelScope)
+    val recentUnfollowers = repository.recentUnfollowers().cachedIn(viewModelScope)
+    val profileInteractions = repository.profileInteractions().cachedIn(viewModelScope)
+    val unrequitedFollowers = repository.unrequitedFollowers().cachedIn(viewModelScope)
+    val storyWatchers = repository.storyWatchers().cachedIn(viewModelScope)
+    val fans = repository.fans().cachedIn(viewModelScope)
 }

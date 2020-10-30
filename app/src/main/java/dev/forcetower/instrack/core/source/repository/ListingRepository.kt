@@ -2,9 +2,12 @@ package dev.forcetower.instrack.core.source.repository
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
+import androidx.paging.PagingData
 import androidx.paging.toLiveData
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.core.source.local.TrackDB
+import dev.forcetower.toolkit.extensions.asPager
+import kotlinx.coroutines.flow.Flow
 import java.util.Calendar
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -13,7 +16,7 @@ import javax.inject.Singleton
 class ListingRepository @Inject constructor(
     private val database: TrackDB
 ) {
-    fun recentFollowers(): LiveData<PagedList<UserFriendship>> {
+    fun recentFollowers(): Flow<PagingData<UserFriendship>> {
         val edgeOfToday = Calendar.getInstance().apply {
             add(Calendar.DAY_OF_YEAR, -1)
             set(Calendar.HOUR_OF_DAY, 23)
@@ -21,10 +24,10 @@ class ListingRepository @Inject constructor(
             set(Calendar.SECOND, 59)
         }.timeInMillis
 
-        return database.bond().getRecentFollowers(edgeOfToday).toLiveData(20)
+        return database.bond().getRecentFollowers(edgeOfToday).asPager()
     }
 
-    fun recentUnfollowers(): LiveData<PagedList<UserFriendship>> {
+    fun recentUnfollowers(): Flow<PagingData<UserFriendship>> {
         val edgeOfToday = Calendar.getInstance().apply {
             add(Calendar.DAY_OF_YEAR, -1)
             set(Calendar.HOUR_OF_DAY, 23)
@@ -32,22 +35,22 @@ class ListingRepository @Inject constructor(
             set(Calendar.SECOND, 59)
         }.timeInMillis
 
-        return database.bond().getRecentUnfollowers(edgeOfToday).toLiveData(20)
+        return database.bond().getRecentUnfollowers(edgeOfToday).asPager()
     }
 
-    fun profileInteractions(): LiveData<PagedList<UserFriendship>> {
-        return database.action().getActions().toLiveData(20)
+    fun profileInteractions(): Flow<PagingData<UserFriendship>> {
+        return database.action().getActions().asPager()
     }
 
-    fun unrequitedFollowers(): LiveData<PagedList<UserFriendship>> {
-        return database.bond().getUnrequited().toLiveData(20)
+    fun unrequitedFollowers(): Flow<PagingData<UserFriendship>> {
+        return database.bond().getUnrequited().asPager()
     }
 
-    fun storyWatchers(): LiveData<PagedList<UserFriendship>> {
-        return database.action().getStoryWatchersFriendship().toLiveData(20)
+    fun storyWatchers(): Flow<PagingData<UserFriendship>> {
+        return database.action().getStoryWatchersFriendship().asPager()
     }
 
-    fun fans(): LiveData<PagedList<UserFriendship>> {
-        return database.bond().getFans().toLiveData(20)
+    fun fans(): Flow<PagingData<UserFriendship>> {
+        return database.bond().getFans().asPager()
     }
 }
