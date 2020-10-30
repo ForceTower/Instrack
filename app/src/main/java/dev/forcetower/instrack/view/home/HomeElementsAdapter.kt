@@ -69,6 +69,7 @@ class HomeElementsAdapter(
             is HomeHolder.Information -> {
                 val element = differ.currentList[position] as HomeElement
                 holder.binding.element = element
+                holder.binding.decrement = element.stableId == 2 || element.stableId == 4
             }
         }
     }

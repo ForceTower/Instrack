@@ -30,6 +30,9 @@ class FeedInsightsFragment : BaseFragment() {
         binding.cardNeverLikeOrComment.setOnClickListener { onNavigateToUserListing(5) }
         binding.cardNeverInteracted.setOnClickListener { onNavigateToUserListing(6) }
 
+        binding.cardNotFollowButLike.setOnClickListener { onNavigateToUserListing(7) }
+        binding.cardNotFollowButComment.setOnClickListener { onNavigateToUserListing(8) }
+
         binding.cardMostLiked.setOnClickListener {  }
         binding.cardMostCommented.setOnClickListener {  }
 

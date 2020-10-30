@@ -32,4 +32,7 @@ abstract class PostLikeDao : BaseDao<PostLike>() {
 
     @Query("SELECT PB.iFollow AS iFollow, PB.followsMe as followsMe, count(PL.userPk) AS insight, PL.timestamp AS timestamp, P.* FROM PostLike PL INNER JOIN ProfileBond PB ON PL.userPk = PB.userPk INNER JOIN Profile P ON PL.userPk = P.pk INNER JOIN Post PO ON PL.postPk = PO.pk WHERE PB.followsMe = 1 AND PO.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PB.referencePk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) GROUP BY PL.userPk ORDER BY COUNT(PL.userPk) ASC")
     abstract fun getUserLeastLikes(): PagingSource<Int, UserFriendship>
+
+    @Query("SELECT COALESCE(PB.iFollow, 0) AS iFollow, COALESCE(PB.followsMe, 0) as followsMe, count(PL.userPk) AS insight, PL.timestamp AS timestamp, P.* FROM PostLike PL LEFT JOIN ProfileBond PB ON PL.userPk = PB.userPk INNER JOIN Profile P ON PL.userPk = P.pk INNER JOIN Post PO ON PL.postPk = PO.pk WHERE (PB.followsMe = 0 OR PB.followsMe IS NULL) AND PO.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PL.userPk <> (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) GROUP BY PL.userPk ORDER BY COUNT(PL.userPk) DESC")
+    abstract fun getNotFollowerMostLikes(): PagingSource<Int, UserFriendship>
 }

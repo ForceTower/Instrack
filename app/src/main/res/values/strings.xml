@@ -92,6 +92,8 @@
     <string name="most_liked_medias">Postagens mais curtidas</string>
     <string name="most_commented_medias">Postagens mais comentadas</string>
     <string name="never_interacted">Nunca interagiram</string>
+    <string name="discovery_not_follow_but_like">Não me segue, mas curte</string>
+    <string name="discovery_not_follow_but_comment">Não me segue, mas comenta</string>
     <plurals name="search_insight_profiles_format">
         <item quantity="one">%1$d perfil</item>
         <item quantity="other">%1$d perfis</item>

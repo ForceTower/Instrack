@@ -9,6 +9,7 @@
     <color name="searchInsightTextColor">#BABABA</color>
 
     <color name="green_arrow_up">#52C04D</color>
+    <color name="red_arrow_down">#FF1010</color>
     <color name="reflect">#FFFFFF</color>
     <color name="contrary">#1E1E1E</color>
 </resources>

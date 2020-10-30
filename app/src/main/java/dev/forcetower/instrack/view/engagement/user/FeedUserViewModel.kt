@@ -18,6 +18,8 @@ class FeedUserViewModel @ViewModelInject constructor(
     private var leastComments: Flow<PagingData<UserFriendship>>? = null
     private var neverLikedOrComment: Flow<PagingData<UserFriendship>>? = null
     private var neverInteracted: Flow<PagingData<UserFriendship>>? = null
+    private var notFollowButLike: Flow<PagingData<UserFriendship>>? = null
+    private var notFollowButComment: Flow<PagingData<UserFriendship>>? = null
 
     fun usersMostLikes(): Flow<PagingData<UserFriendship>> {
         val source = mostLikes
@@ -64,6 +66,22 @@ class FeedUserViewModel @ViewModelInject constructor(
         if (source != null) return source
         val next = repository.usersNeverInteracted().cachedIn(viewModelScope)
         neverInteracted = next
+        return next
+    }
+
+    fun usersNotFollowButLike(): Flow<PagingData<UserFriendship>> {
+        val source = notFollowButLike
+        if (source != null) return source
+        val next = repository.usersNotFollowButLike().cachedIn(viewModelScope)
+        notFollowButLike = next
+        return next
+    }
+
+    fun usersNotFollowButComment(): Flow<PagingData<UserFriendship>> {
+        val source = notFollowButComment
+        if (source != null) return source
+        val next = repository.usersNotFollowButComment().cachedIn(viewModelScope)
+        notFollowButComment = next
         return next
     }
 }

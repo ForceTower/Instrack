@@ -31,17 +31,23 @@ data class Action(
         const val WATCH_STORY = 5
         const val DISLIKE = 6
 
-        private fun genFollowId(userPk: Long, receiverPk: Long) = "FOLLOW!!$userPk!!##!!$receiverPk!!FOLLOW"
+        private fun genFollowId(userPk: Long, receiverPk: Long) =
+            "FOLLOW!!$userPk!!##!!$receiverPk!!FOLLOW"
 
-        private fun genUnfollowId(userPk: Long, receiverPk: Long) = "UNFOLLOW!!$userPk!!##!!$receiverPk!!UNFOLLOW"
+        private fun genUnfollowId(userPk: Long, receiverPk: Long) =
+            "UNFOLLOW!!$userPk!!##!!$receiverPk!!UNFOLLOW"
 
-        private fun genLikeId(userPk: Long, receiverPk: Long, postPk: Long) = "LIKE!!$userPk!!$postPk!!$receiverPk!!LIKE"
+        private fun genLikeId(userPk: Long, receiverPk: Long, postPk: Long) =
+            "LIKE!!$userPk!!$postPk!!$receiverPk!!LIKE"
 
-        private fun genCommentId(userPk: Long, receiverPk: Long, commentPk: Long) = "COMMENT!!$userPk!!$commentPk!!$receiverPk!!COMMENT"
+        private fun genCommentId(userPk: Long, receiverPk: Long, commentPk: Long) =
+            "COMMENT!!$userPk!!$commentPk!!$receiverPk!!COMMENT"
 
-        private fun genWatchId(userPk: Long, receiverPk: Long, storyPk: Long) = "WATCH!!$userPk!!$storyPk!!$receiverPk!!WATCH"
+        private fun genWatchId(userPk: Long, receiverPk: Long, storyPk: Long) =
+            "WATCH!!$userPk!!$storyPk!!$receiverPk!!WATCH"
 
-        private fun genDislikeId(userPk: Long, receiverPk: Long, postPk: Long) = "DISLIKE!!$userPk!!$postPk!!$receiverPk!!DISLIKE"
+        private fun genDislikeId(userPk: Long, receiverPk: Long, postPk: Long) =
+            "DISLIKE!!$userPk!!$postPk!!$receiverPk!!DISLIKE"
 
         fun follow(userPk: Long, receiverPk: Long): Action {
             val id = genFollowId(userPk, receiverPk)

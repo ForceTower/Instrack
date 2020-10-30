@@ -9,6 +9,10 @@
             type="dev.forcetower.instrack.core.model.ui.HomeElement" />
 
         <variable
+            name="decrement"
+            type="Boolean" />
+
+        <variable
             name="actions"
             type="dev.forcetower.instrack.view.home.HomeActions" />
     </data>
@@ -75,31 +79,33 @@
                 app:layout_constraintTop_toBottomOf="@id/image_1"
                 tools:text="591"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/grow_arrow"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="4dp"
                 android:src="@drawable/ic_keyboard_arrow_up_black_24dp"
-                android:tint="@color/green_arrow_up"
                 android:importantForAccessibility="no"
+                app:imageTint="@{decrement ? @color/red_arrow_down : @color/green_arrow_up}"
                 app:goneUnless="@{element.new > 0}"
                 app:layout_constraintBottom_toBottomOf="@+id/element_count"
                 app:layout_constraintStart_toEndOf="@+id/element_count"
-                app:layout_constraintTop_toTopOf="@+id/element_count" />
+                app:layout_constraintTop_toTopOf="@+id/element_count"
+                tools:tint="@color/green_arrow_up"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{@string/integer_format(element.new)}"
-                android:textColor="@color/green_arrow_up"
+                android:textColor="@{decrement ? @color/red_arrow_down : @color/green_arrow_up}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:goneUnless="@{element.new > 0}"
                 app:layout_constraintBottom_toBottomOf="@+id/element_count"
                 app:layout_constraintStart_toEndOf="@+id/grow_arrow"
                 app:layout_constraintTop_toTopOf="@+id/element_count"
-                tools:text="159" />
+                tools:text="159"
+                tools:textColor="@color/green_arrow_up"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="0dp"
