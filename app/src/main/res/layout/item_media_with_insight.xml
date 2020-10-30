@@ -40,7 +40,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/item_story_mini_overlay"
+            android:background="@drawable/item_media_mini_overlay"
             app:layout_constraintStart_toStartOf="@id/image"
             app:layout_constraintTop_toTopOf="@id/image"
             app:layout_constraintEnd_toEndOf="@id/image"
