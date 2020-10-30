@@ -13,7 +13,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "dev.forcetower.instrack"
+        applicationId "dev.forcetower.instracker"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 9

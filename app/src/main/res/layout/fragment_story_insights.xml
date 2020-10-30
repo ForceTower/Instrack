@@ -73,7 +73,7 @@
                             android:textColor="?android:attr/textColorPrimary"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <dev.forcetower.instrack.widget.DisabledRecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_active_stories"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
