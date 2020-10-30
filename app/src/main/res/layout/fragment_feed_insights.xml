@@ -265,7 +265,7 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         app:tint="?attr/colorOnBackground"
-                        android:src="@drawable/ic_search_secondary" />
+                        android:src="@drawable/ic_baseline_dynamic_feed_24" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
