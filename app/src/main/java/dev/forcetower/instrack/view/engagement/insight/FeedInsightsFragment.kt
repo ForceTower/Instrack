@@ -33,14 +33,19 @@ class FeedInsightsFragment : BaseFragment() {
         binding.cardNotFollowButLike.setOnClickListener { onNavigateToUserListing(7) }
         binding.cardNotFollowButComment.setOnClickListener { onNavigateToUserListing(8) }
 
-        binding.cardMostLiked.setOnClickListener {  }
-        binding.cardMostCommented.setOnClickListener {  }
+        binding.cardMostLiked.setOnClickListener { onNavigateToMediaListing(1) }
+        binding.cardMostCommented.setOnClickListener { onNavigateToMediaListing(2) }
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
         return view
+    }
+
+    private fun onNavigateToMediaListing(type: Int) {
+        val directions = FeedInsightsFragmentDirections.actionMediaInsightsToMediaListingInsight(type)
+        findNavController().navigate(directions)
     }
 
     private fun onNavigateToUserListing(type: Int) {

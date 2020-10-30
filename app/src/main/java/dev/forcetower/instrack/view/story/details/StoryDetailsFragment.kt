@@ -123,6 +123,11 @@ class StoryDetailsFragment : BaseFragment() {
         findNavController().popBackStack()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.setCurrentStory(0)
+    }
+
     private inner class FragmentPager(
         fm: FragmentManager,
         lifecycle: Lifecycle,

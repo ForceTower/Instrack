@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="title"
+            type="String" />
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            app:liftOnScrollTargetViewId="@id/recycler_users">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                app:titleTextAppearance="@style/TextAppearance.Instrack.Toolbar"
+                app:navigationIcon="@drawable/ic_arrow_back_ios_24"
+                app:paddingTopSystemWindowInsets="@{true}"
+                app:paddingStartSystemWindowInsets="@{true}"
+                app:paddingEndSystemWindowInsets="@{true}">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{title}"
+                    android:textAppearance="@style/TextAppearance.Instrack.Toolbar"
+                    android:textAlignment="gravity"
+                    android:gravity="center"
+                    tools:text="Postagens mais curtidas"/>
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_users"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp"
+            android:paddingHorizontal="4dp"
+            android:clipToPadding="false"
+            app:spanCount="3"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:paddingStartSystemWindowInsets="@{true}"
+            app:paddingEndSystemWindowInsets="@{true}"
+            app:paddingBottomSystemWindowInsets="@{true}"
+            tools:listitem="@layout/item_media_with_insight"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

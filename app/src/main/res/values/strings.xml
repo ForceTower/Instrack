@@ -89,8 +89,8 @@
     <string name="never_like_never_comment_me">Nunca curtiram nem comentaram</string>
     <string name="never_like_never_comment_me_title">Não curtem nem comentam</string>
     <string name="titled_feed_insights">Feed Insights</string>
-    <string name="most_liked_medias">Postagens mais curtidas</string>
-    <string name="most_commented_medias">Postagens mais comentadas</string>
+    <string name="most_liked_medias">Posts mais curtidos</string>
+    <string name="most_commented_medias">Posts mais comentados</string>
     <string name="never_interacted">Nunca interagiram</string>
     <string name="discovery_not_follow_but_like">Não me segue, mas curte</string>
     <string name="discovery_not_follow_but_comment">Não me segue, mas comenta</string>

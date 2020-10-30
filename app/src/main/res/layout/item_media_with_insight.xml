@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="type"
+            type="Integer" />
+
+        <variable
+            name="insight"
+            type="Integer" />
+
+        <variable
+            name="media"
+            type="dev.forcetower.instrack.core.model.database.Post" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        app:roundedViewRadius="@{4}">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="center"
+            android:importantForAccessibility="no"
+            app:imageUrl="@{media.previewPicture}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/item_story_mini_overlay"
+            app:layout_constraintStart_toStartOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="@id/image"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/media_gallery_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_media_gallery"
+            android:layout_margin="6dp"
+            app:tint="@android:color/white"
+            app:goneUnless="@{media.mediaType == 8}"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            tools:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/media_video_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_media_video"
+            android:layout_margin="6dp"
+            app:tint="@android:color/white"
+            app:goneUnless="@{media.mediaType == 2}"
+            app:layout_constraintTop_toTopOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            tools:visibility="visible"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintEnd_toEndOf="@id/image"
+            app:layout_constraintStart_toStartOf="@id/image"
+            android:gravity="center"
+            tools:ignore="UseCompoundDrawables">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/icon_likes"
+                app:goneUnless="@{type == 1}"
+                app:tint="@android:color/white"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_baseline_comment_24"
+                app:goneUnless="@{type == 2}"
+                app:tint="@android:color/white"
+                tools:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/likes_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:textNumberWithK="@{insight}"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="4dp"
+                tools:text="64.2k" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

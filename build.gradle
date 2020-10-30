@@ -16,9 +16,9 @@ buildscript {
         arch = "2.1.0"
 
         // Architecture
-        room = '2.3.0-alpha02'
+        room = '2.3.0-alpha03'
         lifecycle = '2.2.0'
-        paging = '3.0.0-alpha07'
+        paging = '3.0.0-alpha08'
         navigation = '2.3.1'
 
         // Dependency Injection
