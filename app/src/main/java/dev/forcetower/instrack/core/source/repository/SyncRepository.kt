@@ -121,9 +121,8 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
-
-                failed = data.status == "fail"
             }
+            failed = data?.status == "fail"
             Timber.d("Server... $data")
         } while (hasMore && !failed)
 
@@ -178,9 +177,8 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
-
-                failed = data.status == "fail"
             }
+            failed = data?.status == "fail"
         } while (hasMore && !failed)
 
         if (failed) return
