@@ -15,6 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Instrack">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4999342983670806~5361376421"/>
+
         <activity
             android:name=".view.LauncherActivity"
             android:theme="@style/Instrack.Launcher"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -13,12 +14,15 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
+import dev.forcetower.instrack.core.model.billing.AugmentedSkuDetails
 import dev.forcetower.instrack.databinding.FragmentHomeBinding
 import dev.forcetower.instrack.databinding.HomeDrawerHeaderBinding
+import dev.forcetower.instrack.view.BillingViewModel
 import dev.forcetower.instrack.widget.ItemOffsetDecoration
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.lifecycle.EventObserver
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import timber.log.Timber
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -27,6 +31,7 @@ class HomeFragment : BaseFragment() {
     private lateinit var header: HomeDrawerHeaderBinding
     private lateinit var adapter: HomeElementsAdapter
     private val viewModel by activityViewModels<HomeViewModel>()
+    private val billingViewModel by activityViewModels<BillingViewModel>()
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
@@ -65,6 +70,10 @@ class HomeFragment : BaseFragment() {
         if (savedInstanceState == null) {
             viewModel.maybeSyncProfile()
         }
+
+        billingViewModel.premiumStatus.observe(viewLifecycleOwner, {
+            Timber.d("Entitled Premium? $it")
+        })
 
         binding.recyclerProfile.apply {
             val decoration = ItemOffsetDecoration(requireContext(), R.dimen.item_home_offset)
