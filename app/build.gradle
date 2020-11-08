@@ -16,8 +16,8 @@ android {
         applicationId "dev.forcetower.instracker"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 9
-        versionName "1.0"
+        versionCode 11
+        versionName "1.0.0-release-02"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -128,12 +128,20 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
-    implementation 'com.google.firebase:firebase-messaging:21.0.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    implementation "com.google.firebase:firebase-core"
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     // Charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // Google
+    implementation "com.android.billingclient:billing-ktx:$gp_billing_client"
+    implementation "com.google.android.play:core:$gp_core"
+    implementation "com.google.android.play:core-ktx:$gp_core_ktx"
+    implementation "com.google.android.gms:play-services-ads:$gp_admob"
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

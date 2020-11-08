@@ -38,6 +38,12 @@ buildscript {
         // Others
         gson = '2.8.6'
 
+
+        gp_billing_client = '3.0.1'
+        gp_admob = '19.5.0'
+        gp_core_ktx = '1.8.1'
+        gp_core = '1.8.3'
+
         // Build Versions
         android_gradle_plugin = '4.1.0'
         kotlinter = "3.0.2"
