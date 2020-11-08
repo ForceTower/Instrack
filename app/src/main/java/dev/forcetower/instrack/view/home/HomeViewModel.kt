@@ -32,14 +32,8 @@ class HomeViewModel @ViewModelInject constructor(
     private val _onHomeElementClick = MutableLiveData<Event<HomeElement>>()
     val onHomeElementClick: LiveData<Event<HomeElement>> = _onHomeElementClick
 
-    init {
-        val source = repository.getSyncRegistry().asLiveData()
-        _refreshing.addSource(source) {
-            _refreshing.value = !(it?.isCompleted() ?: false)
-        }
-    }
-
     fun maybeSyncProfile() {
+        Timber.d("Maybe calling sync?")
         viewModelScope.launch {
             syncRepository.maybeExecuteSelected()
         }
@@ -47,7 +41,9 @@ class HomeViewModel @ViewModelInject constructor(
 
     override fun onRefresh() {
         viewModelScope.launch {
+            _refreshing.value = true
             syncRepository.executeSelected()
+            _refreshing.value = false
         }
     }
 

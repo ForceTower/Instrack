@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -25,7 +26,7 @@ class HomeFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var header: HomeDrawerHeaderBinding
     private lateinit var adapter: HomeElementsAdapter
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by activityViewModels<HomeViewModel>()
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
@@ -56,7 +57,6 @@ class HomeFragment : BaseFragment() {
         header = HomeDrawerHeaderBinding.bind(head)
 
         NavigationUI.setupWithNavController(binding.navigation, findNavController())
-
         return view
     }
 

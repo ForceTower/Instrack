@@ -164,6 +164,7 @@ class SyncRepository @Inject constructor(
     private suspend fun following(session: Session, userId: Long) {
         var restart = true
         var hasMore: Boolean
+        var failed = false
 
         val local = database.bond().getFollowingSnapshot(userId)
         val server = mutableListOf<ProfilePreview>()
@@ -177,8 +178,12 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
+
+                failed = data.status == "fail"
             }
-        } while (hasMore)
+        } while (hasMore && !failed)
+
+        if (failed) return
 
         // differ
         // [a, b, c, d]
@@ -256,7 +261,7 @@ class SyncRepository @Inject constructor(
                 allPosts += posts
             }
         } while (hasMore)
-        postsAudience(session, allPosts.sortedByDescending { it.takenAt }.take(30), userId)
+        postsAudience(session, allPosts.sortedByDescending { it.takenAt }.take(24), userId)
     }
 
     private suspend fun postsAudience(session: Session, posts: List<Post>, userId: Long) {

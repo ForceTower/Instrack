@@ -2,9 +2,9 @@
 <resources>
     <string name="app_name">Instracker</string>
     <string name="onboarding_welcome">Welcome to Instracker</string>
-    <string name="onboarding_welcome_desc">Get insights about whats is relevant about your Instagram!</string>
+    <string name="onboarding_welcome_desc">Get insights about whats is relevant about your account on social networks!</string>
     <string name="onboarding_login">Start</string>
-    <string name="login_lets_start">Login using your Instagram account</string>
+    <string name="login_lets_start">Login using your account</string>
     <string name="login_hot_text">Your password is secure, the login data is saved only on your device</string>
     <string name="instagram_username_hint">Enter your username</string>
     <string name="instagram_username_label">Username</string>
