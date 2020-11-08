@@ -5,16 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
-import dev.forcetower.instrack.core.model.billing.AugmentedSkuDetails
 import dev.forcetower.instrack.databinding.FragmentHomeBinding
 import dev.forcetower.instrack.databinding.HomeDrawerHeaderBinding
 import dev.forcetower.instrack.view.BillingViewModel
@@ -101,7 +98,8 @@ class HomeFragment : BaseFragment() {
         })
 
         viewModel.onHomeElementClick.observe(viewLifecycleOwner, EventObserver {
-            val directions = HomeFragmentDirections.actionHomeToUserListing(it.stableId)
+//            val directions = HomeFragmentDirections.actionHomeToUserListing(it.stableId)
+            val directions = HomeFragmentDirections.actionHomeToPurchase()
             findNavController().navigate(directions)
         })
     }

@@ -2,7 +2,6 @@ package dev.forcetower.instrack.core.billing
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.android.billingclient.api.AcknowledgePurchaseParams
@@ -22,7 +21,6 @@ import dev.forcetower.instrack.core.model.billing.PremiumStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,6 +40,10 @@ class BillingRepository @Inject constructor(
         database.entitlements().getPremiumStatus().map {
             it ?: PremiumStatus(false)
         }.asLiveData()
+    }
+
+    val subscriptions: LiveData<List<AugmentedSkuDetails>> by lazy {
+        database.skuDetails().getSubscriptionSkuDetails().asLiveData()
     }
 
     fun initializeConnections() {

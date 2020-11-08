@@ -73,7 +73,7 @@
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:importantForAccessibility="no"
-                    app:clipToCircle="@{true}"
+                    app:clipCircle="@{true}"
                     app:imageUrl="@{overview.user.picture}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

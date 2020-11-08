@@ -15,19 +15,23 @@
  */
 package dev.forcetower.instrack.core.billing.dao
 
-import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.SkuDetails
 import dev.forcetower.instrack.core.model.billing.AugmentedSkuDetails
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AugmentedSkuDetailsDao {
     @Query("SELECT * FROM AugmentedSkuDetails WHERE type = '${BillingClient.SkuType.SUBS}'")
-    fun getSubscriptionSkuDetails(): LiveData<List<AugmentedSkuDetails>>
+    fun getSubscriptionSkuDetails(): Flow<List<AugmentedSkuDetails>>
 
     @Query("SELECT * FROM AugmentedSkuDetails WHERE type = '${BillingClient.SkuType.INAPP}'")
-    fun getInAppSkuDetails(): LiveData<List<AugmentedSkuDetails>>
+    fun getInAppSkuDetails(): Flow<List<AugmentedSkuDetails>>
 
     @Transaction
     suspend fun insertOrUpdate(skuDetails: SkuDetails) = skuDetails.apply {

@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import dev.forcetower.instrack.core.billing.BillingRepository
 import dev.forcetower.instrack.core.model.billing.AugmentedSkuDetails
 import dev.forcetower.instrack.core.model.billing.PremiumStatus
@@ -14,10 +13,12 @@ class BillingViewModel @ViewModelInject constructor(
     private val repository: BillingRepository
 ) : ViewModel() {
     val premiumStatus: LiveData<PremiumStatus>
+    val subscriptions: LiveData<List<AugmentedSkuDetails>>
 
     init {
         repository.initializeConnections()
         premiumStatus = repository.premiumStatus
+        subscriptions = repository.subscriptions
     }
 
     fun makePurchase(activity: Activity, details: AugmentedSkuDetails) {
