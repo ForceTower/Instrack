@@ -17,7 +17,9 @@ import dev.forcetower.instrack.databinding.HomeDrawerHeaderBinding
 import dev.forcetower.instrack.widget.ItemOffsetDecoration
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.lifecycle.EventObserver
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class HomeFragment : BaseFragment() {
     private lateinit var binding: FragmentHomeBinding

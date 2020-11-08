@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/ic_arrow_back_ios_24"
+                app:paddingTopSystemWindowInsets="@{true}"
+                app:paddingStartSystemWindowInsets="@{true}"
+                app:paddingEndSystemWindowInsets="@{true}">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/general_statistics"
+                    android:textAppearance="@style/TextAppearance.Instrack.Toolbar"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textAlignment="gravity"
+                    android:gravity="center"/>
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            app:paddingStartSystemWindowInsets="@{true}"
+            app:paddingEndSystemWindowInsets="@{true}"
+            app:paddingBottomSystemWindowInsets="@{true}"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="8dp">
+
+                <include
+                    android:id="@+id/include_most_engaged"
+                    layout="@layout/include_stats_most_engaged" />
+
+                <include
+                    android:id="@+id/include_post_distribution"
+                    layout="@layout/include_stats_post_distribution" />
+
+                <include
+                    android:id="@+id/include_like_distribution"
+                    layout="@layout/include_stats_like_distribution" />
+
+                <include
+                    android:id="@+id/include_comment_distribution"
+                    layout="@layout/include_stats_comment_distribution" />
+
+                <include
+                    android:id="@+id/include_like_post"
+                    layout="@layout/include_stats_like_per_post" />
+
+                <include
+                    android:id="@+id/include_comment_post"
+                    layout="@layout/include_stats_comment_per_post" />
+
+                <include
+                    android:id="@+id/include_hashtag_perf"
+                    layout="@layout/include_stats_hashtag_perf" />
+
+                <include
+                    android:id="@+id/include_hashtag_perf_dist"
+                    layout="@layout/include_stats_hashtag_perf_dist" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

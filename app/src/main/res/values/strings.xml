@@ -3,12 +3,12 @@
     <string name="app_name" translatable="false">Instracker</string>
     <string name="integer_format" translatable="false">%1$d</string>
     <string name="onboarding_welcome">Boas vindas ao Instracker</string>
-    <string name="onboarding_welcome_desc">Fique por dentro de todas as informações relevantes sobre o seu Instagram!</string>
+    <string name="onboarding_welcome_desc">Fique por dentro de todas as informações relevantes na maior rede social do mundo!</string>
     <string name="onboarding_login">Começar</string>
-    <string name="login_lets_start">Entre utilizando sua conta do Instagram</string>
+    <string name="login_lets_start">Entre utilizando sua conta</string>
     <string name="login_hot_text">Sua senha não será compartilhada, os dados de login ficam salvos apenas no seu aparelho</string>
     <string name="instagram_username_hint">Digite o nome de usuário</string>
-    <string name="instagram_username_label">Usuário do Instagram</string>
+    <string name="instagram_username_label">Usuário</string>
     <string name="instagram_password_hint">Digite a sua senha</string>
     <string name="instagram_password_label">Senha</string>
     <string name="do_login_action">Visualizar informações!</string>
@@ -94,6 +94,8 @@
     <string name="never_interacted">Nunca interagiram</string>
     <string name="discovery_not_follow_but_like">Não me segue, mas curte</string>
     <string name="discovery_not_follow_but_comment">Não me segue, mas comenta</string>
+    <string name="general_statistics">Estatísticas Gerais</string>
+    <string name="no_chart_data">Não há dados</string>
     <plurals name="search_insight_profiles_format">
         <item quantity="one">%1$d perfil</item>
         <item quantity="other">%1$d perfis</item>

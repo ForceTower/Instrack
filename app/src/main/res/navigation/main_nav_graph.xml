@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_home_to_media_insights"
             app:destination="@id/media_insights" />
+        <action
+            android:id="@+id/action_home_to_profile_interaction"
+            app:destination="@id/profile_interaction" />
     </fragment>
 
     <fragment
@@ -178,4 +181,10 @@
             android:name="type"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/profile_interaction"
+        android:name="dev.forcetower.instrack.view.statistics.StatisticsFragment"
+        android:label="@string/general_statistics"
+        tools:layout="@layout/fragment_useful_stats"/>
 </navigation>

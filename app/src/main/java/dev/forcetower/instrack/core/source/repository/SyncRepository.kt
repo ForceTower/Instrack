@@ -107,6 +107,7 @@ class SyncRepository @Inject constructor(
     private suspend fun followers(session: Session, userId: Long) {
         var restart = true
         var hasMore: Boolean
+        var failed = false
 
         val local = database.bond().getFollowersSnapshot(userId)
         val server = mutableListOf<ProfilePreview>()
@@ -120,9 +121,13 @@ class SyncRepository @Inject constructor(
                 val previews = data.users.map { ProfilePreview.adapt(it) }
                 database.profile().insertOrUpdatePreview(previews)
                 server.addAll(previews)
+
+                failed = data.status == "fail"
             }
             Timber.d("Server... $data")
-        } while (hasMore)
+        } while (hasMore && !failed)
+
+        if (failed) return
 
         // differ
         // [a, b, c, d]

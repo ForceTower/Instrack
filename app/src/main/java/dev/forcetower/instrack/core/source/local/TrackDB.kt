@@ -2,6 +2,7 @@ package dev.forcetower.instrack.core.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import dev.forcetower.instrack.core.model.database.Action
 import dev.forcetower.instrack.core.model.database.LinkedProfile
 import dev.forcetower.instrack.core.model.database.Post
@@ -15,6 +16,7 @@ import dev.forcetower.instrack.core.model.database.ProfileHistory
 import dev.forcetower.instrack.core.model.database.Story
 import dev.forcetower.instrack.core.model.database.StoryWatch
 import dev.forcetower.instrack.core.model.database.SyncRegistry
+import dev.forcetower.instrack.core.source.local.converters.DateConverters
 import dev.forcetower.instrack.core.source.local.dao.ActionDao
 import dev.forcetower.instrack.core.source.local.dao.BondDao
 import dev.forcetower.instrack.core.source.local.dao.FriendshipDao
@@ -44,6 +46,7 @@ import dev.forcetower.instrack.core.source.local.dao.SyncRegistryDao
     PostLike::class,
     PostComment::class
 ], version = 1)
+@TypeConverters(value = [DateConverters::class])
 abstract class TrackDB : RoomDatabase() {
     abstract fun linked(): LinkedProfileDao
     abstract fun profile(): ProfileDao

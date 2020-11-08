@@ -71,7 +71,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.0'
     implementation project(':toolkit')
     implementation project(':instagram')
 
@@ -94,9 +94,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle"
 
-    implementation "androidx.navigation:navigation-ui:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
-    implementation "androidx.navigation:navigation-fragment:$navigation"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
 
     // Paging
@@ -130,10 +128,12 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-analytics-ktx:17.6.0'
-    implementation 'com.google.firebase:firebase-messaging:20.3.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
     implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
 
+    // Charts
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

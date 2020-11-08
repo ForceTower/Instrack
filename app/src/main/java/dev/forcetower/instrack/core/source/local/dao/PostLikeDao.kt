@@ -3,6 +3,7 @@ package dev.forcetower.instrack.core.source.local.dao
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
+import dev.forcetower.instrack.core.model.database.Action
 import dev.forcetower.instrack.core.model.database.PostLike
 import dev.forcetower.instrack.core.model.ui.PostLikerSimple
 import dev.forcetower.instrack.core.model.ui.UserFriendship
@@ -35,4 +36,7 @@ abstract class PostLikeDao : BaseDao<PostLike>() {
 
     @Query("SELECT COALESCE(PB.iFollow, 0) AS iFollow, COALESCE(PB.followsMe, 0) as followsMe, count(PL.userPk) AS insight, PL.timestamp AS timestamp, P.* FROM PostLike PL LEFT JOIN ProfileBond PB ON PL.userPk = PB.userPk INNER JOIN Profile P ON PL.userPk = P.pk INNER JOIN Post PO ON PL.postPk = PO.pk WHERE (PB.followsMe = 0 OR PB.followsMe IS NULL) AND PO.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) AND PL.userPk <> (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1) GROUP BY PL.userPk ORDER BY COUNT(PL.userPk) DESC")
     abstract fun getNotFollowerMostLikes(): PagingSource<Int, UserFriendship>
+
+    @Query("SELECT PL.* FROM `PostLike` PL INNER JOIN Post P ON PL.postPk = P.pk WHERE PL.timestamp >= :min AND P.userPk = (SELECT LP.userPk FROM LinkedProfile AS LP WHERE LP.selected = 1 LIMIT 1)")
+    abstract fun getAllLikes(min: Long): Flow<List<PostLike>>
 }

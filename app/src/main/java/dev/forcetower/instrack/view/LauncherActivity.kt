@@ -34,7 +34,7 @@ class LauncherActivity : BaseActivity() {
 
                     val node = graph.findNode(R.id.home)
                     // TODO: Warning! This might break in some version!!!
-                    intent.putExtra("android-support-nav:controller:deepLinkIds", node!!.buildExplicitly())
+                    intent.putExtra("android-support-nav:controller:deepLinkIds", node?.buildExplicitly())
                 }
                 LaunchDestination.LOGIN -> Unit
             }
@@ -48,8 +48,8 @@ fun NavDestination.buildExplicitly(): IntArray {
     val hierarchy = ArrayDeque<NavDestination>()
     var current: NavDestination? = this
     do {
-        val parent = current!!.parent
-        if (parent == null || parent.startDestination != current.id) {
+        val parent = current?.parent
+        if (parent == null || parent.startDestination != current?.id) {
             hierarchy.addFirst(current)
         }
         current = parent
