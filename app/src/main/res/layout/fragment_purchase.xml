@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="skuDetails"
+            type="dev.forcetower.instrack.core.model.billing.AugmentedSkuDetails" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rooted"
         android:layout_width="match_parent"
@@ -10,8 +16,7 @@
         app:paddingBottomSystemWindowInsets="@{true}"
         app:paddingTopSystemWindowInsets="@{true}"
         app:paddingEndSystemWindowInsets="@{true}"
-        app:paddingStartSystemWindowInsets="@{true}"
-        android:background="?attr/secondaryBackground">
+        app:paddingStartSystemWindowInsets="@{true}">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/close"
@@ -96,7 +101,9 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="24dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="3dp"
+            app:cardElevation="0dp"
+            app:strokeColor="?attr/secondaryBackground"
+            app:strokeWidth="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -111,9 +118,10 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R$ 8,99/mês"
+                    android:text="@{@string/instracker_price_format(skuDetails.price)}"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:text="R$ 8.99/mês"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"

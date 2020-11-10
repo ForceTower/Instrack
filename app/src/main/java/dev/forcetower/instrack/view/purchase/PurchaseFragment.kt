@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.core.model.billing.AugmentedSkuDetails
@@ -29,6 +30,11 @@ class PurchaseFragment : BaseFragment() {
         }.root
 
         binding.close.setOnClickListener { findNavController().popBackStack() }
+        billingViewModel.premiumStatus.distinctUntilChanged().observe(viewLifecycleOwner, {
+            if (it.entitled) {
+                findNavController().popBackStack()
+            }
+        })
 
         return view
     }
@@ -38,6 +44,7 @@ class PurchaseFragment : BaseFragment() {
         billingViewModel.subscriptions.observe(viewLifecycleOwner, {
             Timber.d("List ${it.size} $it")
             if (it.isNotEmpty()) {
+                binding.skuDetails = it.first()
                 current = it.first()
             }
         })

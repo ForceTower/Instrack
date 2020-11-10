@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
+import dev.forcetower.instrack.core.model.billing.PremiumStatus
 import dev.forcetower.instrack.databinding.FragmentHomeBinding
 import dev.forcetower.instrack.databinding.HomeDrawerHeaderBinding
 import dev.forcetower.instrack.view.BillingViewModel
@@ -29,6 +30,7 @@ class HomeFragment : BaseFragment() {
     private lateinit var adapter: HomeElementsAdapter
     private val viewModel by activityViewModels<HomeViewModel>()
     private val billingViewModel by activityViewModels<BillingViewModel>()
+    private lateinit var premiumStatus: PremiumStatus
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
@@ -70,6 +72,7 @@ class HomeFragment : BaseFragment() {
 
         billingViewModel.premiumStatus.observe(viewLifecycleOwner, {
             Timber.d("Entitled Premium? $it")
+            premiumStatus = it
         })
 
         binding.recyclerProfile.apply {
@@ -98,9 +101,10 @@ class HomeFragment : BaseFragment() {
         })
 
         viewModel.onHomeElementClick.observe(viewLifecycleOwner, EventObserver {
-//            val directions = HomeFragmentDirections.actionHomeToUserListing(it.stableId)
-            val directions = HomeFragmentDirections.actionHomeToPurchase()
-            findNavController().navigate(directions)
+            if (::premiumStatus.isInitialized) {
+                val directions = HomeFragmentDirections.actionHomeToUserListing(it.stableId)
+                findNavController().navigate(directions)
+            }
         })
     }
 }

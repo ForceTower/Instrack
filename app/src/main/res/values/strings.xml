@@ -96,6 +96,7 @@
     <string name="discovery_not_follow_but_comment">Não me segue, mas comenta</string>
     <string name="general_statistics">Estatísticas Gerais</string>
     <string name="no_chart_data">Não há dados</string>
+    <string name="instracker_price_format">%1$s/mês</string>
     <plurals name="search_insight_profiles_format">
         <item quantity="one">%1$d perfil</item>
         <item quantity="other">%1$d perfis</item>

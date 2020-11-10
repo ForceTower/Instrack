@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import dev.forcetower.instrack.core.model.billing.PremiumStatus
 import dev.forcetower.instrack.databinding.FragmentStoryInsightsBinding
+import dev.forcetower.instrack.view.BillingViewModel
 import dev.forcetower.toolkit.components.BaseFragment
 
 @AndroidEntryPoint
@@ -16,6 +18,8 @@ class StoryInsightsFragment : BaseFragment() {
     private lateinit var activeAdapter: StoryInsightAdapter
     private lateinit var trackedAdapter: StoryInsightAdapter
     private val viewModel: StoryInsightViewModel by activityViewModels()
+    private val billingViewModel by activityViewModels<BillingViewModel>()
+    private lateinit var premiumStatus: PremiumStatus
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,20 +70,40 @@ class StoryInsightsFragment : BaseFragment() {
         viewModel.tracked().observe(viewLifecycleOwner, {
             trackedAdapter.submitList(it)
         })
+
+        billingViewModel.premiumStatus.observe(viewLifecycleOwner, {
+            premiumStatus = it
+        })
+    }
+
+    private fun moveOnEntitled(block: () -> Unit) {
+        if (::premiumStatus.isInitialized) {
+            if (premiumStatus.entitled) {
+                block()
+            } else {
+                findNavController().navigate(StoryInsightsFragmentDirections.actionGlobalPurchase())
+            }
+        }
     }
 
     private fun onNavigateToStoryInsights(type: Int) {
-        val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryDetails(type)
-        findNavController().navigate(directions)
+        moveOnEntitled {
+            val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryDetails(type)
+            findNavController().navigate(directions)
+        }
     }
 
     private fun onNavigateToStoryUsers(type: Int) {
-        val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryUserListing(type)
-        findNavController().navigate(directions)
+        moveOnEntitled {
+            val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryUserListing(type)
+            findNavController().navigate(directions)
+        }
     }
 
     private fun onNavigateToStoryListing(type: Int) {
-        val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryListing(type)
-        findNavController().navigate(directions)
+        moveOnEntitled {
+            val directions = StoryInsightsFragmentDirections.actionStoryInsightsToStoryListing(type)
+            findNavController().navigate(directions)
+        }
     }
 }

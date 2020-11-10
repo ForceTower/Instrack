@@ -195,4 +195,7 @@
         android:name="dev.forcetower.instrack.view.purchase.PurchaseFragment"
         android:label="Purchase"
         tools:layout="@layout/fragment_purchase"/>
+    <action
+        android:id="@+id/action_global_purchase"
+        app:destination="@id/purchase" />
 </navigation>

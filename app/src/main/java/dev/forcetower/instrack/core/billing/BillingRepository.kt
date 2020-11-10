@@ -91,6 +91,14 @@ class BillingRepository @Inject constructor(
         if (newBatch.isNotEmpty()) {
             saveToLocalDatabase(newBatch)
         }
+
+        if (purchases.none { SUBS_SKUS.contains(it.sku) }) {
+            val premium = PremiumStatus(false)
+            database.entitlements().insert(premium)
+            SUBS_SKUS.forEach { sku ->
+                database.skuDetails().insertOrUpdate(sku, true)
+            }
+        }
     }
 
     private suspend fun saveToLocalDatabase(newBatch: Set<Purchase>) {
@@ -194,7 +202,8 @@ class BillingRepository @Inject constructor(
         Timber.d("Billing setup finished ${result.responseCode}")
         when (result.responseCode) {
             BillingClient.BillingResponseCode.OK -> {
-                querySkuDetails(BillingClient.SkuType.INAPP, SUBS_SKUS)
+                querySkuDetails(BillingClient.SkuType.SUBS, SUBS_SKUS)
+                Timber.d("Query sku details... ${BillingClient.SkuType.SUBS}")
                 queryPurchases()
             }
             else -> Timber.i("BillingClient.BillingResponse onBillingSetupFinished error code: ${result.responseCode} >> ${result.debugMessage}")

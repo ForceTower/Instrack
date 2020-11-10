@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import dev.forcetower.instrack.core.model.billing.PremiumStatus
 import dev.forcetower.instrack.databinding.FragmentFeedInsightsBinding
+import dev.forcetower.instrack.view.BillingViewModel
 import dev.forcetower.toolkit.components.BaseFragment
 
 @AndroidEntryPoint
 class FeedInsightsFragment : BaseFragment() {
     private lateinit var binding: FragmentFeedInsightsBinding
+    private val billingViewModel by activityViewModels<BillingViewModel>()
+    private lateinit var premiumStatus: PremiumStatus
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,13 +48,34 @@ class FeedInsightsFragment : BaseFragment() {
         return view
     }
 
-    private fun onNavigateToMediaListing(type: Int) {
-        val directions = FeedInsightsFragmentDirections.actionMediaInsightsToMediaListingInsight(type)
-        findNavController().navigate(directions)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        billingViewModel.premiumStatus.observe(viewLifecycleOwner, {
+            premiumStatus = it
+        })
+    }
+
+    private fun moveOnEntitled(block: () -> Unit) {
+        if (::premiumStatus.isInitialized) {
+            if (premiumStatus.entitled) {
+                block()
+            } else {
+                findNavController().navigate(FeedInsightsFragmentDirections.actionGlobalPurchase())
+            }
+        }
     }
 
     private fun onNavigateToUserListing(type: Int) {
-        val directions = FeedInsightsFragmentDirections.actionMediaInsightsToFeedUserListing(type)
-        findNavController().navigate(directions)
+        moveOnEntitled {
+            val directions = FeedInsightsFragmentDirections.actionMediaInsightsToFeedUserListing(type)
+            findNavController().navigate(directions)
+        }
+    }
+
+    private fun onNavigateToMediaListing(type: Int) {
+        moveOnEntitled {
+            val directions = FeedInsightsFragmentDirections.actionMediaInsightsToMediaListingInsight(type)
+            findNavController().navigate(directions)
+        }
     }
 }
