@@ -12,7 +12,6 @@ import dev.forcetower.instrack.core.model.billing.AugmentedSkuDetails
 import dev.forcetower.instrack.databinding.FragmentPurchaseBinding
 import dev.forcetower.instrack.view.BillingViewModel
 import dev.forcetower.toolkit.components.BaseFragment
-import timber.log.Timber
 
 @AndroidEntryPoint
 class PurchaseFragment : BaseFragment() {
@@ -42,7 +41,6 @@ class PurchaseFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         billingViewModel.subscriptions.observe(viewLifecycleOwner, {
-            Timber.d("List ${it.size} $it")
             if (it.isNotEmpty()) {
                 binding.skuDetails = it.first()
                 current = it.first()

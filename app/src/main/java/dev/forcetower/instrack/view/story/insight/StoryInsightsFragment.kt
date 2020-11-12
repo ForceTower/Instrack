@@ -77,13 +77,14 @@ class StoryInsightsFragment : BaseFragment() {
     }
 
     private fun moveOnEntitled(block: () -> Unit) {
-        if (::premiumStatus.isInitialized) {
-            if (premiumStatus.entitled) {
-                block()
-            } else {
-                findNavController().navigate(StoryInsightsFragmentDirections.actionGlobalPurchase())
-            }
-        }
+        block()
+//        if (::premiumStatus.isInitialized) {
+//            if (premiumStatus.entitled) {
+//                block()
+//            } else {
+//                findNavController().navigate(StoryInsightsFragmentDirections.actionGlobalPurchase())
+//            }
+//        }
     }
 
     private fun onNavigateToStoryInsights(type: Int) {

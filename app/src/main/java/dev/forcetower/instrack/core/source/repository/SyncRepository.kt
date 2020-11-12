@@ -107,7 +107,7 @@ class SyncRepository @Inject constructor(
     private suspend fun followers(session: Session, userId: Long) {
         var restart = true
         var hasMore: Boolean
-        var failed = false
+        var failed: Boolean
 
         val local = database.bond().getFollowersSnapshot(userId)
         val server = mutableListOf<ProfilePreview>()
@@ -163,7 +163,7 @@ class SyncRepository @Inject constructor(
     private suspend fun following(session: Session, userId: Long) {
         var restart = true
         var hasMore: Boolean
-        var failed = false
+        var failed: Boolean
 
         val local = database.bond().getFollowingSnapshot(userId)
         val server = mutableListOf<ProfilePreview>()

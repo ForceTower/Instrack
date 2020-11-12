@@ -56,13 +56,14 @@ class FeedInsightsFragment : BaseFragment() {
     }
 
     private fun moveOnEntitled(block: () -> Unit) {
-        if (::premiumStatus.isInitialized) {
-            if (premiumStatus.entitled) {
-                block()
-            } else {
-                findNavController().navigate(FeedInsightsFragmentDirections.actionGlobalPurchase())
-            }
-        }
+        block()
+//        if (::premiumStatus.isInitialized) {
+//            if (premiumStatus.entitled) {
+//                block()
+//            } else {
+//                findNavController().navigate(FeedInsightsFragmentDirections.actionGlobalPurchase())
+//            }
+//        }
     }
 
     private fun onNavigateToUserListing(type: Int) {

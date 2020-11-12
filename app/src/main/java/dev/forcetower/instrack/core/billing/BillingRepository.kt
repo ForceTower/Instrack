@@ -160,18 +160,6 @@ class BillingRepository @Inject constructor(
         return response.responseCode == BillingClient.BillingResponseCode.OK
     }
 
-    private fun getOldSku(sku: String?): Pair<String, String>? {
-//        if (SUBS_SKUS.contains(sku)) {
-//            premiumStatus.value?.apply {
-//                result = when (sku) {
-//                    WEEK_SUB -> MONTH_SUB
-//                    else -> MONTH_SUB
-//                }
-//            }
-//        }
-        return null
-    }
-
     override fun onSkuDetailsResponse(result: BillingResult, details: MutableList<SkuDetails>?) {
         Timber.d("Sku details response $details")
         if (result.responseCode != BillingClient.BillingResponseCode.OK) {

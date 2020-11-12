@@ -16,8 +16,8 @@ android {
         applicationId "dev.forcetower.instracker"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 14
-        versionName "1.0.0-release-04"
+        versionCode 15
+        versionName "1.0.0-release-05"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -42,7 +42,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-//             applicationIdSuffix '.debug'
+             applicationIdSuffix '.debug'
         }
     }
 
