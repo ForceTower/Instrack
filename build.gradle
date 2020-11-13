@@ -4,7 +4,7 @@ buildscript {
 
     ext {
         // Android X
-        ktx = '1.5.0-alpha04'
+        ktx = '1.5.0-alpha05'
         app_compat = '1.2.0'
         google_material = '1.2.1'
         constraint_layout = '2.0.4'
@@ -18,7 +18,7 @@ buildscript {
         // Architecture
         room = '2.3.0-alpha03'
         lifecycle = '2.2.0'
-        paging = '3.0.0-alpha08'
+        paging = '3.0.0-alpha09'
         navigation = '2.3.1'
 
         // Dependency Injection
