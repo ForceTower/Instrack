@@ -1,8 +1,6 @@
 package dev.forcetower.instrack.view.story.details
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,16 +17,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
-import dev.forcetower.instrack.core.model.ui.StoryViewCount
 import dev.forcetower.instrack.databinding.FragmentStoryDetailsBinding
 import dev.forcetower.instrack.view.story.insight.StoryInsightViewModel
-import dev.forcetower.instrack.view.users.listing.UserListingFragment
 import dev.forcetower.instrack.view.users.simple.SimpleSearchListingFragment
 import dev.forcetower.instrack.widget.ScaleLinearLayoutManager
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.extensions.getPixelsFromDp
-import timber.log.Timber
-import kotlin.reflect.typeOf
 
 @AndroidEntryPoint
 class StoryDetailsFragment : BaseFragment() {
@@ -44,7 +38,7 @@ class StoryDetailsFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  FragmentStoryDetailsBinding.inflate(inflater, container, false).also {
+        val view = FragmentStoryDetailsBinding.inflate(inflater, container, false).also {
             binding = it
         }.root
 
@@ -76,17 +70,19 @@ class StoryDetailsFragment : BaseFragment() {
 
         binding.close.setOnClickListener { onBack() }
 
-        binding.recyclerStories.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (newState == SCROLL_STATE_IDLE) {
-                    val snapped = snapper.findSnapView(recyclerView.layoutManager) ?: return
-                    val position = binding.recyclerStories.getChildAdapterPosition(snapped)
-                    val element = adapter.currentList[position]
-                    onElementSelected(element.pk)
+        binding.recyclerStories.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (newState == SCROLL_STATE_IDLE) {
+                        val snapped = snapper.findSnapView(recyclerView.layoutManager) ?: return
+                        val position = binding.recyclerStories.getChildAdapterPosition(snapped)
+                        val element = adapter.currentList[position]
+                        onElementSelected(element.pk)
+                    }
                 }
             }
-        })
+        )
 
         return view
     }
@@ -94,25 +90,34 @@ class StoryDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val source = if (args.type == 1) viewModel.active() else viewModel.tracked()
-        source.observe(viewLifecycleOwner, {
-            if (firstInteraction) {
-                firstInteraction = false
-                val initial = args.initialPosition
-                if (initial >= 0) {
-                    view.postDelayed({
-                        binding.recyclerStories.layoutManager?.scrollToPosition(initial)
-                        val list = adapter.currentList
-                        if (initial < list.size) {
-                            viewModel.setCurrentStory(list[initial].pk)
-                        }
-                    }, 500)
+        source.observe(
+            viewLifecycleOwner,
+            {
+                if (firstInteraction) {
+                    firstInteraction = false
+                    val initial = args.initialPosition
+                    if (initial >= 0) {
+                        view.postDelayed(
+                            {
+                                binding.recyclerStories.layoutManager?.scrollToPosition(initial)
+                                val list = adapter.currentList
+                                if (initial < list.size) {
+                                    viewModel.setCurrentStory(list[initial].pk)
+                                }
+                            },
+                            500
+                        )
+                    }
                 }
+                adapter.submitList(it)
+                view.postDelayed(
+                    {
+                        (binding.recyclerStories.layoutManager as? ScaleLinearLayoutManager)?.middle()
+                    },
+                    100
+                )
             }
-            adapter.submitList(it)
-            view.postDelayed({
-                (binding.recyclerStories.layoutManager as? ScaleLinearLayoutManager)?.middle()
-            }, 100)
-        })
+        )
     }
 
     private fun onElementSelected(pk: Long) {

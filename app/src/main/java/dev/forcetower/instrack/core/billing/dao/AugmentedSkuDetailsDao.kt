@@ -56,7 +56,7 @@ interface AugmentedSkuDetailsDao {
     suspend fun getById(sku: String): AugmentedSkuDetails?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend  fun insert(augmentedSkuDetails: AugmentedSkuDetails)
+    suspend fun insert(augmentedSkuDetails: AugmentedSkuDetails)
 
     @Query("UPDATE AugmentedSkuDetails SET canPurchase = :canPurchase WHERE sku = :sku")
     suspend fun update(sku: String, canPurchase: Boolean)

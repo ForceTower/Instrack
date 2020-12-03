@@ -51,7 +51,7 @@ class StoryUserListingFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val source = when(args.type) {
+        val source = when (args.type) {
             1 -> viewModel.greaterSpectators()
             2 -> viewModel.leastSpectators()
             3 -> viewModel.notFollowerSpectators()

@@ -30,7 +30,8 @@ class ArrowedView @JvmOverloads constructor(
         val typedArray = context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.ArrowedView,
-            defStyleAttr, defStyleRes
+            defStyleAttr,
+            defStyleRes
         )
 
         try {
@@ -54,8 +55,12 @@ class ArrowedView @JvmOverloads constructor(
         path.moveTo(sideLength, 60f)
         path.lineTo(sideLength + halfPointerSize - 8, 3f)
         path.addArc(
-            sideLength + halfPointerSize - 10, 0f,
-            sideLength + halfPointerSize + 10, 10f, 210f, 120f
+            sideLength + halfPointerSize - 10,
+            0f,
+            sideLength + halfPointerSize + 10,
+            10f,
+            210f,
+            120f
         )
         path.lineTo(sideLength + halfPointerSize * 2, 60f)
         path.lineTo(sideLength, 60f)

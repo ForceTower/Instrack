@@ -20,10 +20,10 @@ inline fun <R> ClosedRange<LocalDateTime>.map(transform: (LocalDateTime) -> R): 
     return iterable.mapTo(ArrayList(3), transform)
 }
 
-fun ClosedRange<LocalDateTime>.iterable() : Iterable<LocalDateTime>{
-    return object: Iterable<LocalDateTime> {
+fun ClosedRange<LocalDateTime>.iterable(): Iterable<LocalDateTime> {
+    return object : Iterable<LocalDateTime> {
         override fun iterator(): Iterator<LocalDateTime> {
-            return object: Iterator<LocalDateTime> {
+            return object : Iterator<LocalDateTime> {
                 private var next = this@iterable.start
                 private val finalElement = this@iterable.endInclusive
                 private var hasNext = !next.isAfter(this@iterable.endInclusive)

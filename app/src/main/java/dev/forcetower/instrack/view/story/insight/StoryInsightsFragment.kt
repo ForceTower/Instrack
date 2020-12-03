@@ -63,17 +63,26 @@ class StoryInsightsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.active().observe(viewLifecycleOwner, {
-            activeAdapter.submitList(it)
-        })
+        viewModel.active().observe(
+            viewLifecycleOwner,
+            {
+                activeAdapter.submitList(it)
+            }
+        )
 
-        viewModel.tracked().observe(viewLifecycleOwner, {
-            trackedAdapter.submitList(it)
-        })
+        viewModel.tracked().observe(
+            viewLifecycleOwner,
+            {
+                trackedAdapter.submitList(it)
+            }
+        )
 
-        billingViewModel.premiumStatus.observe(viewLifecycleOwner, {
-            premiumStatus = it
-        })
+        billingViewModel.premiumStatus.observe(
+            viewLifecycleOwner,
+            {
+                premiumStatus = it
+            }
+        )
     }
 
     private fun moveOnEntitled(block: () -> Unit) {

@@ -17,17 +17,21 @@ package dev.forcetower.instrack.core.billing
 
 import android.text.TextUtils
 import android.util.Base64
-import android.util.Log
 import timber.log.Timber
 import java.io.IOException
-import java.security.*
+import java.security.InvalidKeyException
+import java.security.KeyFactory
+import java.security.NoSuchAlgorithmException
+import java.security.PublicKey
+import java.security.Signature
+import java.security.SignatureException
 import java.security.spec.InvalidKeySpecException
 import java.security.spec.X509EncodedKeySpec
 
 object Security {
     private const val KEY_FACTORY_ALGORITHM = "RSA"
     private const val SIGNATURE_ALGORITHM = "SHA1withRSA"
-    const val BASE_64_ENCODED_PUBLIC_KEY= "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3eQeEuFc9HZOp37H5vNDrV+IC/fIVMHE3bE1Os3KJrCVeampH0+JNRAMnoT5HswwD/pNigoW0eeqwAPZg7rXVJUt64AP58Hi3nVlPm9N8DCnNAQEbHDk78Wt8p7ezY/PUMwP32vDMYK6ulwW+vrQM7XWo+qZSYJOMV7epuay2vR4/1bmL7dIYuQdjPR2XycCeyhZddRUxUtgYDoMfB7HzD+Nqw9GBwAHkqYkX89996VbYOgeG+7k0vnteP/8PsMlrSa2NMrj+GBpWNuHK/5PshQ35GzFR8ngsoinnLuPTyBynPCdYBQVziqgzJgmM3Eg12KgsMjYcsaHV/K+gV1qHQIDAQAB"
+    const val BASE_64_ENCODED_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3eQeEuFc9HZOp37H5vNDrV+IC/fIVMHE3bE1Os3KJrCVeampH0+JNRAMnoT5HswwD/pNigoW0eeqwAPZg7rXVJUt64AP58Hi3nVlPm9N8DCnNAQEbHDk78Wt8p7ezY/PUMwP32vDMYK6ulwW+vrQM7XWo+qZSYJOMV7epuay2vR4/1bmL7dIYuQdjPR2XycCeyhZddRUxUtgYDoMfB7HzD+Nqw9GBwAHkqYkX89996VbYOgeG+7k0vnteP/8PsMlrSa2NMrj+GBpWNuHK/5PshQ35GzFR8ngsoinnLuPTyBynPCdYBQVziqgzJgmM3Eg12KgsMjYcsaHV/K+gV1qHQIDAQAB"
 
     /**
      * Verifies that the data was signed with the given signature
@@ -39,10 +43,16 @@ object Security {
      * is invalid
      */
     @Throws(IOException::class)
-    fun verifyPurchase(base64PublicKey: String, signedData: String,
-                       signature: String): Boolean {
-        if ((TextUtils.isEmpty(signedData) || TextUtils.isEmpty(base64PublicKey)
-                        || TextUtils.isEmpty(signature))) {
+    fun verifyPurchase(
+        base64PublicKey: String,
+        signedData: String,
+        signature: String
+    ): Boolean {
+        if ((
+            TextUtils.isEmpty(signedData) || TextUtils.isEmpty(base64PublicKey) ||
+                TextUtils.isEmpty(signature)
+            )
+        ) {
             Timber.w("Purchase verification failed: missing data.")
             return false
         }

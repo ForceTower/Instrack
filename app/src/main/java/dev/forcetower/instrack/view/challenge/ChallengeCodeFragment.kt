@@ -10,9 +10,7 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.databinding.FragmentChallengeCodeBinding
 import dev.forcetower.toolkit.components.BaseFragment
-import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ChallengeCodeFragment : BaseFragment() {
@@ -36,9 +34,12 @@ class ChallengeCodeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onComplete.observe(viewLifecycleOwner, EventObserver {
-            onMoveToHome()
-        })
+        viewModel.onComplete.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                onMoveToHome()
+            }
+        )
     }
 
     private fun onMoveToHome() {

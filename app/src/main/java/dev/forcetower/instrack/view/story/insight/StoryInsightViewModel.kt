@@ -1,7 +1,12 @@
 package dev.forcetower.instrack.view.story.insight
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import dev.forcetower.instrack.core.model.ui.StoryViewCount
 import dev.forcetower.instrack.core.source.repository.StoryRepository
 import dev.forcetower.toolkit.extensions.setValueIfNew

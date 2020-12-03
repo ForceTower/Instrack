@@ -39,7 +39,7 @@ class StoryListingFragment : BaseFragment() {
             }
         }
 
-        binding.title = when(args.type) {
+        binding.title = when (args.type) {
             1 -> getString(R.string.story_most_watched_title)
             2 -> getString(R.string.story_least_watched_title)
             else -> throw IllegalStateException("Type ${args.type} is not allowed")
@@ -55,7 +55,7 @@ class StoryListingFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val source = when(args.type) {
+        val source = when (args.type) {
             1 -> viewModel.mostWatched()
             2 -> viewModel.leastWatched()
             else -> throw IllegalStateException("Type ${args.type} is not allowed")

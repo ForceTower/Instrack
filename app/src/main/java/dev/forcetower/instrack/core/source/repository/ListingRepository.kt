@@ -1,9 +1,6 @@
 package dev.forcetower.instrack.core.source.repository
 
-import androidx.lifecycle.LiveData
-import androidx.paging.PagedList
 import androidx.paging.PagingData
-import androidx.paging.toLiveData
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.core.source.local.TrackDB
 import dev.forcetower.toolkit.extensions.asPager

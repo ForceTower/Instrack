@@ -6,7 +6,6 @@ import dev.forcetower.instrack.core.model.database.Story
 import dev.forcetower.instrack.core.model.ui.StoryViewCount
 import dev.forcetower.toolkit.database.dao.BaseDao
 import kotlinx.coroutines.flow.Flow
-import java.util.*
 
 @Dao
 abstract class StoryDao : BaseDao<Story>() {

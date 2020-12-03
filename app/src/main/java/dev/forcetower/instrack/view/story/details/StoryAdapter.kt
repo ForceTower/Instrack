@@ -17,7 +17,7 @@ class StoryAdapter : ListAdapter<StoryViewCount, StoryAdapter.StoryHolder>(DiffC
     override fun onBindViewHolder(holder: StoryHolder, position: Int) {
         val item = getItem(position)
         holder.binding.apply {
-             element = item
+            element = item
         }
     }
 
@@ -31,6 +31,5 @@ class StoryAdapter : ListAdapter<StoryViewCount, StoryAdapter.StoryHolder>(DiffC
         override fun areContentsTheSame(oldItem: StoryViewCount, newItem: StoryViewCount): Boolean {
             return oldItem == newItem
         }
-
     }
 }

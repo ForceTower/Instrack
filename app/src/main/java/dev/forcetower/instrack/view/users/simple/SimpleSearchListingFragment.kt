@@ -10,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.databinding.FragmentSimpleSearchListingBinding
 import dev.forcetower.instrack.view.story.insight.StoryInsightViewModel
 import dev.forcetower.toolkit.components.BaseFragment
-import timber.log.Timber
 
 @AndroidEntryPoint
 class SimpleSearchListingFragment : BaseFragment() {
@@ -36,7 +35,7 @@ class SimpleSearchListingFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val source = when(val type = requireArguments().getInt("type", 0)) {
+        val source = when (val type = requireArguments().getInt("type", 0)) {
             1 -> viewModel.recentWatches
             2 -> viewModel.recentWatches
             3 -> viewModel.watcherNotFollower
@@ -45,10 +44,13 @@ class SimpleSearchListingFragment : BaseFragment() {
             else -> throw IllegalStateException("type $type is not accepted")
         }
 
-        source.observe(viewLifecycleOwner, {
-            adapter.submitList(it)
-            binding.count = it.size
-        })
+        source.observe(
+            viewLifecycleOwner,
+            {
+                adapter.submitList(it)
+                binding.count = it.size
+            }
+        )
     }
 
     companion object {

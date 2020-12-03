@@ -1,9 +1,6 @@
 package dev.forcetower.instrack.core.source.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import dev.forcetower.instrack.core.model.database.Profile
 import dev.forcetower.instrack.core.model.ui.StoryViewCount
 import dev.forcetower.instrack.core.model.ui.StoryWatchProfileSimple
 import dev.forcetower.instrack.core.model.ui.UserFriendship

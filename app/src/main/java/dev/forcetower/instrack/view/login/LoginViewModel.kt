@@ -12,7 +12,6 @@ import dev.forcetower.instrack.core.source.repository.LoginRepository
 import dev.forcetower.toolkit.lifecycle.Event
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 class LoginViewModel @ViewModelInject constructor(
     private val repository: LoginRepository

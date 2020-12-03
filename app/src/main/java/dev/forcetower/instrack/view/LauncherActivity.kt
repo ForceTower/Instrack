@@ -10,11 +10,9 @@ import dev.forcetower.instrack.R
 import dev.forcetower.instrack.view.launcher.LaunchDestination
 import dev.forcetower.instrack.view.launcher.LauncherViewModel
 import dev.forcetower.toolkit.components.BaseActivity
-import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
 import dev.forcetower.toolkit.navigation.navigator.PermissiveNavigatorProvider
 import java.util.ArrayDeque
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LauncherActivity : BaseActivity() {
@@ -24,23 +22,26 @@ class LauncherActivity : BaseActivity() {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         super.onCreate(savedInstanceState)
 
-        viewModel.launchDestination.observe(this, EventObserver {
-            val intent = Intent(this, MainActivity::class.java)
-            when (it) {
-                // fake a deep link to home
-                LaunchDestination.HOME -> {
-                    val graph = NavInflater(this, PermissiveNavigatorProvider())
-                        .inflate(R.navigation.main_nav_graph)
+        viewModel.launchDestination.observe(
+            this,
+            EventObserver {
+                val intent = Intent(this, MainActivity::class.java)
+                when (it) {
+                    // fake a deep link to home
+                    LaunchDestination.HOME -> {
+                        val graph = NavInflater(this, PermissiveNavigatorProvider())
+                            .inflate(R.navigation.main_nav_graph)
 
-                    val node = graph.findNode(R.id.home)
-                    // TODO: Warning! This might break in some version!!!
-                    intent.putExtra("android-support-nav:controller:deepLinkIds", node?.buildExplicitly())
+                        val node = graph.findNode(R.id.home)
+                        // TODO: Warning! This might break in some version!!!
+                        intent.putExtra("android-support-nav:controller:deepLinkIds", node?.buildExplicitly())
+                    }
+                    LaunchDestination.LOGIN -> Unit
                 }
-                LaunchDestination.LOGIN -> Unit
+                startActivity(intent)
+                finish()
             }
-            startActivity(intent)
-            finish()
-        })
+        )
     }
 }
 

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.ui.StoryViewCount
 import dev.forcetower.instrack.databinding.ItemStoryMiniBinding
-import dev.forcetower.instrack.view.story.details.StoryAdapter
 import dev.forcetower.toolkit.extensions.inflate
 
 class StoryInsightAdapter : ListAdapter<StoryViewCount, StoryInsightAdapter.StoryHolder>(DiffCallback) {

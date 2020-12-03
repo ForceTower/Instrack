@@ -11,7 +11,6 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.databinding.FragmentMediaListingBinding
-import dev.forcetower.instrack.databinding.FragmentUserListingBinding
 import dev.forcetower.toolkit.components.BaseFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

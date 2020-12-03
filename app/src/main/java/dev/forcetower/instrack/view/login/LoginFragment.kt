@@ -1,7 +1,12 @@
 package dev.forcetower.instrack.view.login
 
 import android.os.Bundle
-import android.transition.*
+import android.transition.ArcMotion
+import android.transition.ChangeBounds
+import android.transition.ChangeClipBounds
+import android.transition.ChangeImageTransform
+import android.transition.ChangeTransform
+import android.transition.TransitionSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.databinding.FragmentLoginBinding
 import dev.forcetower.toolkit.components.BaseFragment
-import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment() {
@@ -25,9 +28,11 @@ class LoginFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val transition = TransitionSet()
-            .addTransition(ChangeBounds().apply {
-                pathMotion = ArcMotion()
-            })
+            .addTransition(
+                ChangeBounds().apply {
+                    pathMotion = ArcMotion()
+                }
+            )
             .addTransition(ChangeTransform())
             .addTransition(ChangeClipBounds())
             .addTransition(ChangeImageTransform())
@@ -51,19 +56,31 @@ class LoginFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onLoginSuccess.observe(viewLifecycleOwner, EventObserver {
-            showSnack(getString(R.string.instagram_connected_as, it.username))
-            moveToHome()
-        })
-        viewModel.onLoginErrorMessage.observe(viewLifecycleOwner, EventObserver {
-            showSnack(it, Snackbar.LENGTH_LONG)
-        })
-        viewModel.onLoginError.observe(viewLifecycleOwner, EventObserver {
-            showSnack(getString(it))
-        })
-        viewModel.onChallenge.observe(viewLifecycleOwner, EventObserver {
-            moveToChallenge(it.first, it.second)
-        })
+        viewModel.onLoginSuccess.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                showSnack(getString(R.string.instagram_connected_as, it.username))
+                moveToHome()
+            }
+        )
+        viewModel.onLoginErrorMessage.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                showSnack(it, Snackbar.LENGTH_LONG)
+            }
+        )
+        viewModel.onLoginError.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                showSnack(getString(it))
+            }
+        )
+        viewModel.onChallenge.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                moveToChallenge(it.first, it.second)
+            }
+        )
     }
 
     private fun moveToChallenge(username: String, password: String) {

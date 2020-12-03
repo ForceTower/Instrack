@@ -12,7 +12,6 @@ import dev.forcetower.instrack.core.source.repository.LoginRepository
 import dev.forcetower.toolkit.lifecycle.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class ChallengeViewModel @ViewModelInject constructor(
     private val repository: LoginRepository

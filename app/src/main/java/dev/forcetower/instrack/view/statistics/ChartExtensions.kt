@@ -2,14 +2,11 @@ package dev.forcetower.instrack.view.statistics
 
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.marginEnd
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.LineDataSet
 import dev.forcetower.instrack.R
-import dev.forcetower.toolkit.extensions.getPixelsFromDp
 import dev.forcetower.toolkit.extensions.resolveColorAttr
 
 fun LineChart.configureStatsDefault() {

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import dev.forcetower.instrack.R
 import dev.forcetower.instrack.core.model.database.Post
-import dev.forcetower.instrack.core.model.ui.SimpleMedia
 import dev.forcetower.instrack.databinding.ItemMediaWithInsightBinding
 import dev.forcetower.toolkit.extensions.inflate
 

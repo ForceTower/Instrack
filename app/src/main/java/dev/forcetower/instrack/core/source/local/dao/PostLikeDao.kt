@@ -3,7 +3,6 @@ package dev.forcetower.instrack.core.source.local.dao
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
-import dev.forcetower.instrack.core.model.database.Action
 import dev.forcetower.instrack.core.model.database.PostLike
 import dev.forcetower.instrack.core.model.ui.PostLikerSimple
 import dev.forcetower.instrack.core.model.ui.UserFriendship

@@ -11,9 +11,7 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.databinding.FragmentChallengeBinding
 import dev.forcetower.toolkit.components.BaseFragment
-import dev.forcetower.toolkit.components.BaseViewModelFactory
 import dev.forcetower.toolkit.lifecycle.EventObserver
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ChallengeFragment : BaseFragment() {
@@ -39,13 +37,19 @@ class ChallengeFragment : BaseFragment() {
         val adapter = ChallengeAdapter(viewModel)
         binding.recyclerOptions.adapter = adapter
 
-        viewModel.options.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
+        viewModel.options.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.submitList(it)
+            }
+        )
 
-        viewModel.onNext.observe(viewLifecycleOwner, EventObserver {
-            val directions = ChallengeFragmentDirections.actionChallengeToChallengeCode(it.label, it.value!!)
-            findNavController().navigate(directions)
-        })
+        viewModel.onNext.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                val directions = ChallengeFragmentDirections.actionChallengeToChallengeCode(it.label, it.value!!)
+                findNavController().navigate(directions)
+            }
+        )
     }
 }

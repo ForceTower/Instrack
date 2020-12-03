@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         adapter = HomeElementsAdapter(requireContext(), viewModel)
-        val view =  FragmentHomeBinding.inflate(inflater, container, false).also {
+        val view = FragmentHomeBinding.inflate(inflater, container, false).also {
             binding = it
             it.actions = viewModel
             it.lifecycleOwner = viewLifecycleOwner
@@ -70,10 +70,13 @@ class HomeFragment : BaseFragment() {
             viewModel.maybeSyncProfile()
         }
 
-        billingViewModel.premiumStatus.observe(viewLifecycleOwner, {
-            Timber.d("Entitled Premium? $it")
-            premiumStatus = it
-        })
+        billingViewModel.premiumStatus.observe(
+            viewLifecycleOwner,
+            {
+                Timber.d("Entitled Premium? $it")
+                premiumStatus = it
+            }
+        )
 
         binding.recyclerProfile.apply {
             val decoration = ItemOffsetDecoration(requireContext(), R.dimen.item_home_offset)
@@ -90,21 +93,30 @@ class HomeFragment : BaseFragment() {
             itemAnimator = null
         }
 
-        viewModel.profileOverview.observe(viewLifecycleOwner, {
-            adapter.headerData = it
-            binding.username = it.user?.username
-            header.profile = it.user
-        })
-
-        viewModel.homeElements.observe(viewLifecycleOwner, {
-            adapter.elements = it
-        })
-
-        viewModel.onHomeElementClick.observe(viewLifecycleOwner, EventObserver {
-            if (::premiumStatus.isInitialized) {
-                val directions = HomeFragmentDirections.actionHomeToUserListing(it.stableId)
-                findNavController().navigate(directions)
+        viewModel.profileOverview.observe(
+            viewLifecycleOwner,
+            {
+                adapter.headerData = it
+                binding.username = it.user?.username
+                header.profile = it.user
             }
-        })
+        )
+
+        viewModel.homeElements.observe(
+            viewLifecycleOwner,
+            {
+                adapter.elements = it
+            }
+        )
+
+        viewModel.onHomeElementClick.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                if (::premiumStatus.isInitialized) {
+                    val directions = HomeFragmentDirections.actionHomeToUserListing(it.stableId)
+                    findNavController().navigate(directions)
+                }
+            }
+        )
     }
 }

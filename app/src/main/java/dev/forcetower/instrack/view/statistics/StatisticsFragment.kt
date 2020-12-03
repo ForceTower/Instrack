@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import dev.forcetower.instrack.R
@@ -17,12 +16,6 @@ import dev.forcetower.instrack.core.extensions.LOCAL_DATE_TIME_EPOCH
 import dev.forcetower.instrack.databinding.FragmentUsefulStatsBinding
 import dev.forcetower.toolkit.components.BaseFragment
 import dev.forcetower.toolkit.extensions.resolveColorAttr
-import timber.log.Timber
-import java.time.Instant
-import java.time.Instant.EPOCH
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
@@ -73,46 +66,55 @@ class StatisticsFragment : BaseFragment() {
             }
         }
 
-        viewModel.postDistribution().observe(viewLifecycleOwner, { dataset ->
-            dataset.configureStatsDefault(accentColor, drawable)
-            val lineData = LineData(dataset)
+        viewModel.postDistribution().observe(
+            viewLifecycleOwner,
+            { dataset ->
+                dataset.configureStatsDefault(accentColor, drawable)
+                val lineData = LineData(dataset)
 
-            binding.includePostDistribution.chart.apply {
-                data = lineData
-                configureStatsDefault()
-                xAxis.apply {
-                    valueFormatter = formatter
+                binding.includePostDistribution.chart.apply {
+                    data = lineData
+                    configureStatsDefault()
+                    xAxis.apply {
+                        valueFormatter = formatter
+                    }
+                    invalidate()
                 }
-                invalidate()
             }
-        })
+        )
 
-        viewModel.likeDistribution().observe(viewLifecycleOwner, { dataset ->
-            dataset.configureStatsDefault(accentColor, drawable)
-            val lineData = LineData(dataset)
+        viewModel.likeDistribution().observe(
+            viewLifecycleOwner,
+            { dataset ->
+                dataset.configureStatsDefault(accentColor, drawable)
+                val lineData = LineData(dataset)
 
-            binding.includeLikeDistribution.chart.apply {
-                data = lineData
-                configureStatsDefault()
-                xAxis.apply {
-                    valueFormatter = formatter
+                binding.includeLikeDistribution.chart.apply {
+                    data = lineData
+                    configureStatsDefault()
+                    xAxis.apply {
+                        valueFormatter = formatter
+                    }
+                    invalidate()
                 }
-                invalidate()
             }
-        })
+        )
 
-        viewModel.commentDistribution().observe(viewLifecycleOwner, { dataset ->
-            dataset.configureStatsDefault(accentColor, drawable)
-            val lineData = LineData(dataset)
+        viewModel.commentDistribution().observe(
+            viewLifecycleOwner,
+            { dataset ->
+                dataset.configureStatsDefault(accentColor, drawable)
+                val lineData = LineData(dataset)
 
-            binding.includeCommentDistribution.chart.apply {
-                data = lineData
-                configureStatsDefault()
-                xAxis.apply {
-                    valueFormatter = formatter
+                binding.includeCommentDistribution.chart.apply {
+                    data = lineData
+                    configureStatsDefault()
+                    xAxis.apply {
+                        valueFormatter = formatter
+                    }
+                    invalidate()
                 }
-                invalidate()
             }
-        })
+        )
     }
 }

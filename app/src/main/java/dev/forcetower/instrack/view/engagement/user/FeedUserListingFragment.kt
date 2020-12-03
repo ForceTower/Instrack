@@ -82,7 +82,7 @@ class FeedUserListingFragment : BaseFragment() {
     }
 
     private fun createTitle(type: Int): String {
-        return when(type) {
+        return when (type) {
             1 -> getString(R.string.most_like_me)
             2 -> getString(R.string.most_comment_me)
             3 -> getString(R.string.least_like_me)

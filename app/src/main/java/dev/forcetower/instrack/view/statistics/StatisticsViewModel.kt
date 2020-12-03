@@ -4,14 +4,13 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.core.source.repository.StatisticsRepository
 
 class StatisticsViewModel @ViewModelInject constructor(
     private val repository: StatisticsRepository
-): ViewModel() {
+) : ViewModel() {
     fun mostCompromised(): LiveData<List<UserFriendship>> {
         return repository.getMostCompromised().asLiveData()
     }
@@ -27,5 +26,4 @@ class StatisticsViewModel @ViewModelInject constructor(
     fun commentDistribution(): LiveData<LineDataSet> {
         return repository.getCommentDistribution().asLiveData()
     }
-
 }

@@ -2,7 +2,6 @@ package dev.forcetower.instrack.core.source.repository
 
 import androidx.paging.PagingData
 import dev.forcetower.instrack.core.model.database.Post
-import dev.forcetower.instrack.core.model.ui.SimpleMedia
 import dev.forcetower.instrack.core.source.local.TrackDB
 import dev.forcetower.toolkit.extensions.asPager
 import kotlinx.coroutines.flow.Flow

@@ -50,9 +50,12 @@ class FeedInsightsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        billingViewModel.premiumStatus.observe(viewLifecycleOwner, {
-            premiumStatus = it
-        })
+        billingViewModel.premiumStatus.observe(
+            viewLifecycleOwner,
+            {
+                premiumStatus = it
+            }
+        )
     }
 
     private fun moveOnEntitled(block: () -> Unit) {

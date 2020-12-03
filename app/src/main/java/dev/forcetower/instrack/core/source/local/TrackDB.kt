@@ -31,21 +31,24 @@ import dev.forcetower.instrack.core.source.local.dao.StoryDao
 import dev.forcetower.instrack.core.source.local.dao.StoryWatchDao
 import dev.forcetower.instrack.core.source.local.dao.SyncRegistryDao
 
-@Database(entities = [
-    SyncRegistry::class,
-    LinkedProfile::class,
-    Profile::class,
-    ProfileHistory::class,
-    ProfileBond::class,
-    ProfileFriendship::class,
-    Action::class,
-    Story::class,
-    StoryWatch::class,
-    Post::class,
-    PostMedia::class,
-    PostLike::class,
-    PostComment::class
-], version = 1)
+@Database(
+    entities = [
+        SyncRegistry::class,
+        LinkedProfile::class,
+        Profile::class,
+        ProfileHistory::class,
+        ProfileBond::class,
+        ProfileFriendship::class,
+        Action::class,
+        Story::class,
+        StoryWatch::class,
+        Post::class,
+        PostMedia::class,
+        PostLike::class,
+        PostComment::class
+    ],
+    version = 1
+)
 @TypeConverters(value = [DateConverters::class])
 abstract class TrackDB : RoomDatabase() {
     abstract fun linked(): LinkedProfileDao

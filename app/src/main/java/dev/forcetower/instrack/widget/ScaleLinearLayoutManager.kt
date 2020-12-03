@@ -6,7 +6,6 @@ import android.view.View
 import androidx.annotation.Keep
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import timber.log.Timber
 import kotlin.math.abs
 
 class ScaleLinearLayoutManager @JvmOverloads constructor(
@@ -48,9 +47,12 @@ class ScaleLinearLayoutManager @JvmOverloads constructor(
 
     override fun scrollToPosition(position: Int) {
         super.scrollToPosition(position)
-        getChildAt(0)?.postDelayed({
-            middle()
-        }, 50)
+        getChildAt(0)?.postDelayed(
+            {
+                middle()
+            },
+            50
+        )
     }
 
     fun middle() {

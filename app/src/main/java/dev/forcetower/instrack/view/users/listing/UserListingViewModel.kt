@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import dev.forcetower.instrack.core.source.repository.ListingRepository
-import javax.inject.Inject
 
 class UserListingViewModel @ViewModelInject constructor(
     repository: ListingRepository

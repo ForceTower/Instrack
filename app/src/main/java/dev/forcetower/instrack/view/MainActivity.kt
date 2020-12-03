@@ -32,10 +32,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun showSnack(string: String, duration: Int) {
-        getSnackInstance(string, duration)?.show()
+        getSnackInstance(string, duration).show()
     }
 
-    override fun getSnackInstance(string: String, duration: Int): Snackbar? {
+    override fun getSnackInstance(string: String, duration: Int): Snackbar {
         return Snackbar.make(binding.root, string, duration)
     }
 

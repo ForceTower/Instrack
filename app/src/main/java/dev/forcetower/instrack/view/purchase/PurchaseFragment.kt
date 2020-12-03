@@ -29,23 +29,29 @@ class PurchaseFragment : BaseFragment() {
         }.root
 
         binding.close.setOnClickListener { findNavController().popBackStack() }
-        billingViewModel.premiumStatus.distinctUntilChanged().observe(viewLifecycleOwner, {
-            if (it.entitled) {
-                findNavController().popBackStack()
+        billingViewModel.premiumStatus.distinctUntilChanged().observe(
+            viewLifecycleOwner,
+            {
+                if (it.entitled) {
+                    findNavController().popBackStack()
+                }
             }
-        })
+        )
 
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        billingViewModel.subscriptions.observe(viewLifecycleOwner, {
-            if (it.isNotEmpty()) {
-                binding.skuDetails = it.first()
-                current = it.first()
+        billingViewModel.subscriptions.observe(
+            viewLifecycleOwner,
+            {
+                if (it.isNotEmpty()) {
+                    binding.skuDetails = it.first()
+                    current = it.first()
+                }
             }
-        })
+        )
 
         binding.cardOption01.setOnClickListener {
             if (::current.isInitialized) billingViewModel.makePurchase(requireActivity(), current)

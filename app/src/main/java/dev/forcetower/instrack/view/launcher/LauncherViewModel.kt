@@ -8,7 +8,6 @@ import androidx.lifecycle.asLiveData
 import dev.forcetower.instrack.core.source.repository.ProfileRepository
 import dev.forcetower.toolkit.lifecycle.Event
 import timber.log.Timber
-import javax.inject.Inject
 
 class LauncherViewModel @ViewModelInject constructor(
     repository: ProfileRepository

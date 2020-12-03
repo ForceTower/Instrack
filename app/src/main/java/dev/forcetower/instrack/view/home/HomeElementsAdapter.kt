@@ -18,7 +18,8 @@ class HomeElementsAdapter(
     private val context: Context,
     private val actions: HomeActions
 ) : RecyclerView.Adapter<HomeElementsAdapter.HomeHolder>() {
-    private val differ = AsyncListDiffer(this,
+    private val differ = AsyncListDiffer(
+        this,
         DiffCallback
     )
     var elements = HomeElement.buildLoadingList(context)
@@ -49,10 +50,12 @@ class HomeElementsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeHolder {
         return when (viewType) {
             R.layout.item_home_profile -> HomeHolder.Header(
-                parent.inflate(viewType), actions
+                parent.inflate(viewType),
+                actions
             )
             R.layout.item_home_info -> HomeHolder.Information(
-                parent.inflate(viewType), actions
+                parent.inflate(viewType),
+                actions
             )
             else -> throw IllegalStateException("No view defined for view type: $viewType")
         }
