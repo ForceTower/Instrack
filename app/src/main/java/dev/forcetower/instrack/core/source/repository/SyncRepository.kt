@@ -310,9 +310,9 @@ class SyncRepository @Inject constructor(
             restart = false
             hasMore = response.isSuccessful && data?.nextMaxId != null
             if (data != null && response.isSuccessful) {
-                database.profile().insertOrUpdatePreview(data.comments.map { ProfilePreview.adapt(it.user) })
-                database.comment().insertOrUpdate(data.comments.map { PostComment.adapt(it, post.pk) })
-                database.action().insertAllIgnore(data.comments.map { Action.comment(it.user.pk, userId, it.pk) })
+                database.profile().insertOrUpdatePreview(data.comments?.map { ProfilePreview.adapt(it.user) } ?: emptyList())
+                database.comment().insertOrUpdate(data.comments?.map { PostComment.adapt(it, post.pk) } ?: emptyList())
+                database.action().insertAllIgnore(data.comments?.map { Action.comment(it.user.pk, userId, it.pk) } ?: emptyList())
             }
             leftCount--
         } while (hasMore && leftCount > 0)
