@@ -1,9 +1,10 @@
 package dev.forcetower.instrack.core.source.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.core.source.local.TrackDB
-import dev.forcetower.toolkit.extensions.asPager
 import kotlinx.coroutines.flow.Flow
 import java.util.Calendar
 import javax.inject.Inject
@@ -21,7 +22,13 @@ class ListingRepository @Inject constructor(
             set(Calendar.SECOND, 59)
         }.timeInMillis
 
-        return database.bond().getRecentFollowers(edgeOfToday).asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.bond().getRecentFollowers(edgeOfToday) }
+        ).flow
     }
 
     fun recentUnfollowers(): Flow<PagingData<UserFriendship>> {
@@ -32,22 +39,52 @@ class ListingRepository @Inject constructor(
             set(Calendar.SECOND, 59)
         }.timeInMillis
 
-        return database.bond().getRecentUnfollowers(edgeOfToday).asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.bond().getRecentUnfollowers(edgeOfToday) }
+        ).flow
     }
 
     fun profileInteractions(): Flow<PagingData<UserFriendship>> {
-        return database.action().getActions().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.action().getActions() }
+        ).flow
     }
 
     fun unrequitedFollowers(): Flow<PagingData<UserFriendship>> {
-        return database.bond().getUnrequited().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.bond().getUnrequited() }
+        ).flow
     }
 
     fun storyWatchers(): Flow<PagingData<UserFriendship>> {
-        return database.action().getStoryWatchersFriendship().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.action().getStoryWatchersFriendship() }
+        ).flow
     }
 
     fun fans(): Flow<PagingData<UserFriendship>> {
-        return database.bond().getFans().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.bond().getFans() }
+        ).flow
     }
 }

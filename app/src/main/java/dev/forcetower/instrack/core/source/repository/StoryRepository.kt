@@ -1,11 +1,12 @@
 package dev.forcetower.instrack.core.source.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import dev.forcetower.instrack.core.model.ui.StoryViewCount
 import dev.forcetower.instrack.core.model.ui.StoryWatchProfileSimple
 import dev.forcetower.instrack.core.model.ui.UserFriendship
 import dev.forcetower.instrack.core.source.local.TrackDB
-import dev.forcetower.toolkit.extensions.asPager
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -43,22 +44,52 @@ class StoryRepository @Inject constructor(
     }
 
     fun greaterWatchers(): Flow<PagingData<UserFriendship>> {
-        return database.storyWatch().getGreaterWatchersAndCount().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.storyWatch().getGreaterWatchersAndCount() }
+        ).flow
     }
 
     fun leastWatchers(): Flow<PagingData<UserFriendship>> {
-        return database.storyWatch().getLeastWatchersAndCount().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.storyWatch().getLeastWatchersAndCount() }
+        ).flow
     }
 
     fun notFollowersWatchers(): Flow<PagingData<UserFriendship>> {
-        return database.storyWatch().getNotFollowerWatchersAndCount().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.storyWatch().getNotFollowerWatchersAndCount() }
+        ).flow
     }
 
     fun mostWatched(): Flow<PagingData<StoryViewCount>> {
-        return database.storyWatch().getMostWatched().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.storyWatch().getMostWatched() }
+        ).flow
     }
 
     fun leastWatched(): Flow<PagingData<StoryViewCount>> {
-        return database.storyWatch().getLeastWatched().asPager()
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { database.storyWatch().getLeastWatched() }
+        ).flow
     }
 }
